@@ -3366,6 +3366,9 @@ client
   .setProject("6aacfafd003ab0cd0e81");
 
 const account = new Appwrite.Account(client);
+const storage = new Appwrite.Storage(client);
+const BUCKET_ID = "SMKARYA";
+let currentUser = null;
 
 
 /* =========================================================
@@ -4071,96 +4074,107 @@ function previewFile(input){
    UPLOAD DEMO
 ========================================================= */
 
-function submitUpload(){
-
+async function submitUpload(){
   if(!currentUser){
-
-    toast(
-      "Silakan masuk terlebih dahulu untuk upload karya."
-    );
-
-    go("auth");
-
+    toast("Silakan login terlebih dahulu.");
     return;
-
   }
 
-
-  const judul =
-    document
-      .getElementById("judulKarya")
-      .value
-      .trim();
-
-
-  const jurusan =
-    document
-      .getElementById("jurusanKarya")
-      .value;
-
-
-  const kategori =
-    document
-      .getElementById("kategoriKarya")
-      .value;
-
-
-  const deskripsi =
-    document
-      .getElementById("deskripsiKarya")
-      .value
-      .trim();
-
-
-  const file =
-    document
-      .getElementById("fileInput")
-      .files[0];
-
+  const judul = document.getElementById("judulKarya").value.trim();
+  const jurusan = document.getElementById("jurusan").value;
+  const kategori = document.getElementById("kategori").value;
+  const deskripsi = document.getElementById("deskripsi").value.trim();
+  const fileInput = document.getElementById("fileInput");
+  const file = fileInput.files[0];
 
   if(!judul){
-
-    toast("Isi judul karya terlebih dahulu.");
-
+    toast("Judul karya belum diisi.");
     return;
-
   }
-
 
   if(!jurusan){
-
     toast("Pilih jurusan terlebih dahulu.");
-
     return;
-
   }
-
 
   if(!kategori){
-
     toast("Pilih kategori terlebih dahulu.");
-
     return;
-
   }
-
 
   if(!file){
-
-    toast("Pilih foto atau video terlebih dahulu.");
-
+    toast("Pilih file karya terlebih dahulu.");
     return;
-
   }
 
+  try{
+    toast("Sedang mengupload karya...");
 
-  /*
-    Untuk sekarang ini masih demo.
+    const uploadedFile = await storage.createFile({
+      bucketId: BUCKET_ID,
+      fileId: Appwrite.ID.unique(),
+      file: file
+    });
 
-    Tahap berikutnya:
-    File akan masuk ke Appwrite Storage.
-    Data karya akan masuk ke database/tables Appwrite.
-  */
+    console.log("UPLOAD BERHASIL:", uploadedFile);
+
+    toast("Karya berhasil diupload! 🎉");
+
+  }catch(error){
+    console.error("UPLOAD ERROR:", error);
+    toast(error.message || "Gagal mengupload karya.");
+  }
+}async function submitUpload(){
+  if(!currentUser){
+    toast("Silakan login terlebih dahulu.");
+    return;
+  }
+
+  const judul = document.getElementById("judulKarya").value.trim();
+  const jurusan = document.getElementById("jurusan").value;
+  const kategori = document.getElementById("kategori").value;
+  const deskripsi = document.getElementById("deskripsi").value.trim();
+  const fileInput = document.getElementById("fileInput");
+  const file = fileInput.files[0];
+
+  if(!judul){
+    toast("Judul karya belum diisi.");
+    return;
+  }
+
+  if(!jurusan){
+    toast("Pilih jurusan terlebih dahulu.");
+    return;
+  }
+
+  if(!kategori){
+    toast("Pilih kategori terlebih dahulu.");
+    return;
+  }
+
+  if(!file){
+    toast("Pilih file karya terlebih dahulu.");
+    return;
+  }
+
+  try{
+    toast("Sedang mengupload karya...");
+
+    const uploadedFile = await storage.createFile({
+      bucketId: BUCKET_ID,
+      fileId: Appwrite.ID.unique(),
+      file: file
+    });
+
+    console.log("UPLOAD BERHASIL:", uploadedFile);
+
+    toast("Karya berhasil diupload! 🎉");
+
+  }catch(error){
+    console.error("UPLOAD ERROR:", error);
+    toast(error.message || "Gagal mengupload karya.");
+  }
+}
 
   console.log({
 
