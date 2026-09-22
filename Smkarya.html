@@ -3,186 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SMKARYA — Berkarya, Berbagi, Berkembang</title>
+<title>SMKARYA — Berkarya. Berbagi. Berkembang.</title>
 
 <script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
 
 <style>
-:root{
-  --pink:#ff5fa2;
-  --pink-dark:#e94287;
-  --pink-soft:#fff0f7;
-  --purple:#8b5cf6;
-  --text:#27202a;
-  --muted:#777;
-  --white:#fff;
-  --bg:#faf7fa;
-  --border:#eee;
-  --green:#22c55e;
-  --red:#ef4444;
-}
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
+:root{
+  --pink:#ff5fa2;
+  --pink2:#ff8fc3;
+  --soft:#fff1f7;
+  --purple:#8b5cf6;
+  --dark:#292331;
+  --gray:#777;
+  --white:#fff;
+  --border:#eadde5;
+  --green:#20b486;
+  --red:#ff4d6d;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  background:#faf8fb;
+  color:var(--dark);
   min-height:100vh;
 }
 
 button,
 input,
-textarea,
-select{
+select,
+textarea{
   font:inherit;
 }
 
 button{
   cursor:pointer;
+  border:none;
 }
 
-/* ================= LOADING ================= */
-
-.loading{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.98);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:99999;
-  transition:.3s;
+.hidden{
+  display:none!important;
 }
 
-.loading.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-.loading-box{
-  text-align:center;
-}
-
-.loading-icon{
-  width:65px;
-  height:65px;
-  border-radius:20px;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  margin:auto;
-  animation:pulse 1.2s infinite;
-}
-
-.loading-box p{
-  margin-top:15px;
-  color:#777;
-  font-size:14px;
-}
-
-@keyframes pulse{
-  50%{
-    transform:scale(1.08);
-  }
-}
-
-/* ================= NAV ================= */
-
+/* NAVBAR */
 .navbar{
   position:sticky;
   top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);
+  z-index:100;
+  height:64px;
+  background:white;
   border-bottom:1px solid var(--border);
-}
-
-.nav-inner{
-  max-width:1100px;
-  margin:auto;
-  min-height:68px;
-  padding:10px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  padding:0 22px;
 }
 
 .logo{
   display:flex;
   align-items:center;
   gap:10px;
-  cursor:pointer;
+  font-weight:800;
+  color:var(--pink);
+  font-size:20px;
 }
 
 .logo-icon{
-  width:42px;
-  height:42px;
-  border-radius:13px;
+  width:36px;
+  height:36px;
+  border-radius:12px;
   background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:white;
-  font-size:21px;
-  font-weight:bold;
+  font-size:20px;
 }
 
-.logo-text strong{
-  display:block;
-  font-size:18px;
-}
-
-.logo-text span{
-  font-size:10px;
-  color:#999;
-}
-
-.nav-actions{
+.nav-links{
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:6px;
 }
 
 .nav-btn{
-  border:0;
   background:transparent;
-  padding:9px 11px;
-  border-radius:12px;
   color:#666;
+  padding:9px 12px;
+  border-radius:10px;
 }
 
 .nav-btn:hover,
 .nav-btn.active{
-  background:var(--pink-soft);
-  color:var(--pink-dark);
+  background:var(--soft);
+  color:var(--pink);
 }
 
-.nav-login{
-  background:var(--pink);
+.nav-user{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.avatar{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
   color:white;
-  border:0;
-  border-radius:12px;
-  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-weight:bold;
 }
 
-/* ================= APP ================= */
+.menu-btn{
+  display:none;
+  background:white;
+  font-size:25px;
+}
 
-.container{
-  max-width:1100px;
+/* MAIN */
+main{
+  max-width:1150px;
   margin:auto;
-  padding:25px 18px 90px;
+  padding:25px 18px 80px;
 }
 
 .page{
@@ -193,21 +143,17 @@ button{
   display:block;
 }
 
-/* ================= HERO ================= */
-
+/* HERO */
 .hero{
   background:linear-gradient(135deg,#fff0f7,#f3edff);
   border-radius:25px;
-  padding:38px 30px;
+  padding:40px 30px;
   margin-bottom:25px;
-  overflow:hidden;
-  position:relative;
 }
 
 .hero h1{
-  font-size:38px;
-  line-height:1.1;
-  max-width:600px;
+  font-size:40px;
+  margin-bottom:12px;
 }
 
 .hero h1 span{
@@ -215,9 +161,8 @@ button{
 }
 
 .hero p{
-  margin-top:13px;
-  max-width:650px;
   color:#666;
+  max-width:650px;
   line-height:1.7;
 }
 
@@ -228,348 +173,336 @@ button{
   flex-wrap:wrap;
 }
 
-.btn-primary{
-  border:0;
-  background:linear-gradient(135deg,var(--pink),var(--pink-dark));
-  color:white;
+/* BUTTONS */
+.btn{
   padding:12px 18px;
-  border-radius:13px;
-  font-weight:bold;
+  border-radius:12px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
 }
 
 .btn-secondary{
-  border:1px solid #ddd;
   background:white;
-  padding:12px 18px;
-  border-radius:13px;
-  font-weight:bold;
+  color:var(--pink);
+  border:1px solid #ffd0e4;
 }
 
-/* ================= SECTION ================= */
+.btn-danger{
+  background:#fff0f2;
+  color:var(--red);
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  opacity:.9;
+}
+
+/* CARDS */
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:18px;
+}
 
 .section-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin:25px 0 15px;
+  margin-bottom:15px;
 }
 
 .section-title h2{
-  font-size:21px;
+  font-size:22px;
 }
 
-.section-title span{
-  color:#999;
-  font-size:13px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
-/* ================= EMPTY ================= */
-
-.empty{
+/* WORK CARD */
+.work-card{
   background:white;
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:45px 20px;
-  text-align:center;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.work-image{
+  width:100%;
+  height:210px;
+  background:#f3eef5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.work-image img,
+.work-image video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.work-placeholder{
+  font-size:50px;
+}
+
+.work-body{
+  padding:15px;
+}
+
+.work-title{
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.work-meta{
   color:#888;
+  font-size:13px;
+  margin-bottom:9px;
 }
 
-.empty-icon{
-  font-size:40px;
-  margin-bottom:10px;
+.work-desc{
+  color:#666;
+  font-size:14px;
+  line-height:1.5;
 }
 
-/* ================= UPLOAD ================= */
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
 
-.upload-card{
-  background:white;
+.action{
+  background:#faf7fa;
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:25px;
-  max-width:750px;
-  margin:auto;
+  border-radius:9px;
+  padding:7px 10px;
+  color:#666;
 }
 
+/* FORM */
 .form-group{
-  margin-bottom:17px;
+  margin-bottom:16px;
 }
 
 .form-group label{
   display:block;
-  font-size:13px;
-  font-weight:bold;
+  font-weight:700;
   margin-bottom:7px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
+.form-control{
   width:100%;
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:12px 13px;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:11px;
   outline:none;
   background:white;
 }
 
-.form-group textarea{
+.form-control:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 0 3px #ffe3ef;
+}
+
+textarea.form-control{
   min-height:110px;
   resize:vertical;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-  border-color:var(--pink);
-}
-
 .file-box{
-  border:2px dashed #ddd;
-  border-radius:18px;
+  border:2px dashed #ffc4dc;
+  background:#fff8fb;
+  border-radius:16px;
   padding:30px;
   text-align:center;
   cursor:pointer;
-  transition:.2s;
-}
-
-.file-box:hover{
-  border-color:var(--pink);
-  background:var(--pink-soft);
 }
 
 .file-box strong{
   display:block;
-  margin-bottom:5px;
-}
-
-.file-box small{
-  color:#999;
+  color:var(--pink);
+  margin-bottom:6px;
 }
 
 .preview{
-  display:none;
   margin-top:15px;
+  border-radius:15px;
+  overflow:hidden;
+  background:#f5f2f6;
 }
 
 .preview img,
 .preview video{
   width:100%;
-  max-height:350px;
+  max-height:400px;
   object-fit:contain;
-  border-radius:15px;
-  background:#111;
+  display:block;
 }
 
-/* ================= AUTH ================= */
-
+/* AUTH */
 .auth-page{
-  min-height:calc(100vh - 100px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.auth-card{
-  width:100%;
-  max-width:430px;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:28px;
-  box-shadow:0 10px 35px rgba(0,0,0,.05);
+  max-width:480px;
+  margin:35px auto;
 }
 
 .auth-logo{
   text-align:center;
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .auth-logo .logo-icon{
   margin:auto;
+  width:60px;
+  height:60px;
+  font-size:30px;
 }
 
-.auth-logo h2{
-  margin-top:12px;
+.auth-logo h1{
+  margin-top:10px;
 }
 
-.auth-logo p{
-  color:#999;
-  font-size:13px;
-  margin-top:5px;
-}
-
-.auth-switch{
-  text-align:center;
-  margin-top:17px;
-  font-size:13px;
-  color:#888;
-}
-
-.auth-switch button{
-  border:0;
-  background:none;
-  color:var(--pink-dark);
-  font-weight:bold;
-}
-
-/* ================= PROFILE ================= */
-
+/* PROFILE */
 .profile-header{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:30px;
   display:flex;
   align-items:center;
   gap:20px;
-}
-
-.avatar{
-  width:85px;
-  height:85px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:30px;
-  font-weight:bold;
-  flex-shrink:0;
-}
-
-.profile-info h2{
-  font-size:23px;
-}
-
-.profile-info p{
-  color:#888;
-  margin-top:5px;
-}
-
-.profile-actions{
-  margin-left:auto;
-}
-
-/* ================= ABOUT ================= */
-
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.info-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-}
-
-.info-card .icon{
-  font-size:28px;
-}
-
-.info-card h3{
-  margin:12px 0 7px;
-}
-
-.info-card p{
-  color:#777;
-  line-height:1.6;
-  font-size:14px;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:5000;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:100%;
-  max-width:450px;
-  background:white;
-  border-radius:22px;
   padding:25px;
 }
 
-.modal-head{
+.profile-big{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
+  justify-content:center;
+  font-size:35px;
+  font-weight:bold;
 }
 
-.close{
-  border:0;
-  background:#f5f5f5;
-  width:35px;
-  height:35px;
-  border-radius:50%;
+.profile-info h2{
+  margin-bottom:6px;
 }
 
-/* ================= TOAST ================= */
+.profile-info p{
+  color:#777;
+}
 
+/* EMPTY */
+.empty{
+  text-align:center;
+  padding:45px 20px;
+  color:#888;
+}
+
+.empty-icon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+/* TOAST */
 #toastBox{
   position:fixed;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:999999;
+  right:18px;
+  bottom:18px;
+  z-index:999;
 }
 
 .toast{
-  background:#29232b;
+  background:#292331;
   color:white;
-  padding:12px 18px;
-  border-radius:13px;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-  font-size:13px;
-  animation:toastIn .25s ease;
+  padding:13px 17px;
+  border-radius:12px;
+  margin-top:8px;
+  box-shadow:0 8px 30px #0002;
+  animation:toast .2s ease;
 }
 
-@keyframes toastIn{
+@keyframes toast{
   from{
-    opacity:0;
     transform:translateY(10px);
+    opacity:0;
   }
   to{
-    opacity:1;
     transform:translateY(0);
+    opacity:1;
   }
 }
 
-/* ================= FOOTER ================= */
-
-footer{
-  text-align:center;
-  padding:30px 15px;
-  color:#aaa;
-  font-size:12px;
+/* STATUS */
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
+  padding:7px 10px;
+  border-radius:20px;
+  background:#f5f5f5;
 }
 
-/* ================= RESPONSIVE ================= */
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#aaa;
+}
 
-@media(max-width:750px){
+.status.ok .dot{
+  background:var(--green);
+}
 
-  .nav-inner{
-    min-height:60px;
-  }
+.status.bad .dot{
+  background:var(--red);
+}
 
-  .nav-actions .nav-btn{
+/* MOBILE */
+@media(max-width:800px){
+  .nav-links{
     display:none;
+    position:absolute;
+    top:64px;
+    left:0;
+    right:0;
+    background:white;
+    border-bottom:1px solid var(--border);
+    padding:10px;
+    flex-direction:column;
+  }
+
+  .nav-links.show{
+    display:flex;
+  }
+
+  .nav-btn{
+    width:100%;
+    text-align:left;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-user{
+    display:none;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
   }
 
   .hero{
@@ -579,274 +512,136 @@ footer{
   .hero h1{
     font-size:30px;
   }
-
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
-  .profile-header{
-    align-items:flex-start;
-  }
-
-  .profile-actions{
-    margin-left:0;
-  }
-
 }
 
-@media(max-width:500px){
-
-  .container{
-    padding:18px 12px 80px;
+@media(min-width:801px) and (max-width:1000px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
   }
-
-  .hero{
-    border-radius:19px;
-  }
-
-  .upload-card,
-  .auth-card{
-    padding:20px;
-  }
-
-  .profile-header{
-    flex-direction:column;
-  }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOADING ================= -->
-
-<div id="loadingScreen" class="loading">
-  <div class="loading-box">
-    <div class="loading-icon">✦</div>
-    <p>Memuat SMKARYA...</p>
-  </div>
-</div>
-
-<!-- ================= NAVBAR ================= -->
-
+<!-- NAVBAR -->
 <nav class="navbar">
 
-  <div class="nav-inner">
-
-    <div class="logo" onclick="go('home')">
-      <div class="logo-icon">✦</div>
-
-      <div class="logo-text">
-        <strong>SMKARYA</strong>
-        <span>Berkarya. Berbagi. Berkembang.</span>
-      </div>
-    </div>
-
-    <div class="nav-actions">
-
-      <button class="nav-btn active" onclick="go('home')">
-        Beranda
-      </button>
-
-      <button class="nav-btn" onclick="go('explore')">
-        Jelajahi
-      </button>
-
-      <button class="nav-btn" onclick="go('portfolio')">
-        Portofolio
-      </button>
-
-      <button
-        id="profileNav"
-        class="nav-btn"
-        onclick="go('profile')">
-        Profil
-      </button>
-
-      <button
-        id="loginNav"
-        class="nav-login"
-        onclick="go('login')">
-        Masuk
-      </button>
-
-    </div>
-
+  <div class="logo">
+    <div class="logo-icon">✦</div>
+    SMKARYA
   </div>
+
+  <div class="nav-links" id="navLinks">
+    <button class="nav-btn active" onclick="go('home')">Beranda</button>
+    <button class="nav-btn" onclick="go('explore')">Jelajah</button>
+    <button class="nav-btn" onclick="go('upload')">Upload Karya</button>
+    <button class="nav-btn" onclick="go('portfolio')">Portofolio</button>
+    <button class="nav-btn" onclick="go('profile')">Profil</button>
+  </div>
+
+  <div class="nav-user">
+    <div class="avatar" id="navAvatar">?</div>
+    <span id="navName">Tamu</span>
+  </div>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
 </nav>
 
 
-<main class="container">
+<main>
 
-<!-- ================= HOME ================= -->
-
+<!-- HOME -->
 <section id="home" class="page active">
 
   <div class="hero">
 
     <h1>
-      Saatnya karya siswa SMK
-      <span>terlihat.</span>
+      Karya SMK, <span>punya cerita.</span>
     </h1>
 
     <p>
       SMKARYA adalah ruang bagi siswa SMK Indonesia
       untuk memamerkan karya, berbagi inspirasi,
-      mendapatkan apresiasi, dan membangun portofolio digital.
+      mendapatkan apresiasi, dan membangun portofolio.
     </p>
 
     <div class="hero-buttons">
-
-      <button
-        class="btn-primary"
-        onclick="go('upload')">
+      <button class="btn btn-primary" onclick="go('upload')">
         ＋ Upload Karya
       </button>
 
-      <button
-        class="btn-secondary"
-        onclick="go('explore')">
+      <button class="btn btn-secondary" onclick="go('explore')">
         Jelajahi Karya
       </button>
-
     </div>
 
   </div>
 
 
-  <div class="section-title">
+  <div class="card">
 
-    <h2>Karya Terbaru</h2>
+    <div class="section-title">
+      <h2>Karya Terbaru</h2>
 
-    <span>SMKARYA</span>
+      <span class="status" id="appStatus">
+        <span class="dot"></span>
+        Menghubungkan...
+      </span>
+    </div>
 
-  </div>
-
-
-  <div id="homeFeed" class="empty">
-
-    <div class="empty-icon">🎨</div>
-
-    <h3>Belum ada karya</h3>
-
-    <p style="margin-top:7px">
-      Jadilah salah satu siswa pertama yang
-      memamerkan karya di SMKARYA.
-    </p>
-
-    <button
-      class="btn-primary"
-      style="margin-top:18px"
-      onclick="go('upload')">
-      Upload Karya
-    </button>
+    <div id="homeWorks" class="grid"></div>
 
   </div>
 
 </section>
 
 
-<!-- ================= EXPLORE ================= -->
-
+<!-- EXPLORE -->
 <section id="explore" class="page">
 
-  <div class="section-title">
-    <h2>Jelajahi SMKARYA</h2>
-    <span>70+ jurusan SMK</span>
+  <div class="card">
+
+    <div class="section-title">
+      <h2>Jelajah Karya</h2>
+    </div>
+
+    <input
+      class="form-control"
+      id="searchInput"
+      placeholder="Cari karya, jurusan, atau kategori..."
+      oninput="renderWorks()"
+    >
+
   </div>
 
-  <div class="info-grid">
-
-    <div class="info-card">
-      <div class="icon">👗</div>
-      <h3>Tata Busana</h3>
-      <p>
-        Temukan karya desain, busana,
-        pola, dan kreativitas siswa.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">🎨</div>
-      <h3>Desain</h3>
-      <p>
-        Bagikan desain digital,
-        ilustrasi, poster, dan karya visual.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">⚙️</div>
-      <h3>Teknik</h3>
-      <p>
-        Tampilkan hasil praktik,
-        proyek, produk, dan inovasi.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">🍳</div>
-      <h3>Kuliner</h3>
-      <p>
-        Tampilkan kreasi makanan,
-        minuman, dan produk boga.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">💻</div>
-      <h3>Teknologi</h3>
-      <p>
-        Bagikan website, aplikasi,
-        desain UI, dan proyek teknologi.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">📸</div>
-      <h3>Karya Lainnya</h3>
-      <p>
-        Semua siswa SMK dapat memiliki
-        ruang untuk menunjukkan potensinya.
-      </p>
-    </div>
-
-  </div>
+  <div id="exploreWorks" class="grid"></div>
 
 </section>
 
 
-<!-- ================= UPLOAD ================= -->
-
+<!-- UPLOAD -->
 <section id="upload" class="page">
 
-  <div class="section-title">
+  <div class="card">
 
-    <h2>Upload Karya</h2>
-
-    <span>Bagikan hasil karyamu</span>
-
-  </div>
-
-
-  <div class="upload-card">
+    <div class="section-title">
+      <h2>Upload Karya</h2>
+    </div>
 
     <div class="form-group">
 
-      <label>Pilih Foto / Video</label>
+      <label>File Karya</label>
 
       <div
         class="file-box"
-        onclick="document.getElementById('fileInput').click()">
-
-        <strong>＋ Pilih file karya</strong>
-
-        <small>
-          JPG, PNG, WEBP atau video
-        </small>
-
+        onclick="document.getElementById('fileInput').click()"
+      >
+        <strong>＋ Pilih Foto / Video</strong>
+        <span id="fileName">
+          Klik untuk memilih karya
+        </span>
       </div>
 
       <input
@@ -854,12 +649,10 @@ footer{
         type="file"
         accept="image/*,video/*"
         hidden
-        onchange="previewFile(this)">
+        onchange="previewFile()"
+      >
 
-      <div
-        id="preview"
-        class="preview">
-      </div>
+      <div id="previewBox" class="preview hidden"></div>
 
     </div>
 
@@ -870,8 +663,9 @@ footer{
 
       <input
         id="judulKarya"
-        type="text"
-        placeholder="Contoh: Busana Modern Tradisional">
+        class="form-control"
+        placeholder="Contoh: Busana Batik Modern"
+      >
 
     </div>
 
@@ -880,34 +674,107 @@ footer{
 
       <label>Jurusan</label>
 
-      <select id="jurusanKarya">
+      <select id="jurusanKarya" class="form-control">
 
-        <option value="">
-          Pilih jurusan
-        </option>
+        <option value="">Pilih jurusan</option>
 
-        <option>Tata Busana</option>
+        <option>Akuntansi dan Keuangan Lembaga</option>
+        <option>Manajemen Perkantoran dan Layanan Bisnis</option>
+        <option>Bisnis Daring dan Pemasaran</option>
         <option>Desain Komunikasi Visual</option>
         <option>Rekayasa Perangkat Lunak</option>
         <option>Teknik Komputer dan Jaringan</option>
+        <option>Teknik Jaringan Komputer dan Telekomunikasi</option>
+        <option>Pengembangan Gim</option>
+        <option>Animasi</option>
+        <option>Broadcasting dan Perfilman</option>
+        <option>Produksi dan Siaran Program Televisi</option>
+        <option>Produksi Film</option>
+        <option>Teknik Elektronika</option>
+        <option>Teknik Audio Video</option>
+        <option>Teknik Instalasi Tenaga Listrik</option>
+        <option>Teknik Ketenagalistrikan</option>
         <option>Teknik Mesin</option>
+        <option>Teknik Pemesinan</option>
+        <option>Teknik Pengelasan</option>
         <option>Teknik Kendaraan Ringan</option>
         <option>Teknik Sepeda Motor</option>
-        <option>Teknik Elektronika</option>
-        <option>Teknik Ketenagalistrikan</option>
-        <option>Teknik Bangunan</option>
-        <option>Akuntansi</option>
-        <option>Manajemen Perkantoran</option>
-        <option>Bisnis Daring dan Pemasaran</option>
-        <option>Perhotelan</option>
-        <option>Usaha Layanan Pariwisata</option>
-        <option>Kuliner</option>
-        <option>Farmasi</option>
+        <option>Teknik Otomotif</option>
+        <option>Teknik Alat Berat</option>
+        <option>Teknik Bodi Kendaraan Ringan</option>
+        <option>Teknik Geomatika</option>
+        <option>Teknik Konstruksi dan Perumahan</option>
+        <option>Desain Pemodelan dan Informasi Bangunan</option>
+        <option>Teknik Sipil</option>
+        <option>Teknik Pengukuran Tanah</option>
+        <option>Teknik Furnitur</option>
+        <option>Desain Interior</option>
+        <option>Teknik Kimia Industri</option>
+        <option>Kimia Analisis</option>
+        <option>Teknik Industri</option>
+        <option>Teknik Energi Terbarukan</option>
+        <option>Teknik Pendinginan dan Tata Udara</option>
+        <option>Teknik Mekatronika</option>
+        <option>Teknik Robotika</option>
+        <option>Agribisnis Tanaman</option>
+        <option>Agribisnis Ternak</option>
+        <option>Agribisnis Perikanan</option>
+        <option>Agriteknologi Pengolahan Hasil Pertanian</option>
+        <option>Teknologi Laboratorium</option>
+        <option>Farmasi Klinis dan Komunitas</option>
+        <option>Farmasi Industri</option>
         <option>Asisten Keperawatan</option>
-        <option>Broadcasting</option>
-        <option>Animasi</option>
-        <option>Teknik Jaringan Komputer dan Telekomunikasi</option>
-        <option>Lainnya</option>
+        <option>Teknologi Laboratorium Medik</option>
+        <option>Keperawatan</option>
+        <option>Usaha Layanan Pariwisata</option>
+        <option>Perhotelan</option>
+        <option>Kuliner</option>
+        <option>Tata Boga</option>
+        <option>Tata Busana</option>
+        <option>Desain dan Produksi Busana</option>
+        <option>Tata Kecantikan Kulit dan Rambut</option>
+        <option>Teknik Kecantikan</option>
+        <option>Manajemen Logistik</option>
+        <option>Teknik Logistik</option>
+        <option>Bisnis Retail</option>
+        <option>Ekonomi Syariah</option>
+        <option>Perbankan Syariah</option>
+        <option>Teknik Perbankan</option>
+        <option>Multimedia</option>
+        <option>Teknik Informatika</option>
+        <option>Sistem Informasi</option>
+        <option>Teknik Data</option>
+        <option>Teknik Telekomunikasi</option>
+        <option>Teknik Broadcasting</option>
+        <option>Teknik Grafika</option>
+        <option>Produksi Grafika</option>
+        <option>Teknik Percetakan</option>
+        <option>Teknik Tekstil</option>
+        <option>Kriya Kreatif Batik dan Tekstil</option>
+        <option>Kriya Kreatif Kayu dan Rotan</option>
+        <option>Kriya Kreatif Keramik</option>
+        <option>Kriya Kreatif Logam</option>
+        <option>Kriya Kreatif Kulit</option>
+        <option>Seni Lukis</option>
+        <option>Seni Patung</option>
+        <option>Desain Produk</option>
+        <option>Seni Tari</option>
+        <option>Seni Karawitan</option>
+        <option>Seni Musik</option>
+        <option>Seni Pedalangan</option>
+        <option>Teknik Perkapalan</option>
+        <option>Teknik Pengelasan Kapal</option>
+        <option>Teknik Mesin Kapal</option>
+        <option>Nautika Kapal Niaga</option>
+        <option>Teknika Kapal Niaga</option>
+        <option>Teknik Pesawat Udara</option>
+        <option>Airframe Powerplant</option>
+        <option>Teknik Elektronika Penerbangan</option>
+        <option>Usaha Perjalanan Wisata</option>
+        <option>Perhotelan dan Jasa Pariwisata</option>
+        <option>Manajemen Industri</option>
+        <option>Teknik Produksi</option>
+        <option>Teknik Pemeliharaan Mekanik Industri</option>
 
       </select>
 
@@ -918,21 +785,20 @@ footer{
 
       <label>Kategori</label>
 
-      <select id="kategoriKarya">
+      <select id="kategoriKarya" class="form-control">
 
-        <option value="">
-          Pilih kategori
-        </option>
-
-        <option>Produk</option>
-        <option>Desain</option>
+        <option value="">Pilih kategori</option>
         <option>Fashion</option>
+        <option>Desain</option>
         <option>Teknologi</option>
+        <option>Otomotif</option>
         <option>Kuliner</option>
         <option>Kerajinan</option>
-        <option>Proyek</option>
         <option>Fotografi</option>
         <option>Video</option>
+        <option>Seni</option>
+        <option>Produk</option>
+        <option>Proyek Sekolah</option>
         <option>Lainnya</option>
 
       </select>
@@ -946,36 +812,19 @@ footer{
 
       <textarea
         id="deskripsiKarya"
-        placeholder="Ceritakan sedikit tentang karya ini..."></textarea>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label style="display:flex;align-items:center;gap:8px">
-
-        <input
-          id="jadikanPortfolio"
-          type="checkbox"
-          checked
-          style="width:auto">
-
-        Tampilkan juga di portofolioku
-
-      </label>
+        class="form-control"
+        placeholder="Ceritakan karya kamu..."
+      ></textarea>
 
     </div>
 
 
     <button
-      id="uploadButton"
-      class="btn-primary"
+      class="btn btn-primary"
       style="width:100%"
-      onclick="submitUpload()">
-
+      onclick="submitUpload()"
+    >
       🚀 Publikasikan Karya
-
     </button>
 
   </div>
@@ -983,62 +832,101 @@ footer{
 </section>
 
 
-<!-- ================= PORTFOLIO ================= -->
-
+<!-- PORTFOLIO -->
 <section id="portfolio" class="page">
 
-  <div class="section-title">
-    <h2>Portofolio Digital</h2>
-  </div>
+  <div class="card">
 
-  <div id="portfolioContent">
-
-    <div class="empty">
-
-      <div class="empty-icon">📁</div>
-
-      <h3>Portofoliomu akan ada di sini</h3>
-
-      <p style="margin-top:7px">
-        Upload karya dan mulai bangun
-        portofolio digitalmu.
-      </p>
+    <div class="section-title">
+      <h2>Portofolioku</h2>
 
       <button
-        class="btn-primary"
-        style="margin-top:18px"
-        onclick="go('upload')">
-        Mulai Berkarya
+        class="btn btn-primary"
+        onclick="go('upload')"
+      >
+        ＋ Tambah Karya
       </button>
-
     </div>
+
+    <div id="portfolioWorks" class="grid"></div>
 
   </div>
 
 </section>
 
 
-<!-- ================= PROFILE ================= -->
-
+<!-- PROFILE -->
 <section id="profile" class="page">
 
-  <div id="profileContent">
+  <div class="card profile-header">
 
-    <div class="empty">
+    <div class="profile-big" id="profileAvatar">
+      ?
+    </div>
 
-      <div class="empty-icon">👤</div>
+    <div class="profile-info">
 
-      <h3>Kamu belum masuk</h3>
+      <h2 id="profileName">
+        Tamu
+      </h2>
 
-      <p style="margin-top:7px">
-        Masuk untuk membuat profil SMKARYA.
+      <p id="profileEmail">
+        Belum login
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2 style="margin-bottom:15px">
+      Akun
+    </h2>
+
+    <div id="profileLoggedOut">
+
+      <p style="color:#777;margin-bottom:15px">
+        Login untuk mengupload karya dan membangun portofolio.
       </p>
 
       <button
-        class="btn-primary"
-        style="margin-top:18px"
-        onclick="go('login')">
-        Masuk
+        class="btn btn-primary"
+        onclick="go('login')"
+      >
+        Login / Daftar
+      </button>
+
+    </div>
+
+
+    <div id="profileLoggedIn" class="hidden">
+
+      <div class="form-group">
+
+        <label>Nama</label>
+
+        <input
+          id="editName"
+          class="form-control"
+        >
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveProfile()"
+      >
+        Simpan Nama
+      </button>
+
+      <button
+        class="btn btn-danger"
+        onclick="logoutSMKARYA()"
+        style="margin-left:6px"
+      >
+        Keluar
       </button>
 
     </div>
@@ -1048,22 +936,23 @@ footer{
 </section>
 
 
-<!-- ================= LOGIN ================= -->
-
+<!-- LOGIN -->
 <section id="login" class="page">
 
   <div class="auth-page">
 
-    <div class="auth-card">
+    <div class="card">
 
       <div class="auth-logo">
 
-        <div class="logo-icon">✦</div>
+        <div class="logo-icon">
+          ✦
+        </div>
 
-        <h2>Masuk ke SMKARYA</h2>
+        <h1>Masuk ke SMKARYA</h1>
 
-        <p>
-          Lanjutkan perjalanan berkaryamu.
+        <p style="color:#777;margin-top:7px">
+          Tampilkan karya terbaikmu.
         </p>
 
       </div>
@@ -1075,8 +964,10 @@ footer{
 
         <input
           id="loginEmail"
+          class="form-control"
           type="email"
-          placeholder="email@gmail.com">
+          placeholder="email@gmail.com"
+        >
 
       </div>
 
@@ -1087,31 +978,35 @@ footer{
 
         <input
           id="loginPassword"
+          class="form-control"
           type="password"
-          placeholder="Masukkan password">
+          placeholder="Minimal 8 karakter"
+        >
 
       </div>
 
 
       <button
-        class="btn-primary"
+        class="btn btn-primary"
         style="width:100%"
-        onclick="loginSMKARYA()">
-
+        onclick="loginSMKARYA()"
+      >
         Masuk
-
       </button>
 
 
-      <div class="auth-switch">
+      <p style="text-align:center;margin-top:18px;color:#777">
 
         Belum punya akun?
 
-        <button onclick="go('register')">
-          Daftar sekarang
+        <button
+          style="background:none;color:var(--pink);font-weight:bold"
+          onclick="go('register')"
+        >
+          Daftar
         </button>
 
-      </div>
+      </p>
 
     </div>
 
@@ -1120,22 +1015,23 @@ footer{
 </section>
 
 
-<!-- ================= REGISTER ================= -->
-
+<!-- REGISTER -->
 <section id="register" class="page">
 
   <div class="auth-page">
 
-    <div class="auth-card">
+    <div class="card">
 
       <div class="auth-logo">
 
-        <div class="logo-icon">✦</div>
+        <div class="logo-icon">
+          ✦
+        </div>
 
-        <h2>Buat Akun SMKARYA</h2>
+        <h1>Buat Akun</h1>
 
-        <p>
-          Yuk mulai tampilkan karyamu.
+        <p style="color:#777;margin-top:7px">
+          Bergabung dengan SMKARYA.
         </p>
 
       </div>
@@ -1146,9 +1042,10 @@ footer{
         <label>Nama</label>
 
         <input
-          id="registerNama"
-          type="text"
-          placeholder="Nama lengkap">
+          id="registerName"
+          class="form-control"
+          placeholder="Nama kamu"
+        >
 
       </div>
 
@@ -1159,8 +1056,10 @@ footer{
 
         <input
           id="registerEmail"
+          class="form-control"
           type="email"
-          placeholder="email@gmail.com">
+          placeholder="email@gmail.com"
+        >
 
       </div>
 
@@ -1171,31 +1070,35 @@ footer{
 
         <input
           id="registerPassword"
+          class="form-control"
           type="password"
-          placeholder="Minimal 8 karakter">
+          placeholder="Minimal 8 karakter"
+        >
 
       </div>
 
 
       <button
-        class="btn-primary"
+        class="btn btn-primary"
         style="width:100%"
-        onclick="registerSMKARYA()">
-
-        Daftar
-
+        onclick="registerSMKARYA()"
+      >
+        Daftar Sekarang
       </button>
 
 
-      <div class="auth-switch">
+      <p style="text-align:center;margin-top:18px;color:#777">
 
         Sudah punya akun?
 
-        <button onclick="go('login')">
-          Masuk
+        <button
+          style="background:none;color:var(--pink);font-weight:bold"
+          onclick="go('login')"
+        >
+          Login
         </button>
 
-      </div>
+      </p>
 
     </div>
 
@@ -1203,13 +1106,7 @@ footer{
 
 </section>
 
-
 </main>
-
-
-<footer>
-  © 2026 SMKARYA — Berkarya. Berbagi. Berkembang.
-</footer>
 
 
 <div id="toastBox"></div>
@@ -1218,29 +1115,117 @@ footer{
 <script>
 
 /* =====================================================
-   APPWRITE
+   SMKARYA V2
+   APPWRITE CONFIG
 ===================================================== */
 
-const client = new Appwrite.Client();
+const APPWRITE_ENDPOINT =
+  "https://sgp.cloud.appwrite.io/v1";
 
-client
-  .setEndpoint("https://sgp.cloud.appwrite.io/v1")
-  .setProject("6aacfafd003ab0cd0e81");
+const APPWRITE_PROJECT =
+  "6aacfafd003ab0cd0e81";
 
-
-const account = new Appwrite.Account(client);
-
-const storage = new Appwrite.Storage(client);
+const BUCKET_ID =
+  "SMKARYA";
 
 
-/* BUCKET YANG SUDAH KAMU BUAT */
+/* =====================================================
+   APPWRITE INIT
+===================================================== */
 
-const BUCKET_ID = "SMKARYA";
+let client = null;
+let account = null;
+let storage = null;
 
-
-/* USER GLOBAL — HANYA SATU */
-
+let appwriteReady = false;
 let currentUser = null;
+
+
+function initAppwrite(){
+
+  try{
+
+    if(
+      typeof Appwrite === "undefined"
+    ){
+      console.warn(
+        "Appwrite SDK belum tersedia."
+      );
+
+      setStatus(
+        false,
+        "Mode demo"
+      );
+
+      return false;
+    }
+
+
+    client =
+      new Appwrite.Client();
+
+    client
+      .setEndpoint(APPWRITE_ENDPOINT)
+      .setProject(APPWRITE_PROJECT);
+
+
+    account =
+      new Appwrite.Account(client);
+
+    storage =
+      new Appwrite.Storage(client);
+
+
+    appwriteReady = true;
+
+    setStatus(
+      true,
+      "Appwrite aktif"
+    );
+
+    return true;
+
+  }catch(error){
+
+    console.error(
+      "APPWRITE INIT:",
+      error
+    );
+
+    appwriteReady = false;
+
+    setStatus(
+      false,
+      "Mode demo"
+    );
+
+    return false;
+  }
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function setStatus(ok,text){
+
+  const el =
+    document.getElementById(
+      "appStatus"
+    );
+
+  if(!el)return;
+
+  el.className =
+    "status " +
+    (ok ? "ok" : "bad");
+
+  el.innerHTML =
+    '<span class="dot"></span>' +
+    text;
+}
 
 
 /* =====================================================
@@ -1249,64 +1234,181 @@ let currentUser = null;
 
 function toast(message){
 
-  const box = document.getElementById("toastBox");
+  const box =
+    document.getElementById(
+      "toastBox"
+    );
 
-  box.innerHTML = "";
+  const item =
+    document.createElement(
+      "div"
+    );
 
-  const item = document.createElement("div");
+  item.className =
+    "toast";
 
-  item.className = "toast";
-
-  item.textContent = message;
+  item.textContent =
+    message;
 
   box.appendChild(item);
 
-  setTimeout(() => {
-
-    item.remove();
-
-  },3000);
-
+  setTimeout(
+    () => item.remove(),
+    3000
+  );
 }
 
 
 /* =====================================================
-   NAVIGASI
+   NAVIGATION
 ===================================================== */
 
 function go(page){
 
-  document.querySelectorAll(".page")
-    .forEach(el => {
-
-      el.classList.remove("active");
-
-    });
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      p => p.classList.remove("active")
+    );
 
 
   const target =
     document.getElementById(page);
 
-
   if(target){
-
     target.classList.add("active");
-
   }
 
 
-  document.querySelectorAll(".nav-btn")
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(
+      btn => btn.classList.remove("active")
+    );
+
+
+  document
+    .querySelectorAll(".nav-btn")
     .forEach(btn => {
 
-      btn.classList.remove("active");
+      const text =
+        btn.textContent
+          .toLowerCase();
+
+      if(
+        (page === "home" &&
+          text.includes("beranda")) ||
+
+        (page === "explore" &&
+          text.includes("jelajah")) ||
+
+        (page === "upload" &&
+          text.includes("upload")) ||
+
+        (page === "portfolio" &&
+          text.includes("portofolio")) ||
+
+        (page === "profile" &&
+          text.includes("profil"))
+      ){
+        btn.classList.add("active");
+      }
 
     });
 
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  document
+    .getElementById("navLinks")
+    .classList.remove("show");
+
+
+  if(page === "explore"){
+    renderWorks();
+  }
+
+  if(page === "portfolio"){
+    renderPortfolio();
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+function toggleMenu(){
+
+  document
+    .getElementById("navLinks")
+    .classList.toggle("show");
+
+}
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+function getWorks(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "smkarya_works"
+      ) || "[]"
+    );
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+function saveWorks(works){
+
+  localStorage.setItem(
+    "smkarya_works",
+    JSON.stringify(works)
+  );
+
+}
+
+
+/* =====================================================
+   CHECK LOGIN
+===================================================== */
+
+async function checkLogin(){
+
+  if(!appwriteReady){
+    updateUserUI();
+    return;
+  }
+
+
+  try{
+
+    currentUser =
+      await account.get();
+
+    console.log(
+      "Login aktif:",
+      currentUser
+    );
+
+  }catch(error){
+
+    currentUser = null;
+
+  }
+
+
+  updateUserUI();
 
 }
 
@@ -1317,75 +1419,83 @@ function go(page){
 
 async function registerSMKARYA(){
 
-  const nama =
+  const name =
     document
-      .getElementById("registerNama")
+      .getElementById(
+        "registerName"
+      )
       .value
       .trim();
 
   const email =
     document
-      .getElementById("registerEmail")
+      .getElementById(
+        "registerEmail"
+      )
       .value
       .trim();
 
   const password =
     document
-      .getElementById("registerPassword")
+      .getElementById(
+        "registerPassword"
+      )
       .value;
 
 
-  if(!nama){
-
+  if(!name){
     toast("Nama belum diisi.");
-
     return;
-
   }
 
 
   if(!email){
-
     toast("Email belum diisi.");
-
     return;
-
   }
 
 
-  if(!password || password.length < 8){
+  if(password.length < 8){
+    toast(
+      "Password minimal 8 karakter."
+    );
+    return;
+  }
 
-    toast("Password minimal 8 karakter.");
+
+  if(!appwriteReady){
+
+    toast(
+      "Appwrite belum terhubung."
+    );
 
     return;
-
   }
 
 
   try{
 
-    toast("Membuat akun...");
-
-
     await account.create({
+      userId:
+        Appwrite.ID.unique(),
 
-      userId:Appwrite.ID.unique(),
+      email:
+        email,
 
-      email:email,
+      password:
+        password,
 
-      password:password,
-
-      name:nama
-
+      name:
+        name
     });
 
 
     await account.createEmailPasswordSession({
+      email:
+        email,
 
-      email:email,
-
-      password:password
-
+      password:
+        password
     });
 
 
@@ -1393,22 +1503,25 @@ async function registerSMKARYA(){
       await account.get();
 
 
-    updateUserInterface();
+    toast(
+      "Akun berhasil dibuat! 🎉"
+    );
 
 
-    toast("Akun berhasil dibuat! 🎉");
-
+    updateUserUI();
 
     go("home");
 
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "REGISTER ERROR:",
+      error
+    );
 
     toast(
-      error?.message ||
-      "Gagal membuat akun."
+      getErrorMessage(error)
     );
 
   }
@@ -1424,36 +1537,61 @@ async function loginSMKARYA(){
 
   const email =
     document
-      .getElementById("loginEmail")
+      .getElementById(
+        "loginEmail"
+      )
       .value
       .trim();
 
   const password =
     document
-      .getElementById("loginPassword")
+      .getElementById(
+        "loginPassword"
+      )
       .value;
 
 
-  if(!email || !password){
+  if(!email){
+    toast("Email belum diisi.");
+    return;
+  }
 
-    toast("Email dan password harus diisi.");
+
+  if(!password){
+    toast("Password belum diisi.");
+    return;
+  }
+
+
+  if(!appwriteReady){
+
+    toast(
+      "Appwrite belum terhubung."
+    );
 
     return;
-
   }
 
 
   try{
 
-    toast("Memproses login...");
+    try{
+
+      await account.deleteSession({
+        sessionId:"current"
+      });
+
+    }catch(e){
+      /* tidak masalah jika belum ada session */
+    }
 
 
     await account.createEmailPasswordSession({
+      email:
+        email,
 
-      email:email,
-
-      password:password
-
+      password:
+        password
     });
 
 
@@ -1461,163 +1599,28 @@ async function loginSMKARYA(){
       await account.get();
 
 
-    updateUserInterface();
+    toast(
+      "Berhasil masuk! 👋"
+    );
 
 
-    toast("Berhasil masuk! 👋");
-
+    updateUserUI();
 
     go("home");
 
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
 
     toast(
-      error?.message ||
-      "Email atau password salah."
+      getErrorMessage(error)
     );
 
   }
-
-}
-
-
-/* =====================================================
-   CHECK LOGIN
-===================================================== */
-
-async function checkLogin(){
-
-  try{
-
-    currentUser =
-      await account.get();
-
-    updateUserInterface();
-
-  }catch(error){
-
-    currentUser = null;
-
-    updateUserInterface();
-
-  }
-
-}
-
-
-/* =====================================================
-   UPDATE USER INTERFACE
-===================================================== */
-
-function updateUserInterface(){
-
-  const loginNav =
-    document.getElementById("loginNav");
-
-
-  if(currentUser){
-
-    loginNav.textContent =
-      currentUser.name ||
-      "Profil";
-
-    loginNav.onclick =
-      function(){
-
-        go("profile");
-
-      };
-
-
-    updateProfile();
-
-  }else{
-
-    loginNav.textContent =
-      "Masuk";
-
-    loginNav.onclick =
-      function(){
-
-        go("login");
-
-      };
-
-  }
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function updateProfile(){
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  const name =
-    currentUser.name ||
-    "Pengguna SMKARYA";
-
-
-  const initial =
-    name
-      .charAt(0)
-      .toUpperCase();
-
-
-  const profile =
-    document.getElementById("profileContent");
-
-
-  profile.innerHTML = `
-
-    <div class="profile-header">
-
-      <div class="avatar">
-        ${initial}
-      </div>
-
-      <div class="profile-info">
-
-        <h2>
-          ${escapeHTML(name)}
-        </h2>
-
-        <p>
-          ${escapeHTML(currentUser.email || "")}
-        </p>
-
-        <p>
-          Anggota SMKARYA
-        </p>
-
-      </div>
-
-      <div class="profile-actions">
-
-        <button
-          class="btn-secondary"
-          onclick="logoutSMKARYA()">
-
-          Keluar
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
 
 }
 
@@ -1628,24 +1631,36 @@ function updateProfile(){
 
 async function logoutSMKARYA(){
 
-  try{
+  if(
+    appwriteReady &&
+    account
+  ){
 
-    await account.deleteSession({
-      sessionId:"current"
-    });
+    try{
 
-  }catch(error){
+      await account.deleteSession({
+        sessionId:"current"
+      });
 
-    console.error(error);
+    }catch(error){
+
+      console.warn(
+        "Logout:",
+        error
+      );
+
+    }
 
   }
 
 
   currentUser = null;
 
-  updateUserInterface();
+  updateUserUI();
 
-  toast("Kamu sudah keluar.");
+  toast(
+    "Kamu sudah keluar."
+  );
 
   go("home");
 
@@ -1653,64 +1668,298 @@ async function logoutSMKARYA(){
 
 
 /* =====================================================
-   PREVIEW FILE
+   USER UI
 ===================================================== */
 
-function previewFile(input){
+function updateUserUI(){
 
-  const file =
-    input.files?.[0];
+  const navName =
+    document.getElementById(
+      "navName"
+    );
 
-  const preview =
-    document.getElementById("preview");
+  const navAvatar =
+    document.getElementById(
+      "navAvatar"
+    );
+
+  const profileName =
+    document.getElementById(
+      "profileName"
+    );
+
+  const profileEmail =
+    document.getElementById(
+      "profileEmail"
+    );
+
+  const profileAvatar =
+    document.getElementById(
+      "profileAvatar"
+    );
+
+  const loggedOut =
+    document.getElementById(
+      "profileLoggedOut"
+    );
+
+  const loggedIn =
+    document.getElementById(
+      "profileLoggedIn"
+    );
+
+  const editName =
+    document.getElementById(
+      "editName"
+    );
 
 
-  if(!file){
+  if(currentUser){
 
-    preview.style.display =
-      "none";
+    const name =
+      currentUser.name ||
+      "Siswa SMK";
 
-    preview.innerHTML =
+    const initial =
+      name
+        .charAt(0)
+        .toUpperCase();
+
+
+    navName.textContent =
+      name;
+
+    navAvatar.textContent =
+      initial;
+
+
+    profileName.textContent =
+      name;
+
+    profileEmail.textContent =
+      currentUser.email ||
       "";
 
-    return;
+
+    profileAvatar.textContent =
+      initial;
+
+
+    loggedOut
+      .classList.add("hidden");
+
+    loggedIn
+      .classList.remove("hidden");
+
+
+    editName.value =
+      name;
+
+
+  }else{
+
+    navName.textContent =
+      "Tamu";
+
+    navAvatar.textContent =
+      "?";
+
+
+    profileName.textContent =
+      "Tamu";
+
+    profileEmail.textContent =
+      "Belum login";
+
+
+    profileAvatar.textContent =
+      "?";
+
+
+    loggedOut
+      .classList.remove("hidden");
+
+    loggedIn
+      .classList.add("hidden");
 
   }
+
+}
+
+
+/* =====================================================
+   SAVE PROFILE
+===================================================== */
+
+async function saveProfile(){
+
+  if(!currentUser){
+
+    toast(
+      "Silakan login terlebih dahulu."
+    );
+
+    return;
+  }
+
+
+  const name =
+    document
+      .getElementById(
+        "editName"
+      )
+      .value
+      .trim();
+
+
+  if(!name){
+
+    toast(
+      "Nama tidak boleh kosong."
+    );
+
+    return;
+  }
+
+
+  if(!appwriteReady){
+
+    toast(
+      "Appwrite belum terhubung."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    currentUser =
+      await account.updateName({
+        name:name
+      });
+
+
+    updateUserUI();
+
+    toast(
+      "Nama berhasil diperbarui."
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+    toast(
+      getErrorMessage(error)
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   FILE PREVIEW
+===================================================== */
+
+function previewFile(){
+
+  const input =
+    document.getElementById(
+      "fileInput"
+    );
+
+  const preview =
+    document.getElementById(
+      "previewBox"
+    );
+
+  const fileName =
+    document.getElementById(
+      "fileName"
+    );
+
+
+  preview.innerHTML = "";
+
+
+  if(
+    !input.files ||
+    !input.files[0]
+  ){
+
+    preview.classList.add(
+      "hidden"
+    );
+
+    fileName.textContent =
+      "Klik untuk memilih karya";
+
+    return;
+  }
+
+
+  const file =
+    input.files[0];
+
+
+  fileName.textContent =
+    file.name;
 
 
   const url =
     URL.createObjectURL(file);
 
 
-  preview.innerHTML =
-    "";
-
-
-  if(file.type.startsWith("image/")){
+  if(
+    file.type.startsWith(
+      "image/"
+    )
+  ){
 
     const img =
-      document.createElement("img");
+      document.createElement(
+        "img"
+      );
 
-    img.src = url;
+    img.src =
+      url;
 
-    preview.appendChild(img);
+    preview.appendChild(
+      img
+    );
 
-  }else if(file.type.startsWith("video/")){
+  }else if(
+    file.type.startsWith(
+      "video/"
+    )
+  ){
 
     const video =
-      document.createElement("video");
+      document.createElement(
+        "video"
+      );
 
-    video.src = url;
+    video.src =
+      url;
 
-    video.controls = true;
+    video.controls =
+      true;
 
-    preview.appendChild(video);
+    preview.appendChild(
+      video
+    );
 
   }
 
 
-  preview.style.display =
-    "block";
+  preview.classList.remove(
+    "hidden"
+  );
 
 }
 
@@ -1721,63 +1970,68 @@ function previewFile(input){
 
 async function submitUpload(){
 
+  const fileInput =
+    document.getElementById(
+      "fileInput"
+    );
+
+  const file =
+    fileInput.files[0];
+
+
+  const judul =
+    document
+      .getElementById(
+        "judulKarya"
+      )
+      .value
+      .trim();
+
+
+  const jurusan =
+    document
+      .getElementById(
+        "jurusanKarya"
+      )
+      .value;
+
+
+  const kategori =
+    document
+      .getElementById(
+        "kategoriKarya"
+      )
+      .value;
+
+
+  const deskripsi =
+    document
+      .getElementById(
+        "deskripsiKarya"
+      )
+      .value
+      .trim();
+
+
   if(!currentUser){
 
     toast(
-      "Silakan login terlebih dahulu."
+      "Login dulu untuk upload karya."
     );
 
     go("login");
 
     return;
-
   }
-
-
-  const fileInput =
-    document.getElementById("fileInput");
-
-  const judulEl =
-    document.getElementById("judulKarya");
-
-  const jurusanEl =
-    document.getElementById("jurusanKarya");
-
-  const kategoriEl =
-    document.getElementById("kategoriKarya");
-
-  const deskripsiEl =
-    document.getElementById("deskripsiKarya");
-
-
-  const file =
-    fileInput?.files?.[0];
-
-
-  const judul =
-    judulEl?.value.trim() || "";
-
-
-  const jurusan =
-    jurusanEl?.value || "";
-
-
-  const kategori =
-    kategoriEl?.value || "";
-
-
-  const deskripsi =
-    deskripsiEl?.value.trim() || "";
 
 
   if(!file){
 
     toast(
-      "Pilih foto atau video karya terlebih dahulu."
+      "Pilih foto atau video terlebih dahulu."
     );
 
     return;
-
   }
 
 
@@ -1788,131 +2042,148 @@ async function submitUpload(){
     );
 
     return;
-
   }
 
 
   if(!jurusan){
 
     toast(
-      "Pilih jurusan terlebih dahulu."
+      "Pilih jurusan."
     );
 
     return;
-
   }
 
 
   if(!kategori){
 
     toast(
-      "Pilih kategori terlebih dahulu."
+      "Pilih kategori."
     );
 
     return;
+  }
+
+
+  let fileId = "";
+
+
+  /* -------------------------------------
+     UPLOAD KE APPWRITE STORAGE
+  ------------------------------------- */
+
+  if(appwriteReady){
+
+    try{
+
+      const uploaded =
+        await storage.createFile({
+          bucketId:
+            BUCKET_ID,
+
+          fileId:
+            Appwrite.ID.unique(),
+
+          file:
+            file
+        });
+
+
+      fileId =
+        uploaded.$id;
+
+
+      toast(
+        "File berhasil diupload ke Appwrite. ☁️"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "UPLOAD APPWRITE ERROR:",
+        error
+      );
+
+
+      toast(
+        "Upload cloud gagal. Karya tetap disimpan di demo."
+      );
+
+    }
 
   }
 
 
-  const button =
-    document.getElementById("uploadButton");
+  /* -------------------------------------
+     SIMPAN DATA DEMO
+  ------------------------------------- */
+
+  const works =
+    getWorks();
 
 
-  try{
+  const work = {
 
-    button.disabled = true;
+    id:
+      Date.now().toString(),
 
-    button.textContent =
-      "⏳ Mengunggah...";
+    userId:
+      currentUser.$id,
 
+    userName:
+      currentUser.name ||
+      "Siswa SMK",
 
-    toast(
-      "Sedang mengunggah karya..."
-    );
+    title:
+      judul,
 
+    jurusan:
+      jurusan,
 
-    const uploadedFile =
-      await storage.createFile({
+    category:
+      kategori,
 
-        bucketId:BUCKET_ID,
+    description:
+      deskripsi,
 
-        fileId:Appwrite.ID.unique(),
+    fileName:
+      file.name,
 
-        file:file
+    fileType:
+      file.type,
 
-      });
+    fileId:
+      fileId,
 
+    createdAt:
+      new Date().toISOString()
 
-    console.log(
-      "UPLOAD BERHASIL:",
-      uploadedFile
-    );
-
-
-    localStorage.setItem(
-
-      "smkarya_last_upload",
-
-      JSON.stringify({
-
-        fileId:uploadedFile.$id,
-
-        bucketId:BUCKET_ID,
-
-        judul:judul,
-
-        jurusan:jurusan,
-
-        kategori:kategori,
-
-        deskripsi:deskripsi,
-
-        userId:currentUser.$id,
-
-        userName:currentUser.name,
-
-        createdAt:new Date().toISOString()
-
-      })
-
-    );
+  };
 
 
-    toast(
-      "Karya berhasil diunggah! 🎉"
-    );
+  works.unshift(
+    work
+  );
 
 
-    resetUploadForm();
+  saveWorks(
+    works
+  );
 
 
-    go("portfolio");
+  toast(
+    "Karya berhasil dipublikasikan! 🎉"
+  );
 
 
-  }catch(error){
-
-    console.error(
-      "UPLOAD ERROR:",
-      error
-    );
+  resetUpload();
 
 
-    toast(
-      "Upload gagal: " +
-      (
-        error?.message ||
-        "Terjadi kesalahan."
-      )
-    );
+  renderWorks();
 
-  }finally{
 
-    button.disabled = false;
-
-    button.textContent =
-      "🚀 Publikasikan Karya";
-
-  }
+  go("portfolio");
 
 }
 
@@ -1921,41 +2192,445 @@ async function submitUpload(){
    RESET UPLOAD
 ===================================================== */
 
-function resetUploadForm(){
+function resetUpload(){
 
   document
-    .getElementById("fileInput")
+    .getElementById(
+      "fileInput"
+    )
     .value = "";
 
 
   document
-    .getElementById("judulKarya")
+    .getElementById(
+      "judulKarya"
+    )
     .value = "";
 
 
   document
-    .getElementById("jurusanKarya")
+    .getElementById(
+      "jurusanKarya"
+    )
     .value = "";
 
 
   document
-    .getElementById("kategoriKarya")
+    .getElementById(
+      "kategoriKarya"
+    )
     .value = "";
 
 
   document
-    .getElementById("deskripsiKarya")
+    .getElementById(
+      "deskripsiKarya"
+    )
     .value = "";
 
 
   document
-    .getElementById("preview")
-    .innerHTML = "";
+    .getElementById(
+      "previewBox"
+    )
+    .classList.add(
+      "hidden"
+    );
 
 
   document
-    .getElementById("preview")
-    .style.display = "none";
+    .getElementById(
+      "fileName"
+    )
+    .textContent =
+      "Klik untuk memilih karya";
+
+}
+
+
+/* =====================================================
+   RENDER WORKS
+===================================================== */
+
+function renderWorks(){
+
+  const works =
+    getWorks();
+
+
+  const search =
+    (
+      document
+        .getElementById(
+          "searchInput"
+        )?.value || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const filtered =
+    works.filter(
+      work => {
+
+        const text =
+          (
+            work.title +
+            " " +
+            work.jurusan +
+            " " +
+            work.category +
+            " " +
+            work.description
+          )
+          .toLowerCase();
+
+
+        return text.includes(
+          search
+        );
+
+      }
+    );
+
+
+  renderWorkContainer(
+    "homeWorks",
+    works.slice(0,6)
+  );
+
+
+  renderWorkContainer(
+    "exploreWorks",
+    filtered
+  );
+
+}
+
+
+/* =====================================================
+   PORTFOLIO
+===================================================== */
+
+function renderPortfolio(){
+
+  const container =
+    document.getElementById(
+      "portfolioWorks"
+    );
+
+
+  if(!currentUser){
+
+    container.innerHTML = `
+      <div class="card" style="grid-column:1/-1">
+        <div class="empty">
+          <div class="empty-icon">🔐</div>
+          <h3>Login untuk melihat portofolio</h3>
+          <br>
+          <button
+            class="btn btn-primary"
+            onclick="go('login')"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const works =
+    getWorks().filter(
+      work =>
+        work.userId ===
+        currentUser.$id
+    );
+
+
+  renderWorkContainer(
+    "portfolioWorks",
+    works
+  );
+
+}
+
+
+/* =====================================================
+   WORK CONTAINER
+===================================================== */
+
+function renderWorkContainer(
+  containerId,
+  works
+){
+
+  const container =
+    document.getElementById(
+      containerId
+    );
+
+
+  if(!container){
+    return;
+  }
+
+
+  if(!works.length){
+
+    container.innerHTML = `
+      <div
+        class="card"
+        style="grid-column:1/-1"
+      >
+        <div class="empty">
+          <div class="empty-icon">✨</div>
+          <h3>Belum ada karya</h3>
+          <p style="margin-top:6px">
+            Jadilah yang pertama memamerkan karya!
+          </p>
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML =
+    works
+      .map(
+        work =>
+          createWorkCard(
+            work
+          )
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   CREATE WORK CARD
+===================================================== */
+
+function createWorkCard(work){
+
+  const safeTitle =
+    escapeHTML(
+      work.title
+    );
+
+
+  const safeJurusan =
+    escapeHTML(
+      work.jurusan
+    );
+
+
+  const safeCategory =
+    escapeHTML(
+      work.category
+    );
+
+
+  const safeDescription =
+    escapeHTML(
+      work.description ||
+      ""
+    );
+
+
+  let visual = `
+    <div class="work-placeholder">
+      ✦
+    </div>
+  `;
+
+
+  if(
+    work.fileType &&
+    work.fileType.startsWith(
+      "image/"
+    )
+  ){
+
+    visual = `
+      <div class="work-placeholder">
+        🖼️
+      </div>
+    `;
+
+  }else if(
+    work.fileType &&
+    work.fileType.startsWith(
+      "video/"
+    )
+  ){
+
+    visual = `
+      <div class="work-placeholder">
+        🎬
+      </div>
+    `;
+
+  }
+
+
+  return `
+
+    <article class="work-card">
+
+      <div class="work-image">
+
+        ${visual}
+
+      </div>
+
+      <div class="work-body">
+
+        <div class="work-title">
+          ${safeTitle}
+        </div>
+
+        <div class="work-meta">
+          ${safeJurusan} · ${safeCategory}
+        </div>
+
+        <div class="work-desc">
+          ${safeDescription}
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="action"
+            onclick="likeWork('${work.id}')"
+          >
+            ♡ Suka
+          </button>
+
+          <button
+            class="action"
+            onclick="shareWork('${work.id}')"
+          >
+            ↗ Bagikan
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =====================================================
+   LIKE
+===================================================== */
+
+function likeWork(id){
+
+  const likesKey =
+    "smkarya_likes_" +
+    id;
+
+
+  let likes =
+    Number(
+      localStorage.getItem(
+        likesKey
+      ) || 0
+    );
+
+
+  likes++;
+
+
+  localStorage.setItem(
+    likesKey,
+    likes
+  );
+
+
+  toast(
+    "Kamu menyukai karya ini ❤️"
+  );
+
+}
+
+
+/* =====================================================
+   SHARE
+===================================================== */
+
+async function shareWork(id){
+
+  const works =
+    getWorks();
+
+
+  const work =
+    works.find(
+      item =>
+        item.id === id
+    );
+
+
+  if(!work){
+    return;
+  }
+
+
+  const text =
+    "Lihat karya " +
+    work.title +
+    " di SMKARYA!";
+
+
+  try{
+
+    if(
+      navigator.share
+    ){
+
+      await navigator.share({
+        title:
+          "SMKARYA",
+
+        text:
+          text,
+
+        url:
+          location.href
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(
+        text +
+        " " +
+        location.href
+      );
+
+      toast(
+        "Tautan berhasil disalin."
+      );
+
+    }
+
+  }catch(error){
+
+    console.log(
+      error
+    );
+
+  }
 
 }
 
@@ -1966,2089 +2641,126 @@ function resetUploadForm(){
 
 function escapeHTML(text){
 
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    text || ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
 
 /* =====================================================
-   INIT
+   ERROR MESSAGE
+===================================================== */
+
+function getErrorMessage(error){
+
+  if(!error){
+    return "Terjadi kesalahan.";
+  }
+
+
+  const message =
+    error.message ||
+    "";
+
+
+  if(
+    message
+      .toLowerCase()
+      .includes(
+        "user already exists"
+      )
+  ){
+
+    return(
+      "Email sudah terdaftar. Silakan login."
+    );
+
+  }
+
+
+  if(
+    message
+      .toLowerCase()
+      .includes(
+        "invalid credentials"
+      )
+  ){
+
+    return(
+      "Email atau password salah."
+    );
+
+  }
+
+
+  if(
+    message
+      .toLowerCase()
+      .includes(
+        "password"
+      )
+  ){
+
+    return(
+      message ||
+      "Password tidak valid."
+    );
+
+  }
+
+
+  return(
+    message ||
+    "Terjadi kesalahan. Coba lagi."
+  );
+
+}
+
+
+/* =====================================================
+   START APP
+   TIDAK ADA LOADING SCREEN
 ===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
   async function(){
 
-    try{
+    /* UI langsung tampil */
+    updateUserUI();
 
-      await checkLogin();
+    renderWorks();
 
-      go("home");
+    initAppwrite();
 
-    }catch(error){
+    /* Appwrite dicek setelah halaman tampil */
+    await checkLogin();
 
-      console.error(
-        "SMKARYA INIT ERROR:",
-        error
-      );
-
-    }finally{
-
-      /*
-        PENTING:
-        Loading tetap ditutup walaupun
-        checkLogin mengalami error.
-      */
-
-      const loadingScreen =
-        document.getElementById(
-          "loadingScreen"
-        );
-
-
-      if(loadingScreen){
-
-        loadingScreen.classList.add(
-          "hidden"
-        );
-
-      }
-
-    }
+    updateUserUI();
 
   }
 );
-
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SMKARYA — Berkarya, Berbagi, Berkembang</title>
-
-<script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
-
-<style>
-:root{
-  --pink:#ff5fa2;
-  --pink-dark:#e94287;
-  --pink-soft:#fff0f7;
-  --purple:#8b5cf6;
-  --text:#27202a;
-  --muted:#777;
-  --white:#fff;
-  --bg:#faf7fa;
-  --border:#eee;
-  --green:#22c55e;
-  --red:#ef4444;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-}
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-/* ================= LOADING ================= */
-
-.loading{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.98);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:99999;
-  transition:.3s;
-}
-
-.loading.hidden{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-.loading-box{
-  text-align:center;
-}
-
-.loading-icon{
-  width:65px;
-  height:65px;
-  border-radius:20px;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  margin:auto;
-  animation:pulse 1.2s infinite;
-}
-
-.loading-box p{
-  margin-top:15px;
-  color:#777;
-  font-size:14px;
-}
-
-@keyframes pulse{
-  50%{
-    transform:scale(1.08);
-  }
-}
-
-/* ================= NAV ================= */
-
-.navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-
-.nav-inner{
-  max-width:1100px;
-  margin:auto;
-  min-height:68px;
-  padding:10px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  cursor:pointer;
-}
-
-.logo-icon{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:21px;
-  font-weight:bold;
-}
-
-.logo-text strong{
-  display:block;
-  font-size:18px;
-}
-
-.logo-text span{
-  font-size:10px;
-  color:#999;
-}
-
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.nav-btn{
-  border:0;
-  background:transparent;
-  padding:9px 11px;
-  border-radius:12px;
-  color:#666;
-}
-
-.nav-btn:hover,
-.nav-btn.active{
-  background:var(--pink-soft);
-  color:var(--pink-dark);
-}
-
-.nav-login{
-  background:var(--pink);
-  color:white;
-  border:0;
-  border-radius:12px;
-  padding:10px 16px;
-  font-weight:bold;
-}
-
-/* ================= APP ================= */
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:25px 18px 90px;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-  background:linear-gradient(135deg,#fff0f7,#f3edff);
-  border-radius:25px;
-  padding:38px 30px;
-  margin-bottom:25px;
-  overflow:hidden;
-  position:relative;
-}
-
-.hero h1{
-  font-size:38px;
-  line-height:1.1;
-  max-width:600px;
-}
-
-.hero h1 span{
-  color:var(--pink);
-}
-
-.hero p{
-  margin-top:13px;
-  max-width:650px;
-  color:#666;
-  line-height:1.7;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:22px;
-  flex-wrap:wrap;
-}
-
-.btn-primary{
-  border:0;
-  background:linear-gradient(135deg,var(--pink),var(--pink-dark));
-  color:white;
-  padding:12px 18px;
-  border-radius:13px;
-  font-weight:bold;
-}
-
-.btn-secondary{
-  border:1px solid #ddd;
-  background:white;
-  padding:12px 18px;
-  border-radius:13px;
-  font-weight:bold;
-}
-
-/* ================= SECTION ================= */
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:25px 0 15px;
-}
-
-.section-title h2{
-  font-size:21px;
-}
-
-.section-title span{
-  color:#999;
-  font-size:13px;
-}
-
-/* ================= EMPTY ================= */
-
-.empty{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:45px 20px;
-  text-align:center;
-  color:#888;
-}
-
-.empty-icon{
-  font-size:40px;
-  margin-bottom:10px;
-}
-
-/* ================= UPLOAD ================= */
-
-.upload-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:25px;
-  max-width:750px;
-  margin:auto;
-}
-
-.form-group{
-  margin-bottom:17px;
-}
-
-.form-group label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:12px 13px;
-  outline:none;
-  background:white;
-}
-
-.form-group textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-  border-color:var(--pink);
-}
-
-.file-box{
-  border:2px dashed #ddd;
-  border-radius:18px;
-  padding:30px;
-  text-align:center;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.file-box:hover{
-  border-color:var(--pink);
-  background:var(--pink-soft);
-}
-
-.file-box strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.file-box small{
-  color:#999;
-}
-
-.preview{
-  display:none;
-  margin-top:15px;
-}
-
-.preview img,
-.preview video{
-  width:100%;
-  max-height:350px;
-  object-fit:contain;
-  border-radius:15px;
-  background:#111;
-}
-
-/* ================= AUTH ================= */
-
-.auth-page{
-  min-height:calc(100vh - 100px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.auth-card{
-  width:100%;
-  max-width:430px;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:28px;
-  box-shadow:0 10px 35px rgba(0,0,0,.05);
-}
-
-.auth-logo{
-  text-align:center;
-  margin-bottom:22px;
-}
-
-.auth-logo .logo-icon{
-  margin:auto;
-}
-
-.auth-logo h2{
-  margin-top:12px;
-}
-
-.auth-logo p{
-  color:#999;
-  font-size:13px;
-  margin-top:5px;
-}
-
-.auth-switch{
-  text-align:center;
-  margin-top:17px;
-  font-size:13px;
-  color:#888;
-}
-
-.auth-switch button{
-  border:0;
-  background:none;
-  color:var(--pink-dark);
-  font-weight:bold;
-}
-
-/* ================= PROFILE ================= */
-
-.profile-header{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:30px;
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.avatar{
-  width:85px;
-  height:85px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--pink),var(--purple));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:30px;
-  font-weight:bold;
-  flex-shrink:0;
-}
-
-.profile-info h2{
-  font-size:23px;
-}
-
-.profile-info p{
-  color:#888;
-  margin-top:5px;
-}
-
-.profile-actions{
-  margin-left:auto;
-}
-
-/* ================= ABOUT ================= */
-
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.info-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-}
-
-.info-card .icon{
-  font-size:28px;
-}
-
-.info-card h3{
-  margin:12px 0 7px;
-}
-
-.info-card p{
-  color:#777;
-  line-height:1.6;
-  font-size:14px;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:5000;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:100%;
-  max-width:450px;
-  background:white;
-  border-radius:22px;
-  padding:25px;
-}
-
-.modal-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
-}
-
-.close{
-  border:0;
-  background:#f5f5f5;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-}
-
-/* ================= TOAST ================= */
-
-#toastBox{
-  position:fixed;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:999999;
-}
-
-.toast{
-  background:#29232b;
-  color:white;
-  padding:12px 18px;
-  border-radius:13px;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-  font-size:13px;
-  animation:toastIn .25s ease;
-}
-
-@keyframes toastIn{
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  text-align:center;
-  padding:30px 15px;
-  color:#aaa;
-  font-size:12px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:750px){
-
-  .nav-inner{
-    min-height:60px;
-  }
-
-  .nav-actions .nav-btn{
-    display:none;
-  }
-
-  .hero{
-    padding:28px 20px;
-  }
-
-  .hero h1{
-    font-size:30px;
-  }
-
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
-  .profile-header{
-    align-items:flex-start;
-  }
-
-  .profile-actions{
-    margin-left:0;
-  }
-
-}
-
-@media(max-width:500px){
-
-  .container{
-    padding:18px 12px 80px;
-  }
-
-  .hero{
-    border-radius:19px;
-  }
-
-  .upload-card,
-  .auth-card{
-    padding:20px;
-  }
-
-  .profile-header{
-    flex-direction:column;
-  }
-
-}
-</style>
-</head>
-
-<body>
-
-<!-- ================= LOADING ================= -->
-
-<div id="loadingScreen" class="loading">
-  <div class="loading-box">
-    <div class="loading-icon">✦</div>
-    <p>Memuat SMKARYA...</p>
-  </div>
-</div>
-
-<!-- ================= NAVBAR ================= -->
-
-<nav class="navbar">
-
-  <div class="nav-inner">
-
-    <div class="logo" onclick="go('home')">
-      <div class="logo-icon">✦</div>
-
-      <div class="logo-text">
-        <strong>SMKARYA</strong>
-        <span>Berkarya. Berbagi. Berkembang.</span>
-      </div>
-    </div>
-
-    <div class="nav-actions">
-
-      <button class="nav-btn active" onclick="go('home')">
-        Beranda
-      </button>
-
-      <button class="nav-btn" onclick="go('explore')">
-        Jelajahi
-      </button>
-
-      <button class="nav-btn" onclick="go('portfolio')">
-        Portofolio
-      </button>
-
-      <button
-        id="profileNav"
-        class="nav-btn"
-        onclick="go('profile')">
-        Profil
-      </button>
-
-      <button
-        id="loginNav"
-        class="nav-login"
-        onclick="go('login')">
-        Masuk
-      </button>
-
-    </div>
-
-  </div>
-
-</nav>
-
-
-<main class="container">
-
-<!-- ================= HOME ================= -->
-
-<section id="home" class="page active">
-
-  <div class="hero">
-
-    <h1>
-      Saatnya karya siswa SMK
-      <span>terlihat.</span>
-    </h1>
-
-    <p>
-      SMKARYA adalah ruang bagi siswa SMK Indonesia
-      untuk memamerkan karya, berbagi inspirasi,
-      mendapatkan apresiasi, dan membangun portofolio digital.
-    </p>
-
-    <div class="hero-buttons">
-
-      <button
-        class="btn-primary"
-        onclick="go('upload')">
-        ＋ Upload Karya
-      </button>
-
-      <button
-        class="btn-secondary"
-        onclick="go('explore')">
-        Jelajahi Karya
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-
-    <h2>Karya Terbaru</h2>
-
-    <span>SMKARYA</span>
-
-  </div>
-
-
-  <div id="homeFeed" class="empty">
-
-    <div class="empty-icon">🎨</div>
-
-    <h3>Belum ada karya</h3>
-
-    <p style="margin-top:7px">
-      Jadilah salah satu siswa pertama yang
-      memamerkan karya di SMKARYA.
-    </p>
-
-    <button
-      class="btn-primary"
-      style="margin-top:18px"
-      onclick="go('upload')">
-      Upload Karya
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ================= EXPLORE ================= -->
-
-<section id="explore" class="page">
-
-  <div class="section-title">
-    <h2>Jelajahi SMKARYA</h2>
-    <span>70+ jurusan SMK</span>
-  </div>
-
-  <div class="info-grid">
-
-    <div class="info-card">
-      <div class="icon">👗</div>
-      <h3>Tata Busana</h3>
-      <p>
-        Temukan karya desain, busana,
-        pola, dan kreativitas siswa.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">🎨</div>
-      <h3>Desain</h3>
-      <p>
-        Bagikan desain digital,
-        ilustrasi, poster, dan karya visual.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">⚙️</div>
-      <h3>Teknik</h3>
-      <p>
-        Tampilkan hasil praktik,
-        proyek, produk, dan inovasi.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">🍳</div>
-      <h3>Kuliner</h3>
-      <p>
-        Tampilkan kreasi makanan,
-        minuman, dan produk boga.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">💻</div>
-      <h3>Teknologi</h3>
-      <p>
-        Bagikan website, aplikasi,
-        desain UI, dan proyek teknologi.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <div class="icon">📸</div>
-      <h3>Karya Lainnya</h3>
-      <p>
-        Semua siswa SMK dapat memiliki
-        ruang untuk menunjukkan potensinya.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= UPLOAD ================= -->
-
-<section id="upload" class="page">
-
-  <div class="section-title">
-
-    <h2>Upload Karya</h2>
-
-    <span>Bagikan hasil karyamu</span>
-
-  </div>
-
-
-  <div class="upload-card">
-
-    <div class="form-group">
-
-      <label>Pilih Foto / Video</label>
-
-      <div
-        class="file-box"
-        onclick="document.getElementById('fileInput').click()">
-
-        <strong>＋ Pilih file karya</strong>
-
-        <small>
-          JPG, PNG, WEBP atau video
-        </small>
-
-      </div>
-
-      <input
-        id="fileInput"
-        type="file"
-        accept="image/*,video/*"
-        hidden
-        onchange="previewFile(this)">
-
-      <div
-        id="preview"
-        class="preview">
-      </div>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Judul Karya</label>
-
-      <input
-        id="judulKarya"
-        type="text"
-        placeholder="Contoh: Busana Modern Tradisional">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Jurusan</label>
-
-      <select id="jurusanKarya">
-
-        <option value="">
-          Pilih jurusan
-        </option>
-
-        <option>Tata Busana</option>
-        <option>Desain Komunikasi Visual</option>
-        <option>Rekayasa Perangkat Lunak</option>
-        <option>Teknik Komputer dan Jaringan</option>
-        <option>Teknik Mesin</option>
-        <option>Teknik Kendaraan Ringan</option>
-        <option>Teknik Sepeda Motor</option>
-        <option>Teknik Elektronika</option>
-        <option>Teknik Ketenagalistrikan</option>
-        <option>Teknik Bangunan</option>
-        <option>Akuntansi</option>
-        <option>Manajemen Perkantoran</option>
-        <option>Bisnis Daring dan Pemasaran</option>
-        <option>Perhotelan</option>
-        <option>Usaha Layanan Pariwisata</option>
-        <option>Kuliner</option>
-        <option>Farmasi</option>
-        <option>Asisten Keperawatan</option>
-        <option>Broadcasting</option>
-        <option>Animasi</option>
-        <option>Teknik Jaringan Komputer dan Telekomunikasi</option>
-        <option>Lainnya</option>
-
-      </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Kategori</label>
-
-      <select id="kategoriKarya">
-
-        <option value="">
-          Pilih kategori
-        </option>
-
-        <option>Produk</option>
-        <option>Desain</option>
-        <option>Fashion</option>
-        <option>Teknologi</option>
-        <option>Kuliner</option>
-        <option>Kerajinan</option>
-        <option>Proyek</option>
-        <option>Fotografi</option>
-        <option>Video</option>
-        <option>Lainnya</option>
-
-      </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Deskripsi</label>
-
-      <textarea
-        id="deskripsiKarya"
-        placeholder="Ceritakan sedikit tentang karya ini..."></textarea>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label style="display:flex;align-items:center;gap:8px">
-
-        <input
-          id="jadikanPortfolio"
-          type="checkbox"
-          checked
-          style="width:auto">
-
-        Tampilkan juga di portofolioku
-
-      </label>
-
-    </div>
-
-
-    <button
-      id="uploadButton"
-      class="btn-primary"
-      style="width:100%"
-      onclick="submitUpload()">
-
-      🚀 Publikasikan Karya
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ================= PORTFOLIO ================= -->
-
-<section id="portfolio" class="page">
-
-  <div class="section-title">
-    <h2>Portofolio Digital</h2>
-  </div>
-
-  <div id="portfolioContent">
-
-    <div class="empty">
-
-      <div class="empty-icon">📁</div>
-
-      <h3>Portofoliomu akan ada di sini</h3>
-
-      <p style="margin-top:7px">
-        Upload karya dan mulai bangun
-        portofolio digitalmu.
-      </p>
-
-      <button
-        class="btn-primary"
-        style="margin-top:18px"
-        onclick="go('upload')">
-        Mulai Berkarya
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= PROFILE ================= -->
-
-<section id="profile" class="page">
-
-  <div id="profileContent">
-
-    <div class="empty">
-
-      <div class="empty-icon">👤</div>
-
-      <h3>Kamu belum masuk</h3>
-
-      <p style="margin-top:7px">
-        Masuk untuk membuat profil SMKARYA.
-      </p>
-
-      <button
-        class="btn-primary"
-        style="margin-top:18px"
-        onclick="go('login')">
-        Masuk
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= LOGIN ================= -->
-
-<section id="login" class="page">
-
-  <div class="auth-page">
-
-    <div class="auth-card">
-
-      <div class="auth-logo">
-
-        <div class="logo-icon">✦</div>
-
-        <h2>Masuk ke SMKARYA</h2>
-
-        <p>
-          Lanjutkan perjalanan berkaryamu.
-        </p>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>Email</label>
-
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="email@gmail.com">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>Password</label>
-
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Masukkan password">
-
-      </div>
-
-
-      <button
-        class="btn-primary"
-        style="width:100%"
-        onclick="loginSMKARYA()">
-
-        Masuk
-
-      </button>
-
-
-      <div class="auth-switch">
-
-        Belum punya akun?
-
-        <button onclick="go('register')">
-          Daftar sekarang
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= REGISTER ================= -->
-
-<section id="register" class="page">
-
-  <div class="auth-page">
-
-    <div class="auth-card">
-
-      <div class="auth-logo">
-
-        <div class="logo-icon">✦</div>
-
-        <h2>Buat Akun SMKARYA</h2>
-
-        <p>
-          Yuk mulai tampilkan karyamu.
-        </p>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>Nama</label>
-
-        <input
-          id="registerNama"
-          type="text"
-          placeholder="Nama lengkap">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>Email</label>
-
-        <input
-          id="registerEmail"
-          type="email"
-          placeholder="email@gmail.com">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>Password</label>
-
-        <input
-          id="registerPassword"
-          type="password"
-          placeholder="Minimal 8 karakter">
-
-      </div>
-
-
-      <button
-        class="btn-primary"
-        style="width:100%"
-        onclick="registerSMKARYA()">
-
-        Daftar
-
-      </button>
-
-
-      <div class="auth-switch">
-
-        Sudah punya akun?
-
-        <button onclick="go('login')">
-          Masuk
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-</main>
-
-
-<footer>
-  © 2026 SMKARYA — Berkarya. Berbagi. Berkembang.
-</footer>
-
-
-<div id="toastBox"></div>
-
-
-<script>
-
-/* =====================================================
-   APPWRITE
-===================================================== */
-
-const client = new Appwrite.Client();
-
-client
-  .setEndpoint("https://sgp.cloud.appwrite.io/v1")
-  .setProject("6aacfafd003ab0cd0e81");
-
-
-const account = new Appwrite.Account(client);
-
-const storage = new Appwrite.Storage(client);
-
-
-/* BUCKET YANG SUDAH KAMU BUAT */
-
-const BUCKET_ID = "SMKARYA";
-
-
-/* USER GLOBAL — HANYA SATU */
-
-let currentUser = null;
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-function toast(message){
-
-  const box = document.getElementById("toastBox");
-
-  box.innerHTML = "";
-
-  const item = document.createElement("div");
-
-  item.className = "toast";
-
-  item.textContent = message;
-
-  box.appendChild(item);
-
-  setTimeout(() => {
-
-    item.remove();
-
-  },3000);
-
-}
-
-
-/* =====================================================
-   NAVIGASI
-===================================================== */
-
-function go(page){
-
-  document.querySelectorAll(".page")
-    .forEach(el => {
-
-      el.classList.remove("active");
-
-    });
-
-
-  const target =
-    document.getElementById(page);
-
-
-  if(target){
-
-    target.classList.add("active");
-
-  }
-
-
-  document.querySelectorAll(".nav-btn")
-    .forEach(btn => {
-
-      btn.classList.remove("active");
-
-    });
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =====================================================
-   REGISTER
-===================================================== */
-
-async function registerSMKARYA(){
-
-  const nama =
-    document
-      .getElementById("registerNama")
-      .value
-      .trim();
-
-  const email =
-    document
-      .getElementById("registerEmail")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("registerPassword")
-      .value;
-
-
-  if(!nama){
-
-    toast("Nama belum diisi.");
-
-    return;
-
-  }
-
-
-  if(!email){
-
-    toast("Email belum diisi.");
-
-    return;
-
-  }
-
-
-  if(!password || password.length < 8){
-
-    toast("Password minimal 8 karakter.");
-
-    return;
-
-  }
-
-
-  try{
-
-    toast("Membuat akun...");
-
-
-    await account.create({
-
-      userId:Appwrite.ID.unique(),
-
-      email:email,
-
-      password:password,
-
-      name:nama
-
-    });
-
-
-    await account.createEmailPasswordSession({
-
-      email:email,
-
-      password:password
-
-    });
-
-
-    currentUser =
-      await account.get();
-
-
-    updateUserInterface();
-
-
-    toast("Akun berhasil dibuat! 🎉");
-
-
-    go("home");
-
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      error?.message ||
-      "Gagal membuat akun."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-async function loginSMKARYA(){
-
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim();
-
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
-
-
-  if(!email || !password){
-
-    toast("Email dan password harus diisi.");
-
-    return;
-
-  }
-
-
-  try{
-
-    toast("Memproses login...");
-
-
-    await account.createEmailPasswordSession({
-
-      email:email,
-
-      password:password
-
-    });
-
-
-    currentUser =
-      await account.get();
-
-
-    updateUserInterface();
-
-
-    toast("Berhasil masuk! 👋");
-
-
-    go("home");
-
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      error?.message ||
-      "Email atau password salah."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   CHECK LOGIN
-===================================================== */
-
-async function checkLogin(){
-
-  try{
-
-    currentUser =
-      await account.get();
-
-    updateUserInterface();
-
-  }catch(error){
-
-    currentUser = null;
-
-    updateUserInterface();
-
-  }
-
-}
-
-
-/* =====================================================
-   UPDATE USER INTERFACE
-===================================================== */
-
-function updateUserInterface(){
-
-  const loginNav =
-    document.getElementById("loginNav");
-
-
-  if(currentUser){
-
-    loginNav.textContent =
-      currentUser.name ||
-      "Profil";
-
-    loginNav.onclick =
-      function(){
-
-        go("profile");
-
-      };
-
-
-    updateProfile();
-
-  }else{
-
-    loginNav.textContent =
-      "Masuk";
-
-    loginNav.onclick =
-      function(){
-
-        go("login");
-
-      };
-
-  }
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function updateProfile(){
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  const name =
-    currentUser.name ||
-    "Pengguna SMKARYA";
-
-
-  const initial =
-    name
-      .charAt(0)
-      .toUpperCase();
-
-
-  const profile =
-    document.getElementById("profileContent");
-
-
-  profile.innerHTML = `
-
-    <div class="profile-header">
-
-      <div class="avatar">
-        ${initial}
-      </div>
-
-      <div class="profile-info">
-
-        <h2>
-          ${escapeHTML(name)}
-        </h2>
-
-        <p>
-          ${escapeHTML(currentUser.email || "")}
-        </p>
-
-        <p>
-          Anggota SMKARYA
-        </p>
-
-      </div>
-
-      <div class="profile-actions">
-
-        <button
-          class="btn-secondary"
-          onclick="logoutSMKARYA()">
-
-          Keluar
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function logoutSMKARYA(){
-
-  try{
-
-    await account.deleteSession({
-      sessionId:"current"
-    });
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-
-  currentUser = null;
-
-  updateUserInterface();
-
-  toast("Kamu sudah keluar.");
-
-  go("home");
-
-}
-
-
-/* =====================================================
-   PREVIEW FILE
-===================================================== */
-
-function previewFile(input){
-
-  const file =
-    input.files?.[0];
-
-  const preview =
-    document.getElementById("preview");
-
-
-  if(!file){
-
-    preview.style.display =
-      "none";
-
-    preview.innerHTML =
-      "";
-
-    return;
-
-  }
-
-
-  const url =
-    URL.createObjectURL(file);
-
-
-  preview.innerHTML =
-    "";
-
-
-  if(file.type.startsWith("image/")){
-
-    const img =
-      document.createElement("img");
-
-    img.src = url;
-
-    preview.appendChild(img);
-
-  }else if(file.type.startsWith("video/")){
-
-    const video =
-      document.createElement("video");
-
-    video.src = url;
-
-    video.controls = true;
-
-    preview.appendChild(video);
-
-  }
-
-
-  preview.style.display =
-    "block";
-
-}
-
-
-/* =====================================================
-   UPLOAD KARYA
-===================================================== */
-
-async function submitUpload(){
-
-  if(!currentUser){
-
-    toast(
-      "Silakan login terlebih dahulu."
-    );
-
-    go("login");
-
-    return;
-
-  }
-
-
-  const fileInput =
-    document.getElementById("fileInput");
-
-  const judulEl =
-    document.getElementById("judulKarya");
-
-  const jurusanEl =
-    document.getElementById("jurusanKarya");
-
-  const kategoriEl =
-    document.getElementById("kategoriKarya");
-
-  const deskripsiEl =
-    document.getElementById("deskripsiKarya");
-
-
-  const file =
-    fileInput?.files?.[0];
-
-
-  const judul =
-    judulEl?.value.trim() || "";
-
-
-  const jurusan =
-    jurusanEl?.value || "";
-
-
-  const kategori =
-    kategoriEl?.value || "";
-
-
-  const deskripsi =
-    deskripsiEl?.value.trim() || "";
-
-
-  if(!file){
-
-    toast(
-      "Pilih foto atau video karya terlebih dahulu."
-    );
-
-    return;
-
-  }
-
-
-  if(!judul){
-
-    toast(
-      "Judul karya belum diisi."
-    );
-
-    return;
-
-  }
-
-
-  if(!jurusan){
-
-    toast(
-      "Pilih jurusan terlebih dahulu."
-    );
-
-    return;
-
-  }
-
-
-  if(!kategori){
-
-    toast(
-      "Pilih kategori terlebih dahulu."
-    );
-
-    return;
-
-  }
-
-
-  const button =
-    document.getElementById("uploadButton");
-
-
-  try{
-
-    button.disabled = true;
-
-    button.textContent =
-      "⏳ Mengunggah...";
-
-
-    toast(
-      "Sedang mengunggah karya..."
-    );
-
-
-    const uploadedFile =
-      await storage.createFile({
-
-        bucketId:BUCKET_ID,
-
-        fileId:Appwrite.ID.unique(),
-
-        file:file
-
-      });
-
-
-    console.log(
-      "UPLOAD BERHASIL:",
-      uploadedFile
-    );
-
-
-    localStorage.setItem(
-
-      "smkarya_last_upload",
-
-      JSON.stringify({
-
-        fileId:uploadedFile.$id,
-
-        bucketId:BUCKET_ID,
-
-        judul:judul,
-
-        jurusan:jurusan,
-
-        kategori:kategori,
-
-        deskripsi:deskripsi,
-
-        userId:currentUser.$id,
-
-        userName:currentUser.name,
-
-        createdAt:new Date().toISOString()
-
-      })
-
-    );
-
-
-    toast(
-      "Karya berhasil diunggah! 🎉"
-    );
-
-
-    resetUploadForm();
-
-
-    go("portfolio");
-
-
-  }catch(error){
-
-    console.error(
-      "UPLOAD ERROR:",
-      error
-    );
-
-
-    toast(
-      "Upload gagal: " +
-      (
-        error?.message ||
-        "Terjadi kesalahan."
-      )
-    );
-
-  }finally{
-
-    button.disabled = false;
-
-    button.textContent =
-      "🚀 Publikasikan Karya";
-
-  }
-
-}
-
-
-/* =====================================================
-   RESET UPLOAD
-===================================================== */
-
-function resetUploadForm(){
-
-  document
-    .getElementById("fileInput")
-    .value = "";
-
-
-  document
-    .getElementById("judulKarya")
-    .value = "";
-
-
-  document
-    .getElementById("jurusanKarya")
-    .value = "";
-
-
-  document
-    .getElementById("kategoriKarya")
-    .value = "";
-
-
-  document
-    .getElementById("deskripsiKarya")
-    .value = "";
-
-
-  document
-    .getElementById("preview")
-    .innerHTML = "";
-
-
-  document
-    .getElementById("preview")
-    .style.display = "none";
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(text){
-
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   INIT
-===================================================== */
-document.addEventListener("DOMContentLoaded", function(){
-
-  // Langsung tampilkan halaman utama
-  go("home");
-
-  // Ambil loading screen
-  const loadingScreen =
-    document.getElementById("loadingScreen");
-
-  // Paksa loading hilang setelah 3 detik
-  setTimeout(function(){
-
-    if(loadingScreen){
-      loadingScreen.classList.add("hidden");
-    }
-
-  }, 3000);
-
-
-  // Cek login di belakang layar
-  checkLogin()
-    .then(function(){
-
-      console.log("Appwrite siap.");
-
-    })
-    .catch(function(error){
-
-      console.error(
-        "Appwrite login check gagal:",
-        error
-      );
-
-      currentUser = null;
-
-      updateUserInterface();
-
-    });
-
-});
-
 
 </script>
 
