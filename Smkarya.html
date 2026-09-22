@@ -1082,8 +1082,174 @@ const account = new Appwrite.Account(client);
 const storage = new Appwrite.Storage(client);
 
 const BUCKET_ID = "SMKARYA";
+  const tablesDB = new Appwrite.TablesDB(client);
+
+const DATABASE_ID = "6aad0a52002526f17875";
+const PROFILE_TABLE_ID = "SMKARYA";
 
 let currentUser = null;
+  async function createUserProfile(user) {
+  try {
+    await tablesDB.createRow({
+      databaseId: DATABASE_ID,
+      tableId: PROFILE_TABLE_ID,
+      rowId: Appwrite.ID.unique(),
+      data: {
+        userId: user.$id,
+        nama: user.name || "Siswa SMK",
+        username: user.name || "Siswa SMK",
+        jurusan: "",
+        sekolah: "",
+        kelas: "",
+        bio: "",
+        profile: "",
+        creditArt: 0,
+        portofolio: "",
+        profilePhotoId: ""
+      }
+      async function ensureUserProfile(user){
+
+  try{
+
+    const result =
+      await tablesDB.listRows({
+
+        databaseId: DATABASE_ID,
+
+        tableId: PROFILE_TABLE_ID,
+
+        queries: [
+          Appwrite.Query.equal(
+            "userId",
+            [user.$id]
+          )
+        ]
+
+      });
+
+    if(result.rows.length === 0){
+
+      await createUserProfile(user);
+
+      console.log(
+        "Profil baru berhasil dibuat."
+      );
+
+    }else{
+
+      console.log(
+        "Profil sudah ada."
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Gagal mengecek profil:",
+      error
+    );
+
+  }
+
+}async function ensureUserProfile(user){
+
+  try{
+
+    const result =
+      await tablesDB.listRows({
+
+        databaseId: DATABASE_ID,
+
+        tableId: PROFILE_TABLE_ID,
+
+        queries: [
+          Appwrite.Query.equal(
+            "userId",
+            [user.$id]
+          )
+        ]
+
+      });
+
+    if(result.rows.length === 0){
+
+      await createUserProfile(user);
+
+      console.log(
+        "Profil baru berhasil dibuat."
+      );
+
+    }else{
+
+      console.log(
+        "Profil sudah ada."
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Gagal mengecek profil:",
+      error
+    );
+
+  }
+
+}async function ensureUserProfile(user){
+
+  try{
+
+    const result =
+      await tablesDB.listRows({
+
+        databaseId: DATABASE_ID,
+
+        tableId: PROFILE_TABLE_ID,
+
+        queries: [
+          Appwrite.Query.equal(
+            "userId",
+            [user.$id]
+          )
+        ]
+
+      });
+
+    if(result.rows.length === 0){
+
+      await createUserProfile(user);
+
+      console.log(
+        "Profil baru berhasil dibuat."
+      );
+
+    }else{
+
+      console.log(
+        "Profil sudah ada."
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Gagal mengecek profil:",
+      error
+    );
+
+  }
+
+}
+    });
+
+    console.log("Profil berhasil dibuat.");
+  } catch (error) {
+    console.error("Gagal membuat profil:", error);
+  }
+}
 let appwriteReady = false;
 
 
@@ -1390,7 +1556,6 @@ function previewFile(){
 /* =====================================================
    APPWRITE CONNECTION
 ===================================================== */
-
 async function checkAppwrite(){
 
   const status =
@@ -1402,6 +1567,8 @@ async function checkAppwrite(){
 
     currentUser =
       await account.get();
+
+    await ensureUserProfile(currentUser);
 
     appwriteReady = true;
 
