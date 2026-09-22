@@ -4008,50 +4008,47 @@ function escapeHTML(text){
 /* =====================================================
    INIT
 ===================================================== */
+document.addEventListener("DOMContentLoaded", function(){
 
-document.addEventListener(
-  "DOMContentLoaded",
-  async function(){
+  // Langsung tampilkan halaman utama
+  go("home");
 
-    try{
+  // Ambil loading screen
+  const loadingScreen =
+    document.getElementById("loadingScreen");
 
-      await checkLogin();
+  // Paksa loading hilang setelah 3 detik
+  setTimeout(function(){
 
-      go("home");
+    if(loadingScreen){
+      loadingScreen.classList.add("hidden");
+    }
 
-    }catch(error){
+  }, 3000);
+
+
+  // Cek login di belakang layar
+  checkLogin()
+    .then(function(){
+
+      console.log("Appwrite siap.");
+
+    })
+    .catch(function(error){
 
       console.error(
-        "SMKARYA INIT ERROR:",
+        "Appwrite login check gagal:",
         error
       );
 
-    }finally{
+      currentUser = null;
 
-      /*
-        PENTING:
-        Loading tetap ditutup walaupun
-        checkLogin mengalami error.
-      */
+      updateUserInterface();
 
-      const loadingScreen =
-        document.getElementById(
-          "loadingScreen"
-        );
+    });
 
+});
 
-      if(loadingScreen){
-
-        loadingScreen.classList.add(
-          "hidden"
-        );
-
-      }
-
-    }
-
-  }
-);
 
 </script>
 
