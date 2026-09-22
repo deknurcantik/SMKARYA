@@ -1658,17 +1658,16 @@ function getFileUrl(fileId,fileType){
     fileType.startsWith("image/")
   ){
 
-    return (
-      "https://sgp.cloud.appwrite.io/v1" +
-      "/storage/buckets/" +
-      encodedBucket +
-      "/files/" +
-      encodedFile +
-      "/preview" +
-      "?project=" +
-      project +
-      "&width=800&height=600&gravity=center"
-    );
+return (
+  "https://sgp.cloud.appwrite.io/v1" +
+  "/storage/buckets/" +
+  encodedBucket +
+  "/files/" +
+  encodedFile +
+  "/view" +
+  "?project=" +
+  project
+);
 
   }
 
