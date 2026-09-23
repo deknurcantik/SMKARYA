@@ -998,117 +998,492 @@ document.querySelectorAll(".modal").forEach(modal=>{
 /* =========================================================
    APPWRITE
 ========================================================= */
+/* =========================================================
+   APPWRITE CONNECTION + DATABASE HELPER
+   ========================================================= */
 
 async function checkAppwrite(){
+
+  const loading = document.getElementById("loading");
+
   try{
+
+    /* =========================================
+       1. CEK SESSION USER
+       ========================================= */
+
     try{
-      currentUser=await account.get();
+
+      const timeout = new Promise((_, reject)=>{
+        setTimeout(()=>{
+          reject(new Error("Appwrite session timeout"));
+        }, 5000);
+      });
+
+      currentUser = await Promise.race([
+        account.get(),
+        timeout
+      ]);
+
     }catch(e){
-      if(e?.code===401){
-        currentUser=null;
+
+      /* 401 = belum login, BUKAN error koneksi */
+      if(e?.code === 401){
+
+        currentUser = null;
+
       }else{
-        throw e;
+
+        console.warn("Appwrite session:", e);
+
+        currentUser = null;
+
       }
+
     }
 
-    setStatus("Appwrite terhubung","online");
 
-    if(currentUser){
-      await ensureUserProfile();
-      await loadData();
-    }else{
-      await loadPublicData();
-    }
+    /* =========================================
+       2. JANGAN TUNGGU DATABASE UNTUK MEMBUKA UI
+       ========================================= */
+
+    setStatus(
+      currentUser
+        ? "Appwrite terhubung"
+        : "Siap digunakan",
+      currentUser
+        ? "online"
+        : ""
+    );
 
     updateUserUI();
-    renderHomeWorks();
-    renderWorks();
-    renderPortfolio();
-    renderProfile();
+
+
+    /* =========================================
+       3. LANGSUNG HILANGKAN LOADING
+       ========================================= */
+
+    if(loading){
+
+      loading.style.display = "none";
+
+    }
+
+
+    /* =========================================
+       4. DATABASE DIMUAT DI BELAKANG
+       ========================================= */
+
+    setTimeout(async()=>{
+
+      try{
+
+        if(currentUser){
+
+          await ensureUserProfile();
+
+          await loadData();
+
+        }else{
+
+          await loadPublicData();
+
+        }
+
+
+        /* =====================================
+           5. REFRESH SEMUA TAMPILAN
+           ===================================== */
+
+        updateUserUI();
+
+        renderHomeWorks();
+        renderWorks();
+        renderPortfolio();
+        renderProfile();
+
+
+        setStatus(
+          currentUser
+            ? "Appwrite terhubung"
+            : "Data siap",
+          currentUser
+            ? "online"
+            : ""
+        );
+
+
+      }catch(e){
+
+        console.error(
+          "DATABASE:",
+          e
+        );
+
+        /*
+          Jangan membuat aplikasi berhenti
+          hanya karena database belum siap.
+        */
+
+        setStatus(
+          "Mode terbatas",
+          "offline"
+        );
+
+      }
+
+    }, 100);
+
 
   }catch(e){
-    console.error("APPWRITE:",e);
-    setStatus("Koneksi bermasalah","offline");
-    toast("Appwrite belum terhubung. Periksa domain Web App dan permission.");
-  }finally{
-    document.getElementById("loading").style.display="none";
+
+    console.error(
+      "APPWRITE:",
+      e
+    );
+
+    if(loading){
+
+      loading.style.display = "none";
+
+    }
+
+    setStatus(
+      "Mode offline",
+      "offline"
+    );
+
   }
+
 }
+
+
+/* =========================================================
+   GET TABLE COLUMNS
+   ========================================================= */
 
 async function getTableColumns(tableId){
-  if(tableColumnsCache[tableId])return tableColumnsCache[tableId];
+
+  /*
+    Kalau sebelumnya sudah pernah dibaca,
+    gunakan cache supaya tidak request ulang.
+  */
+
+  if(tableColumnsCache[tableId]){
+
+    return tableColumnsCache[tableId];
+
+  }
+
 
   try{
-    const table=await tablesDB.getTable({
-      databaseId:CONFIG.DATABASE_ID,
-      tableId:tableId
+
+    const timeout = new Promise((_, reject)=>{
+
+      setTimeout(()=>{
+
+        reject(
+          new Error(
+            "Timeout membaca schema: " + tableId
+          )
+        );
+
+      }, 5000);
+
     });
 
-    const columns=(table.columns||[]).map(c=>c.key);
-    tableColumnsCache[tableId]=columns;
+
+    const tablePromise = tablesDB.getTable({
+
+      databaseId: CONFIG.DATABASE_ID,
+
+      tableId: tableId
+
+    });
+
+
+    const table = await Promise.race([
+
+      tablePromise,
+
+      timeout
+
+    ]);
+
+
+    const columns = Array.isArray(table.columns)
+
+      ? table.columns.map(column => column.key)
+
+      : [];
+
+
+    /*
+      Simpan hanya kalau berhasil membaca schema.
+    */
+
+    if(columns.length){
+
+      tableColumnsCache[tableId] = columns;
+
+    }
+
+
     return columns;
+
+
   }catch(e){
-    console.warn("Schema "+tableId,e);
+
+    console.warn(
+      "Schema tidak dapat dibaca:",
+      tableId,
+      e
+    );
+
+    /*
+      null berarti:
+      jangan hapus data yang dikirim.
+    */
+
     return null;
+
   }
+
 }
 
-async function cleanDataForTable(tableId,data){
-  const columns=await getTableColumns(tableId);
 
-  if(!columns)return data;
+/* =========================================================
+   CLEAN DATA SESUAI COLUMN APPWRITE
+   ========================================================= */
 
-  const clean={};
+async function cleanDataForTable(
+  tableId,
+  data
+){
+
+  const columns =
+    await getTableColumns(tableId);
+
+
+  /*
+    Kalau schema gagal dibaca,
+    kirim data asli.
+  */
+
+  if(!columns){
+
+    return data;
+
+  }
+
+
+  const clean = {};
+
 
   Object.keys(data).forEach(key=>{
+
     if(columns.includes(key)){
-      clean[key]=data[key];
+
+      clean[key] = data[key];
+
     }
+
   });
 
+
   return clean;
+
 }
 
-async function createRow(tableId,rowId,data,permissions){
-  const clean=await cleanDataForTable(tableId,data);
 
-  const payload={
-    databaseId:CONFIG.DATABASE_ID,
-    tableId:tableId,
-    rowId:rowId,
-    data:clean
-  };
+/* =========================================================
+   CREATE ROW
+   ========================================================= */
 
-  if(permissions)payload.permissions=permissions;
+async function createRow(
+  tableId,
+  rowId,
+  data,
+  permissions
+){
 
-  return tablesDB.createRow(payload);
-}
+  try{
 
-async function listAllRows(tableId,queries=[]){
-  const rows=[];
-  let offset=0;
+    const clean =
+      await cleanDataForTable(
+        tableId,
+        data
+      );
 
-  while(true){
-    const q=[
-      ...queries,
-      Query.limit(100),
-      Query.offset(offset)
-    ];
 
-    const result=await tablesDB.listRows({
-      databaseId:CONFIG.DATABASE_ID,
-      tableId:tableId,
-      queries:q
-    });
+    const payload = {
 
-    rows.push(...(result.rows||[]));
+      databaseId:
+        CONFIG.DATABASE_ID,
 
-    if(!result.rows||result.rows.length<100)break;
+      tableId:
+        tableId,
 
-    offset+=100;
+      rowId:
+        rowId,
+
+      data:
+        clean
+
+    };
+
+
+    /*
+      Permissions hanya ditambahkan
+      kalau memang diberikan.
+    */
+
+    if(
+      Array.isArray(permissions) &&
+      permissions.length > 0
+    ){
+
+      payload.permissions =
+        permissions;
+
+    }
+
+
+    return await tablesDB.createRow(
+      payload
+    );
+
+
+  }catch(e){
+
+    console.error(
+      "CREATE ROW ERROR:",
+      tableId,
+      e
+    );
+
+    throw e;
+
   }
 
+}
+
+
+/* =========================================================
+   LIST ALL ROWS
+   ========================================================= */
+
+async function listAllRows(
+  tableId,
+  queries = []
+){
+
+  const rows = [];
+
+  let offset = 0;
+
+  const LIMIT = 100;
+
+
+  while(true){
+
+    try{
+
+      const q = [
+
+        ...queries,
+
+        Query.limit(LIMIT),
+
+        Query.offset(offset)
+
+      ];
+
+
+      const result =
+        await tablesDB.listRows({
+
+          databaseId:
+            CONFIG.DATABASE_ID,
+
+          tableId:
+            tableId,
+
+          queries:
+            q,
+
+          total:
+            false
+
+        });
+
+
+      const newRows =
+        result?.rows || [];
+
+
+      rows.push(
+        ...newRows
+      );
+
+
+      /*
+        Kalau jumlah data kurang dari LIMIT,
+        berarti sudah halaman terakhir.
+      */
+
+      if(
+        newRows.length < LIMIT
+      ){
+
+        break;
+
+      }
+
+
+      offset += LIMIT;
+
+
+      /*
+        Pengaman supaya kalau API bermasalah
+        tidak terjadi infinite loop.
+      */
+
+      if(offset > 10000){
+
+        console.warn(
+          "Pagination dihentikan:",
+          tableId
+        );
+
+        break;
+
+      }
+
+
+    }catch(e){
+
+      console.error(
+        "LIST ROW ERROR:",
+        tableId,
+        e
+      );
+
+      /*
+        Jangan membuat aplikasi crash.
+        Kembalikan data yang sudah berhasil
+        didapat sebelum error.
+      */
+
+      break;
+
+    }
+
+  }
+
+
   return rows;
+
 }
 
 /* =========================================================
