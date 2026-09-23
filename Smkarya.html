@@ -10,6 +10,7 @@
 <title>SMKARYA — Berkarya, Berbagi, dan Bangun Portofoliomu</title>
 
 <style>
+
 :root{
   --pink:#ff4f9a;
   --pink2:#ff8fc2;
@@ -19,9 +20,16 @@
   --bg:#fff8fc;
   --border:#eadbe5;
   --green:#18a058;
+  --red:#e5484d;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
@@ -30,8 +38,22 @@ body{
   color:var(--dark);
 }
 
-button,input,textarea,select{font:inherit}
-button{border:0;cursor:pointer}
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
 .navbar{
   height:64px;
@@ -50,19 +72,22 @@ button{border:0;cursor:pointer}
   font-size:22px;
   font-weight:900;
   color:#28202b;
+  white-space:nowrap;
 }
 
-.logo span{color:var(--pink)}
+.logo span{
+  color:var(--pink);
+}
 
 .nav-menu{
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:4px;
 }
 
 .nav-btn{
   background:transparent;
-  padding:9px 12px;
+  padding:9px 11px;
   border-radius:10px;
   color:#555;
   font-weight:700;
@@ -86,6 +111,7 @@ button{border:0;cursor:pointer}
 .mini-avatar{
   width:38px;
   height:38px;
+  min-width:38px;
   border-radius:50%;
   background:linear-gradient(135deg,#ff4f9a,#7c3aed);
   color:#fff;
@@ -101,12 +127,25 @@ main{
   padding:28px 20px 70px;
 }
 
-.page{display:none}
-.page.active{display:block}
+.page{
+  display:none;
+}
 
-.page-head{margin-bottom:20px}
-.page-head h2{margin-bottom:6px}
-.page-head p{color:var(--gray)}
+.page.active{
+  display:block;
+}
+
+.page-head{
+  margin-bottom:20px;
+}
+
+.page-head h2{
+  margin-bottom:6px;
+}
+
+.page-head p{
+  color:var(--gray);
+}
 
 .hero{
   background:linear-gradient(135deg,#fff0f7,#f4efff);
@@ -125,7 +164,9 @@ main{
   margin:0 0 15px;
 }
 
-.hero h1 span{color:var(--pink)}
+.hero h1 span{
+  color:var(--pink);
+}
 
 .hero p{
   color:#666;
@@ -163,7 +204,15 @@ main{
   border:1px solid var(--border);
 }
 
-.section-title{margin:35px 0 16px}
+.btn-danger{
+  background:#fff0f0;
+  color:var(--red);
+  border:1px solid #ffd0d0;
+}
+
+.section-title{
+  margin:35px 0 16px;
+}
 
 .info-grid{
   display:grid;
@@ -178,7 +227,9 @@ main{
   padding:22px;
 }
 
-.info-icon{font-size:30px}
+.info-icon{
+  font-size:30px;
+}
 
 .info-card p{
   color:var(--gray);
@@ -207,7 +258,9 @@ main{
   display:block;
 }
 
-.work-content{padding:15px}
+.work-content{
+  padding:15px;
+}
 
 .work-title{
   font-weight:900;
@@ -238,6 +291,10 @@ main{
   padding:7px 9px;
   font-size:12px;
   font-weight:700;
+}
+
+.action-btn:hover{
+  background:#f0e7ee;
 }
 
 .buy-btn{
@@ -275,7 +332,13 @@ main{
   margin:auto;
 }
 
-.form-group{margin-bottom:15px}
+.auth-box{
+  max-width:480px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
 
 .form-group label{
   display:block;
@@ -304,11 +367,12 @@ main{
 .form-group textarea:focus,
 .form-group select:focus{
   border-color:var(--pink);
+  box-shadow:0 0 0 3px rgba(255,79,154,.08);
 }
 
-.auth-box{max-width:470px}
-
-.auth-box h2{margin-bottom:7px}
+.auth-box h2{
+  margin-bottom:7px;
+}
 
 .auth-box>p{
   color:var(--gray);
@@ -367,8 +431,13 @@ main{
   box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
-.status.online{color:var(--green)}
-.status.offline{color:#d27b00}
+.status.online{
+  color:var(--green);
+}
+
+.status.offline{
+  color:#d27b00;
+}
 
 #toast{
   position:fixed;
@@ -403,7 +472,9 @@ main{
   padding:20px;
 }
 
-.modal-overlay.show{display:flex}
+.modal-overlay.show{
+  display:flex;
+}
 
 .modal-card{
   background:#fff;
@@ -481,6 +552,7 @@ main{
   padding:11px;
   border:1px solid var(--border);
   border-radius:10px;
+  background:#fff;
 }
 
 .public-stat{
@@ -505,43 +577,79 @@ main{
   color:#d92b7c;
 }
 
+.loading-box{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
 @media(max-width:850px){
-  .hero{grid-template-columns:1fr}
-  .works-grid{grid-template-columns:repeat(2,1fr)}
-  .info-grid{grid-template-columns:1fr}
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .works-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 @media(max-width:600px){
-  .navbar{padding:0 12px}
-  .logo{font-size:18px}
+
+  .navbar{
+    padding:0 10px;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
   .nav-menu{
-    max-width:70%;
+    max-width:67%;
     overflow-x:auto;
   }
+
   .nav-btn{
     padding:8px;
     font-size:12px;
     white-space:nowrap;
   }
-  .user-mini{display:none}
-  main{padding:18px 12px 50px}
-  .hero{padding:28px 20px}
-  .hero h1{font-size:34px}
+
+  .user-mini{
+    display:none;
+  }
+
+  main{
+    padding:18px 12px 50px;
+  }
+
+  .hero{
+    padding:28px 20px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
   .hero-art{
     min-height:170px;
     font-size:60px;
   }
-  .works-grid{grid-template-columns:1fr}
-  .search-grid{grid-template-columns:1fr}
-}
 
-#loading{
-  display:none !important;
-  visibility:hidden !important;
-  pointer-events:none !important;
-}
+  .works-grid{
+    grid-template-columns:1fr;
+  }
 
-#status{transition:.2s}
+  .search-grid{
+    grid-template-columns:1fr;
+  }
+
+}
 
 </style>
 </head>
@@ -556,27 +664,32 @@ main{
 
   <div class="nav-menu">
 
-    <button class="nav-btn active"
+    <button
+      class="nav-btn active"
       onclick="go('home',this)">
       🏠
     </button>
 
-    <button class="nav-btn"
+    <button
+      class="nav-btn"
       onclick="go('explore',this)">
       🔎 Explore
     </button>
 
-    <button class="nav-btn"
+    <button
+      class="nav-btn"
       onclick="go('upload',this)">
       ➕ Upload
     </button>
 
-    <button class="nav-btn"
+    <button
+      class="nav-btn"
       onclick="go('portfolio',this)">
       📁 Portofolio
     </button>
 
-    <button class="nav-btn"
+    <button
+      class="nav-btn"
       onclick="go('profile',this)">
       👤 Profil
     </button>
@@ -584,15 +697,44 @@ main{
   </div>
 
   <div class="user-mini">
-    <div class="avatar" id="navAvatar">?</div>
-    <span id="navUserName">Tamu</span>
+
+    <div
+      class="avatar"
+      id="navAvatar">
+      ?
+    </div>
+
+    <span id="navUserName">
+      Tamu
+    </span>
+
+    <button
+      id="navAuthBtn"
+      class="btn btn-primary"
+      style="
+        padding:7px 12px;
+        margin:0;
+        font-size:12px;
+      "
+      onclick="openAuthPage()">
+      Masuk / Daftar
+    </button>
+
   </div>
 
 </nav>
 
+
 <main>
 
-<section id="home" class="page active">
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section
+  id="home"
+  class="page active">
 
   <div class="hero">
 
@@ -629,54 +771,99 @@ main{
 
   </div>
 
+
   <h2 class="section-title">
     Kenapa SMKARYA?
   </h2>
 
+
   <div class="info-grid">
 
     <div class="info-card">
-      <div class="info-icon">🎨</div>
-      <h3>Pamerkan Karya</h3>
+
+      <div class="info-icon">
+        🎨
+      </div>
+
+      <h3>
+        Pamerkan Karya
+      </h3>
+
       <p>
         Tampilkan foto atau video hasil karya dan proyekmu.
       </p>
+
     </div>
 
+
     <div class="info-card">
-      <div class="info-icon">🤝</div>
-      <h3>Berbagi Inspirasi</h3>
+
+      <div class="info-icon">
+        🤝
+      </div>
+
+      <h3>
+        Berbagi Inspirasi
+      </h3>
+
       <p>
         Temukan karya siswa SMK dari berbagai jurusan.
       </p>
+
     </div>
 
+
     <div class="info-card">
-      <div class="info-icon">📁</div>
-      <h3>Bangun Portofolio</h3>
+
+      <div class="info-icon">
+        📁
+      </div>
+
+      <h3>
+        Bangun Portofolio
+      </h3>
+
       <p>
         Kumpulan karya yang kamu unggah menjadi bagian portofoliomu.
       </p>
+
     </div>
 
   </div>
+
 
   <h2 class="section-title">
     Karya Terbaru
   </h2>
 
-  <div id="homeWorks" class="works-grid"></div>
+  <div
+    id="homeWorks"
+    class="works-grid">
+  </div>
 
 </section>
 
-<section id="explore" class="page">
+
+<!-- =====================================================
+     EXPLORE
+===================================================== -->
+
+<section
+  id="explore"
+  class="page">
 
   <div class="page-head">
-    <h2>Jelajahi Karya</h2>
+
+    <h2>
+      Jelajahi Karya
+    </h2>
+
     <p>
       Temukan karya siswa SMK dari berbagai jurusan.
     </p>
+
   </div>
+
 
   <div class="search-box">
 
@@ -688,6 +875,7 @@ main{
         oninput="renderWorks()"
       >
 
+
       <select
         id="filterJurusan"
         onchange="renderWorks()">
@@ -698,6 +886,7 @@ main{
 
       </select>
 
+
       <select
         id="filterKategori"
         onchange="renderWorks()">
@@ -706,12 +895,29 @@ main{
           Semua kategori
         </option>
 
-        <option value="Produk">Produk</option>
-        <option value="Desain">Desain</option>
-        <option value="Busana">Busana</option>
-        <option value="Video">Video</option>
-        <option value="Proyek">Proyek</option>
-        <option value="Lainnya">Lainnya</option>
+        <option value="Produk">
+          Produk
+        </option>
+
+        <option value="Desain">
+          Desain
+        </option>
+
+        <option value="Busana">
+          Busana
+        </option>
+
+        <option value="Video">
+          Video
+        </option>
+
+        <option value="Proyek">
+          Proyek
+        </option>
+
+        <option value="Lainnya">
+          Lainnya
+        </option>
 
       </select>
 
@@ -719,23 +925,39 @@ main{
 
   </div>
 
-  <div id="exploreWorks" class="works-grid"></div>
+
+  <div
+    id="exploreWorks"
+    class="works-grid">
+  </div>
 
 </section>
 
-<section id="upload" class="page">
+
+<!-- =====================================================
+     UPLOAD
+===================================================== -->
+
+<section
+  id="upload"
+  class="page">
 
   <div class="form-box">
 
-    <h2>Upload Karya</h2>
+    <h2>
+      Upload Karya
+    </h2>
 
     <p class="small-muted">
       Bagikan karya terbaikmu ke siswa SMK lainnya.
     </p>
 
+
     <div class="form-group">
 
-      <label>Judul karya</label>
+      <label>
+        Judul karya
+      </label>
 
       <input
         id="judulKarya"
@@ -744,44 +966,80 @@ main{
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Deskripsi</label>
+      <label>
+        Deskripsi
+      </label>
 
       <textarea
         id="deskripsiKarya"
-        placeholder="Ceritakan tentang karyamu..."></textarea>
+        placeholder="Ceritakan tentang karyamu...">
+      </textarea>
 
     </div>
 
-    <div class="form-group">
-
-      <label>Jurusan</label>
-
-      <select id="jurusanKarya"></select>
-
-    </div>
 
     <div class="form-group">
 
-      <label>Kategori</label>
+      <label>
+        Jurusan
+      </label>
 
-      <select id="kategoriKarya">
+      <select id="jurusanKarya">
 
-        <option value="Produk">Produk</option>
-        <option value="Desain">Desain</option>
-        <option value="Busana">Busana</option>
-        <option value="Video">Video</option>
-        <option value="Proyek">Proyek</option>
-        <option value="Lainnya">Lainnya</option>
+        <option value="">
+          Pilih jurusan
+        </option>
 
       </select>
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Harga produk</label>
+      <label>
+        Kategori
+      </label>
+
+      <select id="kategoriKarya">
+
+        <option value="Produk">
+          Produk
+        </option>
+
+        <option value="Desain">
+          Desain
+        </option>
+
+        <option value="Busana">
+          Busana
+        </option>
+
+        <option value="Video">
+          Video
+        </option>
+
+        <option value="Proyek">
+          Proyek
+        </option>
+
+        <option value="Lainnya">
+          Lainnya
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Harga produk
+      </label>
 
       <input
         id="hargaKarya"
@@ -792,9 +1050,12 @@ main{
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Foto / video karya</label>
+      <label>
+        Foto / video karya
+      </label>
 
       <input
         id="fileKarya"
@@ -805,7 +1066,12 @@ main{
 
     </div>
 
-    <div id="filePreview" style="margin-bottom:15px"></div>
+
+    <div
+      id="filePreview"
+      style="margin-bottom:15px">
+    </div>
+
 
     <button
       class="btn btn-primary"
@@ -819,11 +1085,20 @@ main{
 
 </section>
 
-<section id="portfolio" class="page">
+
+<!-- =====================================================
+     PORTFOLIO
+===================================================== -->
+
+<section
+  id="portfolio"
+  class="page">
 
   <div class="page-head">
 
-    <h2>Portofolio Saya</h2>
+    <h2>
+      Portofolio Saya
+    </h2>
 
     <p>
       Kumpulan karya yang kamu publikasikan.
@@ -831,49 +1106,80 @@ main{
 
   </div>
 
-  <div id="portfolioWorks" class="works-grid"></div>
+
+  <div
+    id="portfolioWorks"
+    class="works-grid">
+  </div>
 
 </section>
 
-<section id="profile" class="page">
 
-  <div id="profileContainer"></div>
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+  id="profile"
+  class="page">
+
+  <div
+    id="profileContainer">
+  </div>
 
 </section>
 
-<section id="login" class="page">
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section
+  id="login"
+  class="page">
 
   <div class="auth-box">
 
-    <h2>Masuk ke SMKARYA</h2>
+    <h2>
+      Masuk ke SMKARYA
+    </h2>
 
     <p>
       Masuk untuk mengunggah dan mengelola karya.
     </p>
 
+
     <div class="form-group">
 
-      <label>Email</label>
+      <label>
+        Email
+      </label>
 
       <input
         id="loginEmail"
         type="email"
         placeholder="email@example.com"
+        autocomplete="email"
       >
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Password</label>
+      <label>
+        Password
+      </label>
 
       <input
         id="loginPassword"
         type="password"
         placeholder="Minimal 8 karakter"
+        autocomplete="current-password"
       >
 
     </div>
+
 
     <button
       class="btn btn-primary"
@@ -884,12 +1190,14 @@ main{
 
     </button>
 
+
     <div class="auth-switch">
 
       Belum punya akun?
 
-      <button onclick="go('register')">
-        Daftar
+      <button
+        onclick="go('register')">
+        Daftar sekarang
       </button>
 
     </div>
@@ -898,66 +1206,184 @@ main{
 
 </section>
 
-<section id="register" class="page">
+
+<!-- =====================================================
+     REGISTER
+===================================================== -->
+
+<section
+  id="register"
+  class="page">
 
   <div class="auth-box">
 
-    <h2>Buat Akun</h2>
+    <h2>
+      Buat Akun SMKARYA
+    </h2>
 
     <p>
-      Buat akun siswa SMKARYA.
+      Daftarkan dirimu sebagai siswa SMK dan mulai
+      tampilkan karya terbaikmu.
     </p>
+
 
     <div class="form-group">
 
-      <label>Nama</label>
+      <label>
+        Nama lengkap
+      </label>
 
       <input
         id="registerName"
         type="text"
         placeholder="Nama lengkap"
+        autocomplete="name"
       >
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Email</label>
+      <label>
+        Username
+      </label>
+
+      <input
+        id="registerUsername"
+        type="text"
+        placeholder="Contoh: balqissalsabila"
+        autocomplete="username"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Email
+      </label>
 
       <input
         id="registerEmail"
         type="email"
         placeholder="email@example.com"
+        autocomplete="email"
       >
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Password</label>
+      <label>
+        Sekolah
+      </label>
+
+      <input
+        id="registerSekolah"
+        type="text"
+        placeholder="Nama sekolah"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Kelas
+      </label>
+
+      <select id="registerKelas">
+
+        <option value="">
+          Pilih kelas
+        </option>
+
+        <option value="X">
+          X
+        </option>
+
+        <option value="XI">
+          XI
+        </option>
+
+        <option value="XII">
+          XII
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Jurusan
+      </label>
+
+      <select id="registerJurusan">
+
+        <option value="">
+          Pilih jurusan
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Password
+      </label>
 
       <input
         id="registerPassword"
         type="password"
         placeholder="Minimal 8 karakter"
+        autocomplete="new-password"
       >
 
     </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Konfirmasi password
+      </label>
+
+      <input
+        id="registerPasswordConfirm"
+        type="password"
+        placeholder="Ulangi password"
+        autocomplete="new-password"
+      >
+
+    </div>
+
 
     <button
       class="btn btn-primary"
       style="width:100%"
       onclick="registerUser()">
 
-      Buat Akun
+      ✨ Daftar Akun
 
     </button>
+
 
     <div class="auth-switch">
 
       Sudah punya akun?
 
-      <button onclick="go('login')">
+      <button
+        onclick="go('login')">
         Masuk
       </button>
 
@@ -969,7 +1395,13 @@ main{
 
 </main>
 
-<div id="commentModal"
+
+<!-- =====================================================
+     COMMENT MODAL
+===================================================== -->
+
+<div
+  id="commentModal"
   class="modal-overlay"
   onclick="if(event.target===this)closeModal('commentModal')">
 
@@ -983,7 +1415,10 @@ main{
           Komentar
         </h2>
 
-        <p id="commentModalSubtitle" class="small-muted"></p>
+        <p
+          id="commentModalSubtitle"
+          class="small-muted">
+        </p>
 
       </div>
 
@@ -995,17 +1430,26 @@ main{
 
     </div>
 
-    <div id="commentList" class="comment-list"></div>
+
+    <div
+      id="commentList"
+      class="comment-list">
+    </div>
+
 
     <div class="form-group">
 
-      <label>Tulis komentar</label>
+      <label>
+        Tulis komentar
+      </label>
 
       <textarea
         id="commentInput"
-        placeholder="Berikan masukan yang membangun..."></textarea>
+        placeholder="Berikan masukan yang membangun...">
+      </textarea>
 
     </div>
+
 
     <button
       class="btn btn-primary"
@@ -1020,7 +1464,13 @@ main{
 
 </div>
 
-<div id="checkoutModal"
+
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
+
+<div
+  id="checkoutModal"
   class="modal-overlay"
   onclick="if(event.target===this)closeModal('checkoutModal')">
 
@@ -1030,7 +1480,9 @@ main{
 
       <div>
 
-        <h2>Pesan Produk</h2>
+        <h2>
+          Pesan Produk
+        </h2>
 
         <p class="small-muted">
           SMKARYA
@@ -1046,11 +1498,18 @@ main{
 
     </div>
 
-    <div id="checkoutSummary" class="order-summary"></div>
+
+    <div
+      id="checkoutSummary"
+      class="order-summary">
+    </div>
+
 
     <div class="form-group">
 
-      <label>Jumlah</label>
+      <label>
+        Jumlah
+      </label>
 
       <input
         id="checkoutJumlah"
@@ -1062,25 +1521,33 @@ main{
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Alamat pengiriman</label>
+      <label>
+        Alamat pengiriman
+      </label>
 
       <textarea
         id="checkoutAlamat"
-        placeholder="Masukkan alamat pengiriman seperlunya"></textarea>
+        placeholder="Masukkan alamat pengiriman seperlunya">
+      </textarea>
 
     </div>
 
+
     <div class="order-total">
 
-      <span>Total</span>
+      <span>
+        Total
+      </span>
 
       <span id="checkoutTotal">
         Rp0
       </span>
 
     </div>
+
 
     <button
       class="btn btn-primary"
@@ -1091,15 +1558,26 @@ main{
 
     </button>
 
-    <p class="small-muted" style="margin-top:10px">
+
+    <p
+      class="small-muted"
+      style="margin-top:10px">
+
       Pembayaran online belum terhubung.
+
     </p>
 
   </div>
 
 </div>
 
-<div id="publicProfileModal"
+
+<!-- =====================================================
+     PUBLIC PROFILE MODAL
+===================================================== -->
+
+<div
+  id="publicProfileModal"
   class="modal-overlay"
   onclick="if(event.target===this)closeModal('publicProfileModal')">
 
@@ -1107,7 +1585,9 @@ main{
 
     <div class="modal-head">
 
-      <h2>Profil Siswa</h2>
+      <h2>
+        Profil Siswa
+      </h2>
 
       <button
         class="modal-close"
@@ -1117,13 +1597,22 @@ main{
 
     </div>
 
-    <div id="publicProfileContent"></div>
+
+    <div
+      id="publicProfileContent">
+    </div>
 
   </div>
 
 </div>
 
-<div id="ordersModal"
+
+<!-- =====================================================
+     ORDERS MODAL
+===================================================== -->
+
+<div
+  id="ordersModal"
   class="modal-overlay"
   onclick="if(event.target===this)closeModal('ordersModal')">
 
@@ -1131,7 +1620,9 @@ main{
 
     <div class="modal-head">
 
-      <h2>Pesanan</h2>
+      <h2>
+        Pesanan
+      </h2>
 
       <button
         class="modal-close"
@@ -1141,17 +1632,25 @@ main{
 
     </div>
 
-    <div id="ordersContent"></div>
+
+    <div
+      id="ordersContent">
+    </div>
 
   </div>
 
 </div>
 
-<div id="status" class="status offline">
+
+<div
+  id="status"
+  class="status offline">
   ● SMKARYA siap
 </div>
 
+
 <div id="toast"></div>
+
 
 <script>
 
@@ -1161,33 +1660,44 @@ main{
 
 const CONFIG={
 
-  ENDPOINT:"https://sgp.cloud.appwrite.io/v1",
+  ENDPOINT:
+    "https://sgp.cloud.appwrite.io/v1",
 
-  PROJECT_ID:"6aacfafd003ab0cd0e81",
+  PROJECT_ID:
+    "6aacfafd003ab0cd0e81",
 
-  DATABASE_ID:"6aad0a52002526f17875",
+  DATABASE_ID:
+    "6aad0a52002526f17875",
 
-  PROFILE_TABLE_ID:"SMKARYA",
+  PROFILE_TABLE_ID:
+    "SMKARYA",
 
-  WORK_TABLE_ID:"karya",
+  WORK_TABLE_ID:
+    "karya",
 
-  LIKE_TABLE_ID:"Like",
+  LIKE_TABLE_ID:
+    "Like",
 
-  COMMENT_TABLE_ID:"Komentar",
+  COMMENT_TABLE_ID:
+    "Komentar",
 
-  FOLLOW_TABLE_ID:"Follow",
+  FOLLOW_TABLE_ID:
+    "Follow",
 
-  NOTIFICATION_TABLE_ID:"Notifikasi",
+  NOTIFICATION_TABLE_ID:
+    "Notifikasi",
 
-  ORDER_TABLE_ID:"pesanan",
+  ORDER_TABLE_ID:
+    "pesanan",
 
-  BUCKET_ID:"SMKARYA"
+  BUCKET_ID:
+    "SMKARYA"
 
 };
 
 
 /* =====================================================
-   APPWRITE
+   APPWRITE INITIALIZATION
 ===================================================== */
 
 const client=
@@ -1213,15 +1723,21 @@ const Query=
 ===================================================== */
 
 let currentUser=null;
+
 let currentProfile=null;
 
 let allWorks=[];
+
 let allLikes=[];
+
 let allComments=[];
+
 let allProfiles=[];
+
 let allFollows=[];
 
 let selectedCommentWork=null;
+
 let selectedCheckoutWork=null;
 
 let toastTimer=null;
@@ -1235,123 +1751,162 @@ const tableColumnsCache={};
 
 const jurusanList=[
 
-"Tata Busana",
-"Desain dan Produksi Busana",
-"Desain Komunikasi Visual",
-"Teknik Komputer dan Jaringan",
-"Rekayasa Perangkat Lunak",
-"Teknik Jaringan Akses Telekomunikasi",
-"Teknik Elektronika",
-"Teknik Audio Video",
-"Teknik Instalasi Tenaga Listrik",
-"Teknik Otomasi Industri",
-"Teknik Mekatronika",
-"Teknik Mesin",
-"Teknik Pemesinan",
-"Teknik Pengelasan",
-"Teknik Kendaraan Ringan",
-"Teknik Sepeda Motor",
-"Teknik Alat Berat",
-"Teknik Bodi Kendaraan Ringan",
-"Teknik Energi Terbarukan",
-"Teknik Konstruksi dan Perumahan",
-"Teknik Konstruksi Gedung",
-"Teknik Geomatika",
-"Teknik Geologi Pertambangan",
-"Teknik Laboratorium Medik",
-"Farmasi Klinis dan Komunitas",
-"Keperawatan",
-"Teknologi Laboratorium Medik",
-"Teknologi Pengolahan Hasil Pertanian",
-"Agribisnis Tanaman",
-"Agribisnis Ternak",
-"Agribisnis Perikanan",
-"Teknologi Budidaya Perikanan",
-"Teknik Pengolahan Hasil Perikanan",
-"Usaha Perjalanan Wisata",
-"Perhotelan",
-"Manajemen Perkantoran",
-"Akuntansi dan Keuangan",
-"Bisnis Daring dan Pemasaran",
-"Manajemen Logistik",
-"Manajemen Retail",
-"Bisnis Konstruksi dan Properti",
-"Teknik Sipil",
-"Arsitektur",
-"Teknik Furnitur",
-"Desain Interior",
-"Teknik Grafika",
-"Produksi Grafika",
-"Multimedia",
-"Animasi",
-"Broadcasting dan Perfilman",
-"Produksi Film",
-"Produksi Siaran Televisi",
-"Produksi Siaran Radio",
-"Teknik Broadcasting",
-"Pariwisata",
-"Perhotelan dan Jasa Pariwisata",
-"Usaha Layanan Pariwisata",
-"Kuliner",
-"Agribisnis",
-"Teknik Pertanian",
-"Teknik Kimia Industri",
-"Teknik Farmasi",
-"Teknologi Tekstil",
-"Teknik Penyiaran",
-"Teknik Pembangkit Tenaga Listrik",
-"Teknik Distribusi Tenaga Listrik",
-"Teknik Pendingin dan Tata Udara",
-"Teknik Ketenagalistrikan",
-"Teknik Pemeliharaan Mesin Industri",
-"Teknik Fabrikasi Logam dan Manufaktur",
-"Teknik Alat Mesin",
-"Teknik Konstruksi Jalan dan Jembatan",
-"Teknik Desain Pemodelan dan Informasi Bangunan",
-"Teknik Instalasi Pemanfaatan Tenaga Listrik",
-"Teknik Komunikasi dan Jaringan",
-"Teknik Telekomunikasi",
-"Teknik Animasi",
-"Desain Interior dan Teknik Furnitur"
+  "Tata Busana",
+  "Desain dan Produksi Busana",
+  "Desain Komunikasi Visual",
+  "Teknik Komputer dan Jaringan",
+  "Rekayasa Perangkat Lunak",
+  "Teknik Jaringan Akses Telekomunikasi",
+  "Teknik Elektronika",
+  "Teknik Audio Video",
+  "Teknik Instalasi Tenaga Listrik",
+  "Teknik Otomasi Industri",
+  "Teknik Mekatronika",
+  "Teknik Mesin",
+  "Teknik Pemesinan",
+  "Teknik Pengelasan",
+  "Teknik Kendaraan Ringan",
+  "Teknik Sepeda Motor",
+  "Teknik Alat Berat",
+  "Teknik Bodi Kendaraan Ringan",
+  "Teknik Energi Terbarukan",
+  "Teknik Konstruksi dan Perumahan",
+  "Teknik Konstruksi Gedung",
+  "Teknik Geomatika",
+  "Teknik Geologi Pertambangan",
+  "Teknik Laboratorium Medik",
+  "Farmasi Klinis dan Komunitas",
+  "Keperawatan",
+  "Teknologi Laboratorium Medik",
+  "Teknologi Pengolahan Hasil Pertanian",
+  "Agribisnis Tanaman",
+  "Agribisnis Ternak",
+  "Agribisnis Perikanan",
+  "Teknologi Budidaya Perikanan",
+  "Teknik Pengolahan Hasil Perikanan",
+  "Usaha Perjalanan Wisata",
+  "Perhotelan",
+  "Manajemen Perkantoran",
+  "Akuntansi dan Keuangan",
+  "Bisnis Daring dan Pemasaran",
+  "Manajemen Logistik",
+  "Manajemen Retail",
+  "Bisnis Konstruksi dan Properti",
+  "Teknik Sipil",
+  "Arsitektur",
+  "Teknik Furnitur",
+  "Desain Interior",
+  "Teknik Grafika",
+  "Produksi Grafika",
+  "Multimedia",
+  "Animasi",
+  "Broadcasting dan Perfilman",
+  "Produksi Film",
+  "Produksi Siaran Televisi",
+  "Produksi Siaran Radio",
+  "Teknik Broadcasting",
+  "Pariwisata",
+  "Perhotelan dan Jasa Pariwisata",
+  "Usaha Layanan Pariwisata",
+  "Kuliner",
+  "Agribisnis",
+  "Teknik Pertanian",
+  "Teknik Kimia Industri",
+  "Teknik Farmasi",
+  "Teknologi Tekstil",
+  "Teknik Penyiaran",
+  "Teknik Pembangkit Tenaga Listrik",
+  "Teknik Distribusi Tenaga Listrik",
+  "Teknik Pendingin dan Tata Udara",
+  "Teknik Ketenagalistrikan",
+  "Teknik Pemeliharaan Mesin Industri",
+  "Teknik Fabrikasi Logam dan Manufaktur",
+  "Teknik Alat Mesin",
+  "Teknik Konstruksi Jalan dan Jembatan",
+  "Teknik Desain Pemodelan dan Informasi Bangunan",
+  "Teknik Instalasi Pemanfaatan Tenaga Listrik",
+  "Teknik Komunikasi dan Jaringan",
+  "Teknik Telekomunikasi",
+  "Teknik Animasi",
+  "Desain Interior dan Teknik Furnitur"
 
 ];
 
 
 /* =====================================================
-   BASIC UI
+   TOAST
 ===================================================== */
 
 function toast(message){
 
-  const el=document.getElementById("toast");
+  const el=
+    document.getElementById("toast");
 
   if(!el)return;
 
   el.textContent=message;
+
   el.classList.add("show");
 
   clearTimeout(toastTimer);
 
-  toastTimer=setTimeout(()=>{
-    el.classList.remove("show");
-  },2800);
+  toastTimer=
+    setTimeout(()=>{
+      el.classList.remove("show");
+    },3000);
 
 }
 
 
-function setStatus(text,type=""){
+/* =====================================================
+   STATUS
+===================================================== */
 
-  const el=document.getElementById("status");
+function setStatus(
+  text,
+  type=""
+){
+
+  const el=
+    document.getElementById("status");
 
   if(!el)return;
 
-  el.textContent="● "+text;
-  el.className="status "+type;
+  el.textContent=
+    "● "+text;
+
+  el.className=
+    "status "+type;
 
 }
 
 
-function go(page,button){
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function go(
+  page,
+  button=null
+){
+
+  /*
+    Proteksi halaman upload.
+  */
+
+  if(
+    page==="upload" &&
+    !currentUser
+  ){
+
+    toast(
+      "Masuk atau daftar terlebih dahulu."
+    );
+
+    page="login";
+
+  }
+
 
   document
     .querySelectorAll(".page")
@@ -1359,11 +1914,16 @@ function go(page,button){
       el.classList.remove("active");
     });
 
-  const target=document.getElementById(page);
+
+  const target=
+    document.getElementById(page);
 
   if(target){
+
     target.classList.add("active");
+
   }
+
 
   document
     .querySelectorAll(".nav-btn")
@@ -1371,9 +1931,37 @@ function go(page,button){
       el.classList.remove("active");
     });
 
+
   if(button){
+
     button.classList.add("active");
+
   }
+
+
+  if(page==="register"){
+
+    setTimeout(
+      initJurusan,
+      0
+    );
+
+  }
+
+
+  if(page==="portfolio"){
+
+    renderPortfolio();
+
+  }
+
+
+  if(page==="profile"){
+
+    renderProfile();
+
+  }
+
 
   window.scrollTo({
     top:0,
@@ -1382,6 +1970,29 @@ function go(page,button){
 
 }
 
+
+/* =====================================================
+   AUTH PAGE
+===================================================== */
+
+function openAuthPage(){
+
+  if(currentUser){
+
+    go("profile");
+
+  }else{
+
+    go("login");
+
+  }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHtml(value){
 
@@ -1395,12 +2006,19 @@ function escapeHtml(value){
 }
 
 
+/* =====================================================
+   RUPIAH
+===================================================== */
+
 function rupiah(value){
 
-  const number=Number(value||0);
+  const number=
+    Number(value||0);
 
   if(!number){
+
     return "Gratis";
+
   }
 
   return new Intl.NumberFormat(
@@ -1416,29 +2034,60 @@ function rupiah(value){
 
 
 /* =====================================================
-   JURUSAN
+   JURUSAN INITIALIZATION
 ===================================================== */
 
 function initJurusan(){
 
-  const selects=[
-    document.getElementById("jurusanKarya"),
-    document.getElementById("filterJurusan")
+  const configs=[
+
+    {
+      id:"jurusanKarya",
+      placeholder:"Pilih jurusan"
+    },
+
+    {
+      id:"filterJurusan",
+      placeholder:"Semua jurusan"
+    },
+
+    {
+      id:"registerJurusan",
+      placeholder:"Pilih jurusan"
+    }
+
   ];
 
-  selects.forEach(select=>{
+
+  configs.forEach(config=>{
+
+    const select=
+      document.getElementById(config.id);
 
     if(!select)return;
 
-    const first=select.innerHTML;
 
-    select.innerHTML=first;
+    select.innerHTML="";
+
+
+    const first=
+      document.createElement("option");
+
+    first.value="";
+
+    first.textContent=
+      config.placeholder;
+
+    select.appendChild(first);
+
 
     jurusanList.forEach(jurusan=>{
 
-      const option=document.createElement("option");
+      const option=
+        document.createElement("option");
 
       option.value=jurusan;
+
       option.textContent=jurusan;
 
       select.appendChild(option);
@@ -1451,142 +2100,59 @@ function initJurusan(){
 
 
 /* =====================================================
-   APPWRITE SESSION
+   TABLE COLUMNS
 ===================================================== */
 
-async function checkAppwrite(){
-
-  try{
-
-    let user=null;
-
-    try{
-
-      const timeout=
-        new Promise((_,reject)=>{
-
-          setTimeout(()=>{
-            reject(new Error("Appwrite timeout"));
-          },4000);
-
-        });
-
-      user=
-        await Promise.race([
-          account.get(),
-          timeout
-        ]);
-
-    }catch(error){
-
-      if(error?.code===401){
-        user=null;
-      }else{
-        console.warn("Session Appwrite:",error);
-        user=null;
-      }
-
-    }
-
-    currentUser=user;
-
-    if(currentUser){
-
-      setStatus("Appwrite terhubung","online");
-
-      updateUserUI();
-
-      setTimeout(async()=>{
-
-        try{
-
-          await ensureUserProfile();
-          await loadData();
-
-          updateUserUI();
-          renderHomeWorks();
-          renderWorks();
-          renderPortfolio();
-          renderProfile();
-
-        }catch(error){
-
-          console.warn("Database:",error);
-
-          setStatus("SMKARYA siap","online");
-
-        }
-
-      },100);
-
-    }else{
-
-      setStatus("Mode publik","");
-
-      setTimeout(async()=>{
-
-        try{
-
-          await loadPublicData();
-
-          renderHomeWorks();
-          renderWorks();
-
-        }catch(error){
-
-          console.warn("Public data:",error);
-
-        }
-
-      },100);
-
-    }
-
-  }catch(error){
-
-    console.error("APPWRITE:",error);
-
-    currentUser=null;
-
-    setStatus("SMKARYA siap","online");
-
-  }
-
-}
-
-
-/* =====================================================
-   TABLE SCHEMA
-===================================================== */
-
-async function getTableColumns(tableId){
+async function getTableColumns(
+  tableId
+){
 
   if(tableColumnsCache[tableId]){
+
     return tableColumnsCache[tableId];
+
   }
+
 
   try{
 
     const table=
       await tablesDB.getTable({
-        databaseId:CONFIG.DATABASE_ID,
-        tableId:tableId
+
+        databaseId:
+          CONFIG.DATABASE_ID,
+
+        tableId:
+          tableId
+
       });
+
 
     const columns=
       Array.isArray(table.columns)
-        ? table.columns.map(column=>column.key)
+        ? table.columns.map(
+            column=>column.key
+          )
         : [];
 
+
     if(columns.length){
-      tableColumnsCache[tableId]=columns;
+
+      tableColumnsCache[tableId]=
+        columns;
+
     }
+
 
     return columns;
 
   }catch(error){
 
-    console.warn("Schema:",tableId,error);
+    console.warn(
+      "Schema:",
+      tableId,
+      error
+    );
 
     return null;
 
@@ -1595,35 +2161,56 @@ async function getTableColumns(tableId){
 }
 
 
-async function cleanDataForTable(tableId,data){
+/* =====================================================
+   CLEAN DATA
+===================================================== */
+
+async function cleanDataForTable(
+  tableId,
+  data
+){
 
   const columns=
-    await getTableColumns(tableId);
+    await getTableColumns(
+      tableId
+    );
+
 
   if(!columns){
+
     return data;
+
   }
 
+
   const clean={};
+
 
   Object.keys(data).forEach(key=>{
 
     if(columns.includes(key)){
+
       clean[key]=data[key];
+
     }
 
   });
+
 
   return clean;
 
 }
 
 
+/* =====================================================
+   CREATE ROW
+===================================================== */
+
 async function createFlexibleRow(
   tableId,
   rowId,
   data,
-  permissions
+  permissions=[]
 ){
 
   const clean=
@@ -1632,25 +2219,38 @@ async function createFlexibleRow(
       data
     );
 
+
   const payload={
 
-    databaseId:CONFIG.DATABASE_ID,
-    tableId:tableId,
-    rowId:rowId,
-    data:clean
+    databaseId:
+      CONFIG.DATABASE_ID,
+
+    tableId:
+      tableId,
+
+    rowId:
+      rowId,
+
+    data:
+      clean
 
   };
 
+
   if(
-    Array.isArray(permissions) &&
+    permissions &&
     permissions.length
   ){
 
-    payload.permissions=permissions;
+    payload.permissions=
+      permissions;
 
   }
 
-  return tablesDB.createRow(payload);
+
+  return tablesDB.createRow(
+    payload
+  );
 
 }
 
@@ -1669,9 +2269,11 @@ async function listAllRows(
     const result=
       await tablesDB.listRows({
 
-        databaseId:CONFIG.DATABASE_ID,
+        databaseId:
+          CONFIG.DATABASE_ID,
 
-        tableId:tableId,
+        tableId:
+          tableId,
 
         queries:[
           ...queries,
@@ -1682,11 +2284,16 @@ async function listAllRows(
 
       });
 
+
     return result?.rows||[];
 
   }catch(error){
 
-    console.warn("List rows:",tableId,error);
+    console.warn(
+      "List rows:",
+      tableId,
+      error
+    );
 
     return [];
 
@@ -1703,156 +2310,83 @@ async function ensureUserProfile(){
 
   if(!currentUser)return;
 
+
   try{
 
     const rows=
       await listAllRows(
+
         CONFIG.PROFILE_TABLE_ID,
+
         [
           Query.equal(
             "userId",
             currentUser.$id
           )
         ]
+
       );
+
 
     if(rows.length){
 
-      currentProfile=rows[0];
+      currentProfile=
+        rows[0];
 
       return;
 
     }
 
-    const profile={
 
-      userId:currentUser.$id,
+    const name=
+      currentUser.name||
+      "Siswa SMK";
 
-      nama:
-        currentUser.name||
-        "Siswa SMK",
 
-      username:
-        (currentUser.name||
-        "siswa")
+    const username=
+      name
         .toLowerCase()
-        .replace(/\s+/g,""),
+        .replace(/[^a-z0-9]/g,"")
+        .slice(0,30);
 
-      jurusan:"",
-      sekolah:"",
-      kelas:"",
-      bio:"",
-      profile:"",
-      creditArt:"",
-      portofolio:"",
-      profilePhotoId:""
 
-    };
-
-    const row=
+    currentProfile=
       await createFlexibleRow(
+
         CONFIG.PROFILE_TABLE_ID,
+
         Appwrite.ID.unique(),
-        profile
-      );
 
-    currentProfile=row;
+        {
 
-  }catch(error){
+          userId:
+            currentUser.$id,
 
-    console.warn("Profile:",error);
+          nama:
+            name,
 
-  }
+          username:
+            username||"siswa",
 
-}
+          jurusan:"",
+          sekolah:"",
+          kelas:"",
+          bio:"",
+          profile:"",
+          creditArt:"",
+          portofolio:"",
+          profilePhotoId:""
 
+        }
 
-/* =====================================================
-   LOAD DATA
-===================================================== */
-
-async function loadPublicData(){
-
-  try{
-
-    const rows=
-      await listAllRows(
-        CONFIG.WORK_TABLE_ID,
-        [
-          Query.orderDesc("$createdAt")
-        ]
-      );
-
-    allWorks=
-      rows.map(normalizeWork);
-
-    renderHomeWorks();
-    renderWorks();
-
-  }catch(error){
-
-    console.warn("Public works:",error);
-
-  }
-
-}
-
-
-async function loadData(){
-
-  await loadPublicData();
-
-  if(!currentUser)return;
-
-  try{
-
-    allProfiles=
-      await listAllRows(
-        CONFIG.PROFILE_TABLE_ID
       );
 
   }catch(error){
 
-    console.warn("Profiles:",error);
-
-  }
-
-  try{
-
-    allLikes=
-      await listAllRows(
-        CONFIG.LIKE_TABLE_ID
-      );
-
-  }catch(error){
-
-    console.warn("Likes:",error);
-
-  }
-
-  try{
-
-    allComments=
-      await listAllRows(
-        CONFIG.COMMENT_TABLE_ID
-      );
-
-  }catch(error){
-
-    console.warn("Comments:",error);
-
-  }
-
-  try{
-
-    allFollows=
-      await listAllRows(
-        CONFIG.FOLLOW_TABLE_ID
-      );
-
-  }catch(error){
-
-    console.warn("Follows:",error);
+    console.warn(
+      "Profile:",
+      error
+    );
 
   }
 
@@ -1865,11 +2399,13 @@ async function loadData(){
 
 function normalizeWork(row){
 
-  return {
+  return{
 
-    id:row.$id,
+    id:
+      row.$id,
 
-    userId:row.userId||"",
+    userId:
+      row.userId||"",
 
     title:
       row.judul||
@@ -1881,7 +2417,8 @@ function normalizeWork(row){
       row.description||
       "",
 
-    jurusan:row.jurusan||"",
+    jurusan:
+      row.jurusan||"",
 
     category:
       row.kategori||"",
@@ -1890,7 +2427,9 @@ function normalizeWork(row){
       row.sekolah||"",
 
     price:
-      Number(row.harga||0),
+      Number(
+        row.harga||0
+      ),
 
     thumbnailId:
       row.thumbnailId||
@@ -1907,10 +2446,14 @@ function normalizeWork(row){
       "image",
 
     likesCount:
-      Number(row.likesCount||0),
+      Number(
+        row.likesCount||0
+      ),
 
     commentsCount:
-      Number(row.commentsCount||0),
+      Number(
+        row.commentsCount||0
+      ),
 
     userName:
       row.nama||
@@ -1929,25 +2472,34 @@ function normalizeWork(row){
    FILE URL
 ===================================================== */
 
-function getFileUrl(fileId){
+function getFileUrl(
+  fileId
+){
 
-  if(!fileId)return "";
+  if(!fileId)return"";
 
-  return (
+
+  return(
     CONFIG.ENDPOINT+
     "/storage/buckets/"+
-    encodeURIComponent(CONFIG.BUCKET_ID)+
+    encodeURIComponent(
+      CONFIG.BUCKET_ID
+    )+
     "/files/"+
-    encodeURIComponent(fileId)+
+    encodeURIComponent(
+      fileId
+    )+
     "/view?project="+
-    encodeURIComponent(CONFIG.PROJECT_ID)
+    encodeURIComponent(
+      CONFIG.PROJECT_ID
+    )
   );
 
 }
 
 
 /* =====================================================
-   UPDATE USER UI
+   UPDATE NAV USER
 ===================================================== */
 
 function updateUserUI(){
@@ -1957,19 +2509,275 @@ function updateUserUI(){
     currentProfile?.nama||
     "Tamu";
 
+
   const nameEl=
-    document.getElementById("navUserName");
+    document.getElementById(
+      "navUserName"
+    );
+
 
   const avatar=
-    document.getElementById("navAvatar");
+    document.getElementById(
+      "navAvatar"
+    );
+
+
+  const authBtn=
+    document.getElementById(
+      "navAuthBtn"
+    );
+
 
   if(nameEl){
-    nameEl.textContent=name;
+
+    nameEl.textContent=
+      name;
+
   }
 
+
   if(avatar){
+
     avatar.textContent=
-      name.charAt(0).toUpperCase();
+      name==="Tamu"
+        ? "?"
+        : name
+            .charAt(0)
+            .toUpperCase();
+
+  }
+
+
+  if(authBtn){
+
+    if(currentUser){
+
+      authBtn.textContent=
+        "Keluar";
+
+      authBtn.className=
+        "btn btn-danger";
+
+      authBtn.onclick=
+        logoutUser;
+
+    }else{
+
+      authBtn.textContent=
+        "Masuk / Daftar";
+
+      authBtn.className=
+        "btn btn-primary";
+
+      authBtn.onclick=
+        openAuthPage;
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   LOAD PUBLIC DATA
+===================================================== */
+
+async function loadPublicData(){
+
+  try{
+
+    const rows=
+      await listAllRows(
+
+        CONFIG.WORK_TABLE_ID,
+
+        [
+          Query.orderDesc(
+            "$createdAt"
+          )
+        ]
+
+      );
+
+
+    allWorks=
+      rows.map(
+        normalizeWork
+      );
+
+
+    renderHomeWorks();
+
+    renderWorks();
+
+  }catch(error){
+
+    console.warn(
+      "Public data:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+async function loadData(){
+
+  await loadPublicData();
+
+
+  try{
+
+    allProfiles=
+      await listAllRows(
+        CONFIG.PROFILE_TABLE_ID
+      );
+
+  }catch(error){
+
+    allProfiles=[];
+
+  }
+
+
+  try{
+
+    allLikes=
+      await listAllRows(
+        CONFIG.LIKE_TABLE_ID
+      );
+
+  }catch(error){
+
+    allLikes=[];
+
+  }
+
+
+  try{
+
+    allComments=
+      await listAllRows(
+        CONFIG.COMMENT_TABLE_ID
+      );
+
+  }catch(error){
+
+    allComments=[];
+
+  }
+
+
+  try{
+
+    allFollows=
+      await listAllRows(
+        CONFIG.FOLLOW_TABLE_ID
+      );
+
+  }catch(error){
+
+    allFollows=[];
+
+  }
+
+}
+
+
+/* =====================================================
+   CHECK APPWRITE
+===================================================== */
+
+async function checkAppwrite(){
+
+  try{
+
+    let user=null;
+
+
+    try{
+
+      user=
+        await account.get();
+
+    }catch(error){
+
+      if(error?.code!==401){
+
+        console.warn(
+          "Session:",
+          error
+        );
+
+      }
+
+    }
+
+
+    currentUser=
+      user||null;
+
+
+    if(currentUser){
+
+      setStatus(
+        "Appwrite terhubung",
+        "online"
+      );
+
+
+      await ensureUserProfile();
+
+      await loadData();
+
+
+      updateUserUI();
+
+      renderHomeWorks();
+
+      renderWorks();
+
+      renderPortfolio();
+
+      renderProfile();
+
+    }else{
+
+      setStatus(
+        "Mode publik",
+        ""
+      );
+
+
+      await loadPublicData();
+
+      updateUserUI();
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "APPWRITE:",
+      error
+    );
+
+
+    currentUser=null;
+
+    updateUserUI();
+
+    setStatus(
+      "SMKARYA siap",
+      "online"
+    );
+
   }
 
 }
@@ -1982,72 +2790,328 @@ function updateUserUI(){
 async function registerUser(){
 
   const name=
-    document.getElementById("registerName")
-      .value.trim();
+    document.getElementById(
+      "registerName"
+    )?.value.trim();
+
+
+  const username=
+    document.getElementById(
+      "registerUsername"
+    )?.value
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g,"");
+
 
   const email=
-    document.getElementById("registerEmail")
-      .value.trim();
+    document.getElementById(
+      "registerEmail"
+    )?.value.trim();
+
+
+  const sekolah=
+    document.getElementById(
+      "registerSekolah"
+    )?.value.trim();
+
+
+  const kelas=
+    document.getElementById(
+      "registerKelas"
+    )?.value;
+
+
+  const jurusan=
+    document.getElementById(
+      "registerJurusan"
+    )?.value;
+
 
   const password=
-    document.getElementById("registerPassword")
-      .value;
+    document.getElementById(
+      "registerPassword"
+    )?.value;
 
-  if(!name||!email||!password){
 
-    toast("Lengkapi semua data.");
+  const passwordConfirm=
+    document.getElementById(
+      "registerPasswordConfirm"
+    )?.value;
+
+
+  if(
+    !name||
+    !username||
+    !email||
+    !sekolah||
+    !kelas||
+    !jurusan||
+    !password||
+    !passwordConfirm
+  ){
+
+    toast(
+      "Lengkapi semua data pendaftaran."
+    );
+
     return;
 
   }
+
 
   if(password.length<8){
 
-    toast("Password minimal 8 karakter.");
+    toast(
+      "Password minimal 8 karakter."
+    );
+
     return;
 
   }
 
+
+  if(password!==passwordConfirm){
+
+    toast(
+      "Konfirmasi password tidak sama."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !/^[a-z0-9._-]+$/.test(
+      username
+    )
+  ){
+
+    toast(
+      "Username hanya boleh berisi huruf kecil, angka, titik, garis bawah, atau tanda minus."
+    );
+
+    return;
+
+  }
+
+
   try{
 
-    setStatus("Membuat akun...","");
+    setStatus(
+      "Membuat akun...",
+      ""
+    );
+
+
+    /*
+      CREATE ACCOUNT
+    */
 
     await account.create({
 
-      userId:Appwrite.ID.unique(),
-      email:email,
-      password:password,
-      name:name
+      userId:
+        Appwrite.ID.unique(),
+
+      email:
+        email,
+
+      password:
+        password,
+
+      name:
+        name
 
     });
+
+
+    /*
+      LOGIN OTOMATIS
+    */
 
     await account.createEmailPasswordSession({
-      email:email,
-      password:password
+
+      email:
+        email,
+
+      password:
+        password
+
     });
+
+
+    /*
+      AMBIL USER
+    */
 
     currentUser=
       await account.get();
 
-    await ensureUserProfile();
+
+    /*
+      CEK PROFIL
+    */
+
+    const existing=
+      await listAllRows(
+
+        CONFIG.PROFILE_TABLE_ID,
+
+        [
+          Query.equal(
+            "userId",
+            currentUser.$id
+          )
+        ]
+
+      );
+
+
+    if(existing.length){
+
+      currentProfile=
+        existing[0];
+
+    }else{
+
+      currentProfile=
+        await createFlexibleRow(
+
+          CONFIG.PROFILE_TABLE_ID,
+
+          Appwrite.ID.unique(),
+
+          {
+
+            userId:
+              currentUser.$id,
+
+            nama:
+              name,
+
+            username:
+              username,
+
+            jurusan:
+              jurusan,
+
+            sekolah:
+              sekolah,
+
+            kelas:
+              kelas,
+
+            bio:"",
+            profile:"",
+            creditArt:"",
+            portofolio:"",
+            profilePhotoId:""
+
+          }
+
+        );
+
+    }
+
+
+    await loadData();
+
 
     updateUserUI();
 
+    renderHomeWorks();
+
+    renderWorks();
+
+    renderPortfolio();
+
+    renderProfile();
+
+
+    /*
+      RESET FORM
+    */
+
+    [
+      "registerName",
+      "registerUsername",
+      "registerEmail",
+      "registerSekolah",
+      "registerPassword",
+      "registerPasswordConfirm"
+    ].forEach(id=>{
+
+      const el=
+        document.getElementById(
+          id
+        );
+
+      if(el){
+
+        el.value="";
+
+      }
+
+    });
+
+
+    document.getElementById(
+      "registerKelas"
+    ).value="";
+
+
+    document.getElementById(
+      "registerJurusan"
+    ).value="";
+
+
     go("home");
 
-    toast("Akun berhasil dibuat!");
 
     setStatus(
       "Appwrite terhubung",
       "online"
     );
 
-  }catch(error){
-
-    console.error(error);
 
     toast(
-      error.message||
-      "Pendaftaran gagal."
+      "Akun berhasil dibuat! Selamat datang di SMKARYA 🎉"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "REGISTER:",
+      error
+    );
+
+
+    let message=
+      error?.message||
+      "Pendaftaran gagal.";
+
+
+    if(
+      error?.code===409||
+      message
+        .toLowerCase()
+        .includes("already exists")
+    ){
+
+      message=
+        "Email tersebut sudah terdaftar. Silakan masuk.";
+
+    }
+
+
+    toast(message);
+
+
+    setStatus(
+      "SMKARYA siap",
+      "online"
     );
 
   }
@@ -2062,70 +3126,132 @@ async function registerUser(){
 async function loginUser(){
 
   const email=
-    document.getElementById("loginEmail")
-      .value.trim();
+    document.getElementById(
+      "loginEmail"
+    )?.value.trim();
+
 
   const password=
-    document.getElementById("loginPassword")
-      .value;
+    document.getElementById(
+      "loginPassword"
+    )?.value;
 
-  if(!email||!password){
 
-    toast("Masukkan email dan password.");
+  if(
+    !email||
+    !password
+  ){
+
+    toast(
+      "Masukkan email dan password."
+    );
+
     return;
 
   }
 
+
   try{
 
-    setStatus("Masuk...","");
+    setStatus(
+      "Masuk...",
+      ""
+    );
 
-    /*
-      Hapus sesi lama jika memang ada.
-      Ini mencegah error ketika pengguna
-      sudah login lalu mencoba login lagi.
-    */
 
     try{
-      await account.deleteSession("current");
+
+      await account.deleteSession(
+        "current"
+      );
+
     }catch(_){}
+
 
     await account.createEmailPasswordSession({
 
-      email:email,
-      password:password
+      email:
+        email,
+
+      password:
+        password
 
     });
+
 
     currentUser=
       await account.get();
 
+
     await ensureUserProfile();
+
     await loadData();
+
 
     updateUserUI();
 
     renderHomeWorks();
+
     renderWorks();
+
     renderPortfolio();
+
     renderProfile();
 
+
+    document.getElementById(
+      "loginEmail"
+    ).value="";
+
+
+    document.getElementById(
+      "loginPassword"
+    ).value="";
+
+
     go("home");
+
 
     setStatus(
       "Appwrite terhubung",
       "online"
     );
 
-    toast("Berhasil masuk!");
+
+    toast(
+      "Berhasil masuk! 👋"
+    );
+
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "LOGIN:",
+      error
+    );
 
-    toast(
-      error.message||
-      "Login gagal."
+
+    let message=
+      error?.message||
+      "Login gagal.";
+
+
+    if(
+      error?.code===401
+    ){
+
+      message=
+        "Email atau password salah.";
+
+    }
+
+
+    toast(message);
+
+
+    setStatus(
+      "SMKARYA siap",
+      "online"
     );
 
   }
@@ -2141,71 +3267,106 @@ async function logoutUser(){
 
   try{
 
-    await account.deleteSession("current");
+    await account.deleteSession(
+      "current"
+    );
 
   }catch(error){
 
-    console.warn(error);
+    console.warn(
+      "Logout:",
+      error
+    );
 
   }
 
+
   currentUser=null;
+
   currentProfile=null;
 
   allLikes=[];
+
   allComments=[];
+
   allProfiles=[];
+
   allFollows=[];
+
 
   updateUserUI();
 
   renderPortfolio();
+
   renderProfile();
 
   go("home");
 
-  setStatus("Mode publik","");
 
-  toast("Kamu sudah keluar.");
+  setStatus(
+    "Mode publik",
+    ""
+  );
 
-  try{
 
-    await loadPublicData();
+  toast(
+    "Kamu sudah keluar."
+  );
 
-  }catch(_){}
+
+  await loadPublicData();
 
 }
 
 
 /* =====================================================
-   UPLOAD PREVIEW
+   FILE PREVIEW
 ===================================================== */
 
 function previewFile(){
 
   const input=
-    document.getElementById("fileKarya");
+    document.getElementById(
+      "fileKarya"
+    );
+
 
   const box=
-    document.getElementById("filePreview");
+    document.getElementById(
+      "filePreview"
+    );
+
 
   if(!input||!box)return;
 
-  const file=input.files?.[0];
+
+  const file=
+    input.files?.[0];
+
 
   if(!file){
 
     box.innerHTML="";
+
     return;
 
   }
 
-  const url=
-    URL.createObjectURL(file);
 
-  if(file.type.startsWith("video/")){
+  const url=
+    URL.createObjectURL(
+      file
+    );
+
+
+  if(
+    file.type.startsWith(
+      "video/"
+    )
+  ){
 
     box.innerHTML=`
+
       <video
         src="${url}"
         controls
@@ -2215,11 +3376,13 @@ function previewFile(){
           border-radius:15px;
         ">
       </video>
+
     `;
 
   }else{
 
     box.innerHTML=`
+
       <img
         src="${url}"
         style="
@@ -2229,6 +3392,7 @@ function previewFile(){
           border-radius:15px;
         "
       >
+
     `;
 
   }
@@ -2237,116 +3401,132 @@ function previewFile(){
 
 
 /* =====================================================
-   SUBMIT UPLOAD
+   UPLOAD
 ===================================================== */
 
 async function submitUpload(){
 
   if(!currentUser){
 
-    toast("Login terlebih dahulu.");
+    toast(
+      "Masuk atau daftar terlebih dahulu."
+    );
+
     go("login");
+
     return;
 
   }
 
+
   const title=
-    document.getElementById("judulKarya")
-      .value.trim();
+    document.getElementById(
+      "judulKarya"
+    ).value.trim();
+
 
   const description=
-    document.getElementById("deskripsiKarya")
-      .value.trim();
+    document.getElementById(
+      "deskripsiKarya"
+    ).value.trim();
+
 
   const jurusan=
-    document.getElementById("jurusanKarya")
-      .value;
+    document.getElementById(
+      "jurusanKarya"
+    ).value;
+
 
   const category=
-    document.getElementById("kategoriKarya")
-      .value;
+    document.getElementById(
+      "kategoriKarya"
+    ).value;
+
 
   const price=
     Number(
-      document.getElementById("hargaKarya")
-        .value||0
+      document.getElementById(
+        "hargaKarya"
+      ).value||0
     );
 
-  const input=
-    document.getElementById("fileKarya");
 
-  const file=input?.files?.[0];
+  const input=
+    document.getElementById(
+      "fileKarya"
+    );
+
+
+  const file=
+    input?.files?.[0];
+
 
   if(!title){
 
-    toast("Judul karya wajib diisi.");
+    toast(
+      "Judul karya wajib diisi."
+    );
+
     return;
 
   }
+
+
+  if(!jurusan){
+
+    toast(
+      "Pilih jurusan terlebih dahulu."
+    );
+
+    return;
+
+  }
+
 
   if(!file){
 
-    toast("Pilih foto atau video karya.");
+    toast(
+      "Pilih foto atau video karya."
+    );
+
     return;
 
   }
 
+
   try{
 
-    setStatus("Mengunggah karya...","");
+    setStatus(
+      "Mengunggah karya...",
+      ""
+    );
+
 
     const fileId=
       Appwrite.ID.unique();
 
+
     await storage.createFile({
 
-      bucketId:CONFIG.BUCKET_ID,
-      fileId:fileId,
-      file:file,
+      bucketId:
+        CONFIG.BUCKET_ID,
+
+      fileId:
+        fileId,
+
+      file:
+        file,
 
       permissions:[
+
         Appwrite.Permission.read(
           Appwrite.Role.any()
         )
+
       ]
 
     });
 
-    const data={
-
-      userId:currentUser.$id,
-
-      nama:
-        currentUser.name||
-        "Siswa SMK",
-
-      judul:title,
-
-      deskripsi:description,
-
-      jurusan:jurusan,
-
-      kategori:category,
-
-      harga:price,
-
-      thumbnailId:fileId,
-
-      fileId:fileId,
-
-      fileType:file.type,
-
-      sekolah:
-        currentProfile?.sekolah||
-        "",
-
-      likesCount:0,
-
-      commentsCount:0,
-
-      status:"published"
-
-    };
 
     await createFlexibleRow(
 
@@ -2354,45 +3534,130 @@ async function submitUpload(){
 
       Appwrite.ID.unique(),
 
-      data,
+      {
+
+        userId:
+          currentUser.$id,
+
+        nama:
+          currentUser.name||
+          "Siswa SMK",
+
+        judul:
+          title,
+
+        deskripsi:
+          description,
+
+        jurusan:
+          jurusan,
+
+        kategori:
+          category,
+
+        harga:
+          price,
+
+        thumbnailId:
+          fileId,
+
+        fileId:
+          fileId,
+
+        fileType:
+          file.type,
+
+        sekolah:
+          currentProfile?.sekolah||
+          "",
+
+        likesCount:
+          0,
+
+        commentsCount:
+          0,
+
+        status:
+          "published"
+
+      },
 
       [
+
         Appwrite.Permission.read(
           Appwrite.Role.any()
         )
+
       ]
 
     );
 
-    toast("Karya berhasil dipublikasikan! 🎉");
 
-    document.getElementById("judulKarya").value="";
-    document.getElementById("deskripsiKarya").value="";
-    document.getElementById("hargaKarya").value="";
+    toast(
+      "Karya berhasil dipublikasikan! 🎉"
+    );
+
+
+    document.getElementById(
+      "judulKarya"
+    ).value="";
+
+
+    document.getElementById(
+      "deskripsiKarya"
+    ).value="";
+
+
+    document.getElementById(
+      "hargaKarya"
+    ).value="";
+
+
+    document.getElementById(
+      "jurusanKarya"
+    ).value="";
+
+
     input.value="";
-    document.getElementById("filePreview").innerHTML="";
+
+
+    document.getElementById(
+      "filePreview"
+    ).innerHTML="";
+
 
     await loadData();
 
+
     renderHomeWorks();
+
     renderWorks();
+
     renderPortfolio();
 
+
     go("home");
+
 
     setStatus(
       "Appwrite terhubung",
       "online"
     );
 
+
   }catch(error){
 
-    console.error("UPLOAD:",error);
+    console.error(
+      "UPLOAD:",
+      error
+    );
+
 
     toast(
-      error.message||
+      error?.message||
       "Upload gagal."
     );
+
 
     setStatus(
       "SMKARYA siap",
@@ -2405,89 +3670,243 @@ async function submitUpload(){
 
 
 /* =====================================================
-   LIKE
+   LIKES
 ===================================================== */
 
-function countLikes(workId){
+function countLikes(
+  workId
+){
 
   return allLikes.filter(
-    like=>String(like.karyaId)===String(workId)
+    like=>
+      String(
+        like.karyaId
+      )===
+      String(workId)
   ).length;
 
 }
 
 
-function countComments(workId){
+function countComments(
+  workId
+){
 
   return allComments.filter(
-    comment=>String(comment.karyaId)===String(workId)
+    comment=>
+      String(
+        comment.karyaId
+      )===
+      String(workId)
   ).length;
 
 }
 
 
-function isLiked(workId){
+function isLiked(
+  workId
+){
 
-  if(!currentUser)return false;
+  if(!currentUser){
+
+    return false;
+
+  }
+
 
   return allLikes.some(
+
     like=>
-      String(like.karyaId)===String(workId)&&
-      String(like.userId)===String(currentUser.$id)
+      String(
+        like.karyaId
+      )===
+      String(workId)&&
+      String(
+        like.userId
+      )===
+      String(
+        currentUser.$id
+      )
+
   );
 
 }
 
 
+async function likeWork(
+  workId
+){
+
+  if(!currentUser){
+
+    toast(
+      "Login untuk menyukai karya."
+    );
+
+    go("login");
+
+    return;
+
+  }
+
+
+  try{
+
+    const existing=
+      allLikes.find(
+
+        like=>
+          String(
+            like.karyaId
+          )===
+          String(workId)&&
+
+          String(
+            like.userId
+          )===
+          String(currentUser.$id)
+
+      );
+
+
+    if(existing){
+
+      toast(
+        "Karya sudah kamu sukai."
+      );
+
+      return;
+
+    }
+
+
+    const row=
+      await createFlexibleRow(
+
+        CONFIG.LIKE_TABLE_ID,
+
+        Appwrite.ID.unique(),
+
+        {
+
+          userId:
+            currentUser.$id,
+
+          karyaId:
+            workId
+
+        }
+
+      );
+
+
+    allLikes.push(row);
+
+
+    renderHomeWorks();
+
+    renderWorks();
+
+
+    toast(
+      "Karya disukai ❤️"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "LIKE:",
+      error
+    );
+
+
+    toast(
+      error?.message||
+      "Gagal menyukai karya."
+    );
+
+  }
+
+}
+
+
 /* =====================================================
-   CREATE WORK CARD
+   WORK CARD
 ===================================================== */
 
-function createWorkCard(work){
+function createWorkCard(
+  work
+){
 
   const image=
-    getFileUrl(work.thumbnailId);
+    getFileUrl(
+      work.thumbnailId
+    );
+
 
   const liked=
-    isLiked(work.id);
+    isLiked(
+      work.id
+    );
+
 
   const likes=
-    countLikes(work.id)||
+    countLikes(
+      work.id
+    )||
     work.likesCount||
     0;
 
+
   const comments=
-    countComments(work.id)||
+    countComments(
+      work.id
+    )||
     work.commentsCount||
     0;
 
+
   const price=
-    Number(work.price||0);
+    Number(
+      work.price||0
+    );
+
 
   const buy=
     price>0
       ? `
+
         <button
           class="action-btn buy-btn"
           onclick="openCheckout('${escapeHtml(work.id)}')">
+
           🛍️ Beli
+
         </button>
+
       `
       : "";
 
+
   const media=
     work.fileType &&
-    work.fileType.startsWith("video")
+    work.fileType.startsWith(
+      "video"
+    )
 
       ? `
+
         <video
           class="work-image"
           src="${escapeHtml(image)}"
           controls>
         </video>
+
       `
 
       : `
+
         <img
           class="work-image"
           src="${escapeHtml(image)}"
@@ -2495,387 +3914,121 @@ function createWorkCard(work){
           onerror="this.style.display='none'"
           alt="${escapeHtml(work.title)}"
         >
+
       `;
 
-  return `
 
-  <article class="work-card">
+  return`
 
-    ${media}
+    <article class="work-card">
 
-    <div class="work-content">
+      ${media}
 
-      <div class="work-title">
-        ${escapeHtml(work.title)}
-      </div>
+      <div class="work-content">
 
-      <div class="work-meta">
+        <div class="work-title">
+          ${escapeHtml(work.title)}
+        </div>
 
-        <button
-          type="button"
-          onclick="openPublicProfile('${escapeHtml(work.userId||"")}')"
-          style="
-            background:none;
-            border:0;
-            padding:0;
-            color:#d92b7c;
-            font-weight:800;
-            cursor:pointer;
-            font-size:inherit;
-          "
-        >
-          ${escapeHtml(work.userName||"Siswa SMK")}
-        </button>
+
+        <div class="work-meta">
+
+          <button
+            type="button"
+            onclick="openPublicProfile('${escapeHtml(work.userId||"")}')"
+            style="
+              background:none;
+              border:0;
+              padding:0;
+              color:#d92b7c;
+              font-weight:800;
+              cursor:pointer;
+              font-size:inherit;
+            "
+          >
+
+            ${escapeHtml(
+              work.userName||
+              "Siswa SMK"
+            )}
+
+          </button>
+
+          ${
+            work.jurusan
+              ? " • "+
+                escapeHtml(
+                  work.jurusan
+                )
+              : ""
+          }
+
+        </div>
+
 
         ${
-          work.jurusan
-          ? " • "+escapeHtml(work.jurusan)
+          price>0
+          ? `
+
+            <div class="price-tag">
+
+              ${rupiah(price)}
+
+            </div>
+
+          `
           : ""
         }
 
-      </div>
 
-      ${
-        price>0
-        ? `
-          <div class="price-tag">
-            ${rupiah(price)}
-          </div>
-        `
-        : ""
-      }
+        <div class="work-description">
 
-      <div class="work-description">
-        ${escapeHtml(work.description)}
-      </div>
-
-      <div class="work-actions">
-
-        <button
-          class="action-btn"
-          onclick="likeWork('${escapeHtml(work.id)}')">
-
-          ${liked?"❤️":"♡"}
-          ${likes}
-
-        </button>
-
-        <button
-          class="action-btn"
-          onclick="openComments('${escapeHtml(work.id)}')">
-
-          💬 ${comments}
-
-        </button>
-
-        ${buy}
-
-        <button
-          class="action-btn"
-          onclick="shareWork('${escapeHtml(work.id)}')">
-
-          ↗ Bagikan
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </article>
-
-  `;
-
-}
-
-
-/* =====================================================
-   PUBLIC PROFILE
-===================================================== */
-
-async function openPublicProfile(userId){
-
-  if(!userId){
-
-    toast("Profil pengguna tidak ditemukan.");
-    return;
-
-  }
-
-  const box=
-    document.getElementById(
-      "publicProfileContent"
-    );
-
-  if(!box)return;
-
-  box.innerHTML=`
-    <div style="text-align:center;padding:35px">
-      <div style="font-size:45px">⏳</div>
-      <p>Memuat profil...</p>
-    </div>
-  `;
-
-  openModal("publicProfileModal");
-
-  try{
-
-    let profile=null;
-
-    /*
-      Jika profil sudah ada di memori,
-      gunakan data tersebut.
-    */
-
-    profile=
-      allProfiles.find(
-        item=>
-          String(item.userId)===
-          String(userId)
-      );
-
-    /*
-      Jika belum ada, cari langsung ke Appwrite.
-      Ini penting untuk pengguna yang belum login.
-    */
-
-    if(!profile){
-
-      const rows=
-        await listAllRows(
-          CONFIG.PROFILE_TABLE_ID,
-          [
-            Query.equal(
-              "userId",
-              userId
-            )
-          ]
-        );
-
-      profile=rows[0]||null;
-
-    }
-
-    if(!profile){
-
-      /*
-        Fallback dari karya.
-        Jadi profil tetap bisa dibuka walaupun
-        tabel profil belum berisi data.
-      */
-
-      const work=
-        allWorks.find(
-          item=>
-            String(item.userId)===
-            String(userId)
-        );
-
-      if(work){
-
-        profile={
-          userId:userId,
-          nama:work.userName||"Siswa SMK",
-          username:"",
-          jurusan:work.jurusan||"",
-          sekolah:work.school||"",
-          kelas:"",
-          bio:""
-        };
-
-      }
-
-    }
-
-    if(!profile){
-
-      box.innerHTML=`
-
-        <div class="empty">
-
-          <div style="font-size:50px">
-            👤
-          </div>
-
-          <h3>
-            Profil belum tersedia
-          </h3>
-
-          <p>
-            Pengguna ini belum melengkapi
-            profil SMKARYA.
-          </p>
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-    const works=
-      allWorks.filter(
-        work=>
-          String(work.userId)===
-          String(userId)
-      );
-
-    const name=
-      profile.nama||
-      "Siswa SMK";
-
-    const username=
-      profile.username||
-      "";
-
-    box.innerHTML=`
-
-      <div class="profile-header">
-
-        <div class="profile-public-head">
-
-          <div class="mini-avatar">
-            ${escapeHtml(
-              name.charAt(0).toUpperCase()
-            )}
-          </div>
-
-          <div>
-
-            <h2 style="margin:0">
-              ${escapeHtml(name)}
-            </h2>
-
-            ${
-              username
-              ? `
-                <div class="small-muted">
-                  @${escapeHtml(username)}
-                </div>
-              `
-              : ""
-            }
-
-          </div>
-
-        </div>
-
-        <div class="public-stat">
-
-          <div class="public-stat-card">
-            <strong>${works.length}</strong>
-            Karya
-          </div>
-
-          <div class="public-stat-card">
-            <strong>
-              ${escapeHtml(profile.jurusan||"-")}
-            </strong>
-            Jurusan
-          </div>
-
-        </div>
-
-        <div style="margin-top:20px">
-
-          <p>
-            <strong>Sekolah:</strong>
-            ${escapeHtml(profile.sekolah||"-")}
-          </p>
-
-          <p>
-            <strong>Jurusan:</strong>
-            ${escapeHtml(profile.jurusan||"-")}
-          </p>
-
-          <p>
-            <strong>Kelas:</strong>
-            ${escapeHtml(profile.kelas||"-")}
-          </p>
-
-          <p>
-            <strong>Bio:</strong>
-            ${escapeHtml(
-              profile.bio||
-              "Belum ada bio."
-            )}
-          </p>
-
-        </div>
-
-      </div>
-
-      <h3 style="margin-top:25px">
-        Karya ${escapeHtml(name)}
-      </h3>
-
-      <div class="works-grid">
-
-        ${
-          works.length
-
-          ? works
-              .map(createWorkCard)
-              .join("")
-
-          : `
-            <div
-              class="empty"
-              style="grid-column:1/-1">
-
-              <div style="font-size:45px">
-                🎨
-              </div>
-
-              <h3>
-                Belum ada karya
-              </h3>
-
-              <p>
-                Pengguna ini belum
-                mengunggah karya.
-              </p>
-
-            </div>
-          `
-        }
-
-      </div>
-
-    `;
-
-  }catch(error){
-
-    console.error(
-      "PUBLIC PROFILE ERROR:",
-      error
-    );
-
-    box.innerHTML=`
-
-      <div class="empty">
-
-        <div style="font-size:45px">
-          ⚠️
-        </div>
-
-        <h3>
-          Profil belum bisa dimuat
-        </h3>
-
-        <p>
           ${escapeHtml(
-            error?.message||
-            "Terjadi kesalahan."
+            work.description
           )}
-        </p>
+
+        </div>
+
+
+        <div class="work-actions">
+
+          <button
+            class="action-btn"
+            onclick="likeWork('${escapeHtml(work.id)}')">
+
+            ${liked?"❤️":"♡"}
+            ${likes}
+
+          </button>
+
+
+          <button
+            class="action-btn"
+            onclick="openComments('${escapeHtml(work.id)}')">
+
+            💬 ${comments}
+
+          </button>
+
+
+          ${buy}
+
+
+          <button
+            class="action-btn"
+            onclick="shareWork('${escapeHtml(work.id)}')">
+
+            ↗ Bagikan
+
+          </button>
+
+        </div>
 
       </div>
 
-    `;
+    </article>
 
-  }
+  `;
 
 }
 
@@ -2888,68 +4041,93 @@ function filterWorks(){
 
   const search=
     (
-      document.getElementById("searchWork")?.value||
+      document.getElementById(
+        "searchWork"
+      )?.value||
       ""
     ).toLowerCase();
 
+
   const jurusan=
-    document.getElementById("filterJurusan")?.value||
+    document.getElementById(
+      "filterJurusan"
+    )?.value||
     "";
+
 
   const kategori=
-    document.getElementById("filterKategori")?.value||
+    document.getElementById(
+      "filterKategori"
+    )?.value||
     "";
 
-  return allWorks.filter(work=>{
 
-    const text=(
+  return allWorks.filter(
+    work=>{
 
-      work.title+
-      " "+
-      work.description+
-      " "+
-      work.userName+
-      " "+
-      work.jurusan+
-      " "+
-      work.category
+      const text=(
 
-    ).toLowerCase();
+        work.title+
+        " "+
+        work.description+
+        " "+
+        work.userName+
+        " "+
+        work.jurusan+
+        " "+
+        work.category
 
-    return(
+      ).toLowerCase();
 
-      (!search||text.includes(search))&&
 
-      (!jurusan||work.jurusan===jurusan)&&
+      return(
 
-      (!kategori||work.category===kategori)
+        (!search||
+          text.includes(search))&&
 
-    );
+        (!jurusan||
+          work.jurusan===
+          jurusan)&&
 
-  });
+        (!kategori||
+          work.category===
+          kategori)
+
+      );
+
+    }
+  );
 
 }
 
 
 /* =====================================================
-   RENDER WORKS
+   RENDER EXPLORE
 ===================================================== */
 
 function renderWorks(){
 
   const box=
-    document.getElementById("exploreWorks");
+    document.getElementById(
+      "exploreWorks"
+    );
+
 
   if(!box)return;
 
-  const works=filterWorks();
+
+  const works=
+    filterWorks();
+
 
   box.innerHTML=
 
     works.length
 
       ? works
-          .map(createWorkCard)
+          .map(
+            createWorkCard
+          )
           .join("")
 
       : `
@@ -2958,7 +4136,8 @@ function renderWorks(){
           class="empty"
           style="grid-column:1/-1">
 
-          <div style="font-size:45px">
+          <div
+            style="font-size:45px">
             🎨
           </div>
 
@@ -2979,22 +4158,36 @@ function renderWorks(){
 }
 
 
+/* =====================================================
+   HOME WORKS
+===================================================== */
+
 function renderHomeWorks(){
 
   const box=
-    document.getElementById("homeWorks");
+    document.getElementById(
+      "homeWorks"
+    );
+
 
   if(!box)return;
 
+
   const works=
-    allWorks.slice(0,6);
+    allWorks.slice(
+      0,
+      6
+    );
+
 
   box.innerHTML=
 
     works.length
 
       ? works
-          .map(createWorkCard)
+          .map(
+            createWorkCard
+          )
           .join("")
 
       : `
@@ -3003,7 +4196,8 @@ function renderHomeWorks(){
           class="empty"
           style="grid-column:1/-1">
 
-          <div style="font-size:45px">
+          <div
+            style="font-size:45px">
             ✨
           </div>
 
@@ -3031,9 +4225,13 @@ function renderHomeWorks(){
 function renderPortfolio(){
 
   const box=
-    document.getElementById("portfolioWorks");
+    document.getElementById(
+      "portfolioWorks"
+    );
+
 
   if(!box)return;
+
 
   if(!currentUser){
 
@@ -3043,7 +4241,8 @@ function renderPortfolio(){
         class="empty"
         style="grid-column:1/-1">
 
-        <div style="font-size:45px">
+        <div
+          style="font-size:45px">
           🔐
         </div>
 
@@ -3071,19 +4270,29 @@ function renderPortfolio(){
 
   }
 
+
   const works=
     allWorks.filter(
+
       work=>
-        String(work.userId)===
-        String(currentUser.$id)
+        String(
+          work.userId
+        )===
+        String(
+          currentUser.$id
+        )
+
     );
+
 
   box.innerHTML=
 
     works.length
 
       ? works
-          .map(createWorkCard)
+          .map(
+            createWorkCard
+          )
           .join("")
 
       : `
@@ -3092,7 +4301,8 @@ function renderPortfolio(){
           class="empty"
           style="grid-column:1/-1">
 
-          <div style="font-size:45px">
+          <div
+            style="font-size:45px">
             📁
           </div>
 
@@ -3126,7 +4336,9 @@ function renderProfile(){
       "profileContainer"
     );
 
+
   if(!box)return;
+
 
   if(!currentUser){
 
@@ -3149,9 +4361,8 @@ function renderProfile(){
         </h2>
 
         <p style="text-align:center">
-          Masuk atau buat akun
-          untuk membangun
-          portofolio digitalmu.
+          Masuk atau buat akun untuk
+          membangun portofolio digitalmu.
         </p>
 
         <button
@@ -3163,6 +4374,15 @@ function renderProfile(){
 
         </button>
 
+        <button
+          class="btn btn-secondary"
+          style="width:100%"
+          onclick="go('register')">
+
+          Buat Akun
+
+        </button>
+
       </div>
 
     `;
@@ -3171,17 +4391,26 @@ function renderProfile(){
 
   }
 
+
   const name=
     currentProfile?.nama||
     currentUser.name||
     "Siswa SMK";
 
+
   const works=
     allWorks.filter(
+
       work=>
-        String(work.userId)===
-        String(currentUser.$id)
+        String(
+          work.userId
+        )===
+        String(
+          currentUser.$id
+        )
+
     );
+
 
   box.innerHTML=`
 
@@ -3190,36 +4419,52 @@ function renderProfile(){
       <div class="profile-public-head">
 
         <div class="mini-avatar">
+
           ${escapeHtml(
-            name.charAt(0)
+            name
+              .charAt(0)
+              .toUpperCase()
           )}
+
         </div>
 
         <div>
 
           <h2 style="margin:0">
+
             ${escapeHtml(name)}
+
           </h2>
 
           <div class="small-muted">
-            ${escapeHtml(
-              currentProfile?.username||
-              ""
-            )}
+
+            ${
+              currentProfile?.username
+                ? "@"+
+                  escapeHtml(
+                    currentProfile.username
+                  )
+                : ""
+            }
+
           </div>
 
         </div>
 
       </div>
 
-      <div style="margin-top:18px">
+
+      <div
+        style="margin-top:18px">
 
         <strong>
           ${works.length}
         </strong>
+
         karya
 
       </div>
+
 
       <div class="profile-actions">
 
@@ -3231,6 +4476,7 @@ function renderProfile(){
 
         </button>
 
+
         <button
           class="btn btn-secondary"
           onclick="showMyOrders()">
@@ -3238,6 +4484,7 @@ function renderProfile(){
           🛍️ Pesanan Saya
 
         </button>
+
 
         <button
           class="btn btn-secondary"
@@ -3247,8 +4494,9 @@ function renderProfile(){
 
         </button>
 
+
         <button
-          class="btn btn-secondary"
+          class="btn btn-danger"
           onclick="logoutUser()">
 
           Keluar
@@ -3257,37 +4505,58 @@ function renderProfile(){
 
       </div>
 
+
       <div>
 
         <p>
-          <strong>Sekolah:</strong>
+
+          <strong>
+            Sekolah:
+          </strong>
+
           ${escapeHtml(
             currentProfile?.sekolah||
             "-"
           )}
+
         </p>
 
+
         <p>
-          <strong>Jurusan:</strong>
+
+          <strong>
+            Jurusan:
+          </strong>
+
           ${escapeHtml(
             currentProfile?.jurusan||
             "-"
           )}
+
         </p>
 
+
         <p>
-          <strong>Kelas:</strong>
+
+          <strong>
+            Kelas:
+          </strong>
+
           ${escapeHtml(
             currentProfile?.kelas||
             "-"
           )}
+
         </p>
 
+
         <p>
+
           ${escapeHtml(
             currentProfile?.bio||
             "Belum ada bio."
           )}
+
         </p>
 
       </div>
@@ -3300,64 +4569,361 @@ function renderProfile(){
 
 
 /* =====================================================
-   LIKE
+   PUBLIC PROFILE
 ===================================================== */
 
-async function likeWork(workId){
+async function openPublicProfile(
+  userId
+){
 
-  if(!currentUser){
+  if(!userId){
 
-    toast("Login untuk menyukai karya.");
-    go("login");
+    toast(
+      "Profil pengguna tidak ditemukan."
+    );
+
     return;
 
   }
 
+
+  const box=
+    document.getElementById(
+      "publicProfileContent"
+    );
+
+
+  if(!box)return;
+
+
+  box.innerHTML=`
+
+    <div class="loading-box">
+
+      <div style="font-size:40px">
+        ⏳
+      </div>
+
+      <p>
+        Memuat profil...
+      </p>
+
+    </div>
+
+  `;
+
+
+  openModal(
+    "publicProfileModal"
+  );
+
+
   try{
 
-    const existing=
-      allLikes.find(
-        like=>
-          String(like.karyaId)===String(workId)&&
-          String(like.userId)===String(currentUser.$id)
+    let profile=
+      allProfiles.find(
+
+        item=>
+          String(
+            item.userId
+          )===
+          String(userId)
+
       );
 
-    if(existing){
 
-      toast("Karya sudah kamu sukai.");
-      return;
+    if(!profile){
+
+      const rows=
+        await listAllRows(
+
+          CONFIG.PROFILE_TABLE_ID,
+
+          [
+            Query.equal(
+              "userId",
+              userId
+            )
+          ]
+
+        );
+
+
+      profile=
+        rows[0]||
+        null;
 
     }
 
-    const row=
-      await createFlexibleRow(
 
-        CONFIG.LIKE_TABLE_ID,
+    const works=
+      allWorks.filter(
 
-        Appwrite.ID.unique(),
-
-        {
-          userId:currentUser.$id,
-          karyaId:workId
-        }
+        work=>
+          String(
+            work.userId
+          )===
+          String(userId)
 
       );
 
-    allLikes.push(row);
 
-    renderHomeWorks();
-    renderWorks();
+    if(!profile){
 
-    toast("Karya disukai ❤️");
+      const firstWork=
+        works[0];
+
+
+      profile={
+
+        nama:
+          firstWork?.userName||
+          "Siswa SMK",
+
+        username:"",
+        jurusan:
+          firstWork?.jurusan||
+          "",
+
+        sekolah:
+          firstWork?.school||
+          "",
+
+        kelas:"",
+        bio:""
+
+      };
+
+    }
+
+
+    const name=
+      profile.nama||
+      "Siswa SMK";
+
+
+    box.innerHTML=`
+
+      <div class="profile-header">
+
+        <div class="profile-public-head">
+
+          <div class="mini-avatar">
+
+            ${escapeHtml(
+              name
+                .charAt(0)
+                .toUpperCase()
+            )}
+
+          </div>
+
+          <div>
+
+            <h2 style="margin:0">
+
+              ${escapeHtml(name)}
+
+            </h2>
+
+
+            ${
+              profile.username
+                ? `
+
+                  <div class="small-muted">
+
+                    @${escapeHtml(
+                      profile.username
+                    )}
+
+                  </div>
+
+                `
+                : ""
+            }
+
+          </div>
+
+        </div>
+
+
+        <div class="public-stat">
+
+          <div class="public-stat-card">
+
+            <strong>
+              ${works.length}
+            </strong>
+
+            Karya
+
+          </div>
+
+
+          <div class="public-stat-card">
+
+            <strong style="
+              font-size:14px;
+              line-height:1.3;
+            ">
+
+              ${escapeHtml(
+                profile.jurusan||
+                "-"
+              )}
+
+            </strong>
+
+            Jurusan
+
+          </div>
+
+        </div>
+
+
+        <div
+          style="margin-top:20px">
+
+          <p>
+
+            <strong>
+              Sekolah:
+            </strong>
+
+            ${escapeHtml(
+              profile.sekolah||
+              "-"
+            )}
+
+          </p>
+
+
+          <p>
+
+            <strong>
+              Jurusan:
+            </strong>
+
+            ${escapeHtml(
+              profile.jurusan||
+              "-"
+            )}
+
+          </p>
+
+
+          <p>
+
+            <strong>
+              Kelas:
+            </strong>
+
+            ${escapeHtml(
+              profile.kelas||
+              "-"
+            )}
+
+          </p>
+
+
+          <p>
+
+            <strong>
+              Bio:
+            </strong>
+
+            ${escapeHtml(
+              profile.bio||
+              "Belum ada bio."
+            )}
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <h3
+        style="margin-top:25px">
+
+        Karya ${escapeHtml(name)}
+
+      </h3>
+
+
+      <div class="works-grid">
+
+        ${
+          works.length
+
+            ? works
+                .map(
+                  createWorkCard
+                )
+                .join("")
+
+            : `
+
+              <div
+                class="empty"
+                style="grid-column:1/-1">
+
+                <div
+                  style="font-size:45px">
+                  🎨
+                </div>
+
+                <h3>
+                  Belum ada karya
+                </h3>
+
+                <p>
+                  Pengguna ini belum
+                  mengunggah karya.
+                </p>
+
+              </div>
+
+            `
+        }
+
+      </div>
+
+    `;
 
   }catch(error){
 
-    console.error(error);
-
-    toast(
-      error.message||
-      "Gagal menyukai karya."
+    console.error(
+      "PUBLIC PROFILE:",
+      error
     );
+
+
+    box.innerHTML=`
+
+      <div class="empty">
+
+        <div
+          style="font-size:45px">
+          ⚠️
+        </div>
+
+        <h3>
+          Profil belum bisa dimuat
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            error?.message||
+            "Terjadi kesalahan."
+          )}
+        </p>
+
+      </div>
+
+    `;
 
   }
 
@@ -3368,37 +4934,39 @@ async function likeWork(workId){
    COMMENTS
 ===================================================== */
 
-async function openComments(workId){
+async function openComments(
+  workId
+){
 
-  selectedCommentWork=workId;
+  selectedCommentWork=
+    workId;
+
 
   const work=
     allWorks.find(
       x=>x.id===workId
     );
 
-  const title=
-    document.getElementById(
-      "commentModalTitle"
-    );
 
-  const subtitle=
-    document.getElementById(
-      "commentModalSubtitle"
-    );
+  document.getElementById(
+    "commentModalTitle"
+  ).textContent=
+    "Komentar";
 
-  if(title){
-    title.textContent="Komentar";
-  }
 
-  if(subtitle){
-    subtitle.textContent=
-      work?.title||"";
-  }
+  document.getElementById(
+    "commentModalSubtitle"
+  ).textContent=
+    work?.title||
+    "";
+
 
   await renderComments();
 
-  openModal("commentModal");
+
+  openModal(
+    "commentModal"
+  );
 
 }
 
@@ -3410,14 +4978,23 @@ async function renderComments(){
       "commentList"
     );
 
+
   if(!box)return;
+
 
   let comments=
     allComments.filter(
+
       comment=>
-        String(comment.karyaId)===
-        String(selectedCommentWork)
+        String(
+          comment.karyaId
+        )===
+        String(
+          selectedCommentWork
+        )
+
     );
+
 
   if(!comments.length){
 
@@ -3437,49 +5014,63 @@ async function renderComments(){
 
         );
 
+
       allComments=
-        allComments
-          .concat(comments);
+        allComments.concat(
+          comments
+        );
 
     }catch(error){
 
-      console.warn(error);
+      console.warn(
+        "Comments:",
+        error
+      );
 
     }
 
   }
 
+
   box.innerHTML=
 
     comments.length
 
-      ? comments.map(comment=>`
+      ? comments.map(
+          comment=>`
 
-        <div class="comment-item">
+            <div class="comment-item">
 
-          <strong>
-            ${escapeHtml(
-              comment.nama||
-              comment.userId||
-              "Siswa"
-            )}
-          </strong>
+              <strong>
 
-          <div style="margin-top:5px">
-            ${escapeHtml(
-              comment.komentar||
-              ""
-            )}
-          </div>
+                ${escapeHtml(
+                  comment.nama||
+                  "Siswa"
+                )}
 
-        </div>
+              </strong>
 
-      `).join("")
+              <div
+                style="margin-top:5px">
+
+                ${escapeHtml(
+                  comment.komentar||
+                  ""
+                )}
+
+              </div>
+
+            </div>
+
+          `
+        ).join("")
 
       : `
 
         <div class="small-muted">
+
           Belum ada komentar.
+
         </div>
 
       `;
@@ -3491,33 +5082,48 @@ async function submitComment(){
 
   if(!currentUser){
 
-    toast("Login untuk berkomentar.");
+    toast(
+      "Login untuk berkomentar."
+    );
+
     go("login");
+
     return;
 
   }
+
 
   const input=
     document.getElementById(
       "commentInput"
     );
 
+
   const text=
     input?.value.trim();
 
+
   if(!text){
 
-    toast("Tulis komentar terlebih dahulu.");
+    toast(
+      "Tulis komentar terlebih dahulu."
+    );
+
     return;
 
   }
+
 
   if(!selectedCommentWork){
 
-    toast("Karya tidak ditemukan.");
+    toast(
+      "Karya tidak ditemukan."
+    );
+
     return;
 
   }
+
 
   try{
 
@@ -3530,13 +5136,17 @@ async function submitComment(){
 
         {
 
-          userId:currentUser.$id,
+          userId:
+            currentUser.$id,
 
-          karyaId:selectedCommentWork,
+          karyaId:
+            selectedCommentWork,
 
-          komentar:text,
+          komentar:
+            text,
 
-          createdAt:new Date().toISOString(),
+          createdAt:
+            new Date().toISOString(),
 
           nama:
             currentUser.name||
@@ -3546,23 +5156,36 @@ async function submitComment(){
 
       );
 
+
     allComments.push(row);
+
 
     input.value="";
 
+
     await renderComments();
 
+
     renderWorks();
+
     renderHomeWorks();
 
-    toast("Komentar berhasil dikirim.");
+
+    toast(
+      "Komentar berhasil dikirim."
+    );
+
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "COMMENT:",
+      error
+    );
+
 
     toast(
-      error.message||
+      error?.message||
       "Komentar gagal dikirim."
     );
 
@@ -3581,7 +5204,9 @@ function openModal(id){
     document.getElementById(id);
 
   if(el){
+
     el.classList.add("show");
+
   }
 
 }
@@ -3593,7 +5218,9 @@ function closeModal(id){
     document.getElementById(id);
 
   if(el){
+
     el.classList.remove("show");
+
   }
 
 }
@@ -3603,43 +5230,85 @@ function closeModal(id){
    CHECKOUT
 ===================================================== */
 
-function openCheckout(workId){
+function openCheckout(
+  workId
+){
 
   if(!currentUser){
 
-    toast("Login untuk membeli produk.");
+    toast(
+      "Login untuk membeli produk."
+    );
+
     go("login");
+
     return;
 
   }
 
+
   selectedCheckoutWork=
     allWorks.find(
+
       work=>
-        String(work.id)===String(workId)
+        String(
+          work.id
+        )===
+        String(
+          workId
+        )
+
     );
 
-  if(!selectedCheckoutWork)return;
+
+  if(
+    !selectedCheckoutWork
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    selectedCheckoutWork.userId===
+    currentUser.$id
+  ){
+
+    toast(
+      "Kamu tidak bisa membeli produkmu sendiri."
+    );
+
+    return;
+
+  }
+
 
   document.getElementById(
     "checkoutJumlah"
   ).value=1;
 
+
   document.getElementById(
     "checkoutAlamat"
   ).value="";
+
 
   document.getElementById(
     "checkoutSummary"
   ).innerHTML=`
 
     <strong>
+
       ${escapeHtml(
         selectedCheckoutWork.title
       )}
+
     </strong>
 
-    <div class="small-muted"
+
+    <div
+      class="small-muted"
       style="margin-top:5px">
 
       Penjual:
@@ -3649,9 +5318,11 @@ function openCheckout(workId){
 
     </div>
 
-    <div style="
-      margin-top:8px;
-      font-weight:800">
+
+    <div
+      style="
+        margin-top:8px;
+        font-weight:800">
 
       ${rupiah(
         selectedCheckoutWork.price
@@ -3662,9 +5333,13 @@ function openCheckout(workId){
 
   `;
 
+
   updateCheckoutTotal();
 
-  openModal("checkoutModal");
+
+  openModal(
+    "checkoutModal"
+  );
 
 }
 
@@ -3673,20 +5348,30 @@ function updateCheckoutTotal(){
 
   if(!selectedCheckoutWork)return;
 
+
   const jumlah=
     Math.max(
+
       1,
+
       parseInt(
+
         document.getElementById(
           "checkoutJumlah"
-        )?.value||"1",
+        )?.value||
+        "1",
+
         10
+
       )
+
     );
+
 
   const total=
     selectedCheckoutWork.price*
     jumlah;
+
 
   document.getElementById(
     "checkoutTotal"
@@ -3702,24 +5387,36 @@ async function submitOrder(){
     !currentUser||
     !selectedCheckoutWork
   ){
+
     return;
+
   }
+
 
   const jumlah=
     Math.max(
+
       1,
+
       parseInt(
+
         document.getElementById(
           "checkoutJumlah"
-        ).value||"1",
+        ).value||
+        "1",
+
         10
+
       )
+
     );
+
 
   const alamat=
     document.getElementById(
       "checkoutAlamat"
     ).value.trim();
+
 
   if(!alamat){
 
@@ -3731,22 +5428,11 @@ async function submitOrder(){
 
   }
 
-  if(
-    selectedCheckoutWork.userId===
-    currentUser.$id
-  ){
-
-    toast(
-      "Kamu tidak bisa membeli produkmu sendiri."
-    );
-
-    return;
-
-  }
 
   const total=
     selectedCheckoutWork.price*
     jumlah;
+
 
   try{
 
@@ -3754,6 +5440,7 @@ async function submitOrder(){
       "Menyimpan pesanan...",
       ""
     );
+
 
     await createFlexibleRow(
 
@@ -3763,7 +5450,8 @@ async function submitOrder(){
 
       {
 
-        karyaId:selectedCheckoutWork.id,
+        karyaId:
+          selectedCheckoutWork.id,
 
         penjualId:
           selectedCheckoutWork.userId,
@@ -3789,36 +5477,49 @@ async function submitOrder(){
         total:
           Number(total),
 
-        alamat:alamat,
+        alamat:
+          alamat,
 
-        status:"pending"
+        status:
+          "pending"
 
       }
 
     );
 
-    closeModal("checkoutModal");
+
+    closeModal(
+      "checkoutModal"
+    );
+
 
     setStatus(
       "Appwrite terhubung",
       "online"
     );
 
+
     toast(
       "Pesanan berhasil dibuat! 🛍️"
     );
 
+
   }catch(error){
 
-    console.error("ORDER:",error);
+    console.error(
+      "ORDER:",
+      error
+    );
+
 
     setStatus(
       "SMKARYA siap",
       "online"
     );
 
+
     toast(
-      error.message||
+      error?.message||
       "Pesanan gagal disimpan."
     );
 
@@ -3859,9 +5560,11 @@ async function showOrders(
   if(!currentUser){
 
     go("login");
+
     return;
 
   }
+
 
   try{
 
@@ -3871,21 +5574,29 @@ async function showOrders(
         CONFIG.ORDER_TABLE_ID,
 
         [
+
           Query.equal(
             field,
             currentUser.$id
           ),
-          Query.orderDesc("$createdAt")
+
+          Query.orderDesc(
+            "$createdAt"
+          )
+
         ]
 
       );
+
 
     const box=
       document.getElementById(
         "ordersContent"
       );
 
+
     if(!box)return;
+
 
     box.innerHTML=`
 
@@ -3893,65 +5604,93 @@ async function showOrders(
         ${escapeHtml(title)}
       </h3>
 
+
       ${
         rows.length
 
-        ? rows.map(row=>`
+          ? rows.map(
+              row=>`
 
-          <div class="order-item">
+                <div
+                  class="order-item">
 
-            <strong>
-              ${escapeHtml(
-                row.namaProduk||
-                "Produk"
-              )}
-            </strong>
+                  <strong>
 
-            <div class="small-muted"
-              style="margin-top:5px">
+                    ${escapeHtml(
+                      row.namaProduk||
+                      "Produk"
+                    )}
 
-              Jumlah:
-              ${Number(row.jumlah||0)}
+                  </strong>
 
-              • Total:
-              ${rupiah(row.total)}
+
+                  <div
+                    class="small-muted"
+                    style="margin-top:5px">
+
+                    Jumlah:
+                    ${Number(
+                      row.jumlah||0
+                    )}
+
+                    • Total:
+                    ${rupiah(
+                      row.total
+                    )}
+
+                  </div>
+
+
+                  <div
+                    style="margin-top:7px">
+
+                    <span
+                      class="price-tag">
+
+                      ${escapeHtml(
+                        row.status||
+                        "pending"
+                      )}
+
+                    </span>
+
+                  </div>
+
+                </div>
+
+              `
+            ).join("")
+
+          : `
+
+            <div
+              class="small-muted">
+
+              Belum ada pesanan.
 
             </div>
 
-            <div style="margin-top:7px">
-
-              <span class="price-tag">
-                ${escapeHtml(
-                  row.status||
-                  "pending"
-                )}
-              </span>
-
-            </div>
-
-          </div>
-
-        `).join("")
-
-        : `
-
-          <div class="small-muted">
-            Belum ada pesanan.
-          </div>
-
-        `
+          `
       }
 
     `;
 
-    openModal("ordersModal");
+
+    openModal(
+      "ordersModal"
+    );
+
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "ORDERS:",
+      error
+    );
+
 
     toast(
-      error.message||
+      error?.message||
       "Pesanan belum bisa dimuat."
     );
 
@@ -3964,54 +5703,77 @@ async function showOrders(
    SHARE
 ===================================================== */
 
-async function shareWork(id){
+async function shareWork(
+  id
+){
 
   const work=
     allWorks.find(
-      x=>String(x.id)===String(id)
+      x=>
+        String(x.id)===
+        String(id)
     );
+
 
   if(!work)return;
 
+
   const data={
 
-    title:"SMKARYA",
+    title:
+      "SMKARYA",
 
     text:
       "Lihat karya \""+
       work.title+
       "\" di SMKARYA!",
 
-    url:window.location.href
+    url:
+      window.location.href
 
   };
 
+
   try{
 
-    if(navigator.share){
+    if(
+      navigator.share
+    ){
 
-      await navigator.share(data);
+      await navigator.share(
+        data
+      );
 
     }else if(
-      navigator.clipboard &&
+
+      navigator.clipboard&&
       navigator.clipboard.writeText
+
     ){
 
       await navigator.clipboard.writeText(
         window.location.href
       );
 
-      toast("Link berhasil disalin!");
+      toast(
+        "Link berhasil disalin!"
+      );
 
     }else{
 
-      toast("Link: "+window.location.href);
+      toast(
+        "Link: "+
+        window.location.href
+      );
 
     }
 
   }catch(error){
 
-    console.warn(error);
+    console.warn(
+      "Share:",
+      error
+    );
 
   }
 
@@ -4019,97 +5781,102 @@ async function shareWork(id){
 
 
 /* =====================================================
-   START
+   ENTER KEY LOGIN
 ===================================================== */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
+  "keydown",
+  event=>{
 
-    try{
-      initJurusan();
-    }catch(error){
-      console.warn("initJurusan:",error);
+    if(
+      event.key!=="Enter"
+    ){
+
+      return;
+
     }
 
-    try{
-      renderHomeWorks();
-    }catch(error){
-      console.warn("renderHomeWorks:",error);
+
+    const activePage=
+      document.querySelector(
+        ".page.active"
+      );
+
+
+    if(
+      activePage?.id===
+      "login"
+    ){
+
+      loginUser();
+
     }
-
-    try{
-      renderWorks();
-    }catch(error){
-      console.warn("renderWorks:",error);
-    }
-
-    try{
-      renderPortfolio();
-    }catch(error){
-      console.warn("renderPortfolio:",error);
-    }
-
-    try{
-      renderProfile();
-    }catch(error){
-      console.warn("renderProfile:",error);
-    }
-
-    try{
-      updateUserUI();
-    }catch(error){
-      console.warn("updateUserUI:",error);
-    }
-
-    setTimeout(()=>{
-
-      if(
-        typeof checkAppwrite===
-        "function"
-      ){
-
-        checkAppwrite()
-          .catch(error=>{
-
-            console.warn(
-              "Appwrite startup:",
-              error
-            );
-
-            setStatus(
-              "SMKARYA siap",
-              "online"
-            );
-
-          });
-
-      }
-
-    },50);
 
   }
 );
 
 
 /* =====================================================
-   PENGAMAN LOADING
+   START APP
 ===================================================== */
 
-setTimeout(()=>{
+document.addEventListener(
+  "DOMContentLoaded",
+  async()=>{
 
-  const loading=
-    document.getElementById("loading");
+    /*
+      JURUSAN LANGSUNG DIISI.
+    */
 
-  if(loading){
+    initJurusan();
 
-    loading.style.display="none";
-    loading.style.visibility="hidden";
-    loading.style.pointerEvents="none";
+
+    /*
+      UI AWAL.
+    */
+
+    updateUserUI();
+
+    renderHomeWorks();
+
+    renderWorks();
+
+    renderPortfolio();
+
+    renderProfile();
+
+
+    /*
+      CEK APPWRITE.
+    */
+
+    setTimeout(
+      async()=>{
+
+        try{
+
+          await checkAppwrite();
+
+        }catch(error){
+
+          console.error(
+            "START:",
+            error
+          );
+
+          setStatus(
+            "SMKARYA siap",
+            "online"
+          );
+
+        }
+
+      },
+      100
+    );
 
   }
-
-},1500);
+);
 
 </script>
 
