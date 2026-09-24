@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SMKarya</title>
 
 <style>
@@ -13,13 +13,13 @@
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,sans-serif;
   background:#fff7fc;
-  color:#29232a;
+  color:#333;
 }
 
 button,input,textarea,select{
-  font:inherit;
+  font-family:inherit;
 }
 
 button{
@@ -30,136 +30,140 @@ button{
   display:none!important;
 }
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
-#loginPage{
+.auth{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:linear-gradient(135deg,#ffdff0,#eee2ff);
+  background:linear-gradient(135deg,#ffe4f3,#f0e6ff);
 }
 
-.login-box{
+.auth-box{
   width:100%;
   max-width:400px;
-  background:#fff;
-  border-radius:24px;
-  padding:28px;
-  box-shadow:0 15px 40px rgba(100,40,80,.12);
+  background:white;
+  padding:30px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,.1);
 }
 
 .logo{
   text-align:center;
-  color:#df3b91;
-  font-size:32px;
+  font-size:34px;
   font-weight:900;
-  margin-bottom:6px;
+  color:#d63384;
 }
 
 .tagline{
   text-align:center;
   color:#777;
+  margin:8px 0 25px;
   font-size:14px;
-  margin-bottom:25px;
 }
 
-.login-box h2{
+.auth-box h2{
   text-align:center;
   margin-bottom:18px;
 }
 
-.form-group{
-  margin-bottom:14px;
+.field{
+  margin-bottom:13px;
 }
 
-.form-group label{
+.field label{
   display:block;
   font-size:13px;
   font-weight:bold;
   margin-bottom:6px;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
+.field input,
+.field textarea,
+.field select{
   width:100%;
   border:1px solid #ddd;
-  border-radius:12px;
   padding:12px;
+  border-radius:12px;
   outline:none;
-  background:white;
+  background:#fff;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-  border-color:#df3b91;
-}
-
-.form-group textarea{
+.field textarea{
   min-height:100px;
   resize:vertical;
 }
 
-.primary{
-  width:100%;
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:#d63384;
+}
+
+.btn{
   border:0;
   border-radius:12px;
-  padding:13px;
-  background:#df3b91;
-  color:white;
+  padding:12px 16px;
   font-weight:bold;
 }
 
-.primary:hover{
-  background:#c72d7c;
+.btn-primary{
+  width:100%;
+  background:#d63384;
+  color:white;
+}
+
+.btn-secondary{
+  width:100%;
+  background:#f7e4f0;
+  color:#b52b70;
+  margin-top:9px;
 }
 
 .switch{
   text-align:center;
-  margin-top:17px;
+  margin-top:18px;
   font-size:14px;
-  color:#666;
 }
 
 .switch span{
-  color:#df3b91;
+  color:#d63384;
   font-weight:bold;
   cursor:pointer;
 }
 
-/* APP */
-
-#app{
-  min-height:100vh;
-}
+/* =========================
+   APP
+========================= */
 
 header{
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:20;
   background:white;
   border-bottom:1px solid #eee;
 }
 
-.header{
+.header-inner{
   max-width:1100px;
   margin:auto;
-  padding:12px 18px;
+  padding:13px 18px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
 .brand{
+  color:#d63384;
   font-size:24px;
   font-weight:900;
-  color:#df3b91;
 }
 
-.header-right{
+.header-user{
   display:flex;
   align-items:center;
   gap:8px;
@@ -169,19 +173,19 @@ header{
   width:36px;
   height:36px;
   border-radius:50%;
-  background:#df3b91;
+  background:#d63384;
   color:white;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   font-weight:bold;
 }
 
 .logout{
   border:0;
-  background:#f9e5f1;
-  color:#bd2872;
-  padding:8px 12px;
+  background:#f8e6f1;
+  color:#b52b70;
+  padding:8px 11px;
   border-radius:10px;
   font-size:12px;
   font-weight:bold;
@@ -191,61 +195,63 @@ main{
   max-width:1100px;
   margin:auto;
   padding:18px;
-  padding-bottom:80px;
+  padding-bottom:90px;
 }
 
-/* NAV */
+/* =========================
+   NAV
+========================= */
 
 .nav{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  margin-bottom:22px;
-}
-
-.nav button{
-  border:1px solid #eee;
-  background:white;
-  color:#555;
-  border-radius:20px;
-  padding:10px 16px;
-  white-space:nowrap;
-}
-
-.nav button.active{
-  background:#df3b91;
-  border-color:#df3b91;
-  color:white;
-}
-
-/* TITLES */
-
-.title{
-  font-size:25px;
-  margin-bottom:5px;
-}
-
-.subtitle{
-  color:#777;
-  font-size:14px;
   margin-bottom:20px;
 }
 
-/* SEARCH */
+.nav button{
+  white-space:nowrap;
+  border:1px solid #eee;
+  background:white;
+  padding:10px 16px;
+  border-radius:20px;
+}
+
+.nav button.active{
+  background:#d63384;
+  color:white;
+  border-color:#d63384;
+}
+
+/* =========================
+   SEARCH
+========================= */
 
 .search{
   width:100%;
   border:1px solid #ddd;
-  background:white;
-  padding:13px 15px;
-  border-radius:13px;
-  margin-bottom:18px;
+  padding:13px 16px;
+  border-radius:14px;
+  margin-bottom:20px;
   outline:none;
 }
 
-/* CARDS */
+/* =========================
+   FEED
+========================= */
 
-.grid{
+.section-title{
+  font-size:24px;
+  margin-bottom:5px;
+}
+
+.section-desc{
+  color:#777;
+  margin-bottom:18px;
+  font-size:14px;
+}
+
+.feed{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
   gap:18px;
@@ -258,21 +264,20 @@ main{
   box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-.card-image{
+.card-img{
   width:100%;
   aspect-ratio:4/3;
   object-fit:cover;
-  display:block;
-  background:#f5edf2;
+  background:#f3eaf0;
 }
 
-.card-content{
+.card-body{
   padding:15px;
 }
 
-.author{
-  color:#df3b91;
+.card-user{
   font-size:12px;
+  color:#d63384;
   font-weight:bold;
   margin-bottom:7px;
 }
@@ -282,92 +287,52 @@ main{
   margin-bottom:7px;
 }
 
-.description{
-  color:#666;
+.card p{
   font-size:13px;
+  color:#666;
   line-height:1.5;
 }
 
-.tag{
+.badge{
   display:inline-block;
-  margin-top:10px;
-  margin-right:4px;
+  background:#f9e3f0;
+  color:#b52b70;
   padding:5px 9px;
   border-radius:20px;
-  background:#fae4f1;
-  color:#b92d73;
   font-size:11px;
+  margin-top:10px;
 }
 
 .actions{
   display:flex;
-  gap:7px;
-  margin-top:13px;
-  padding-top:12px;
+  align-items:center;
+  gap:8px;
+  margin-top:14px;
   border-top:1px solid #eee;
+  padding-top:12px;
 }
 
 .action{
   border:0;
-  background:#f5f5f5;
+  background:#f7f7f7;
   padding:8px 11px;
-  border-radius:9px;
+  border-radius:10px;
   font-size:13px;
 }
 
 .action.liked{
-  color:#df3b91;
-  background:#ffe1ef;
+  background:#ffe0ee;
+  color:#d63384;
 }
 
-.action.delete{
+.delete{
   margin-left:auto;
   color:#d33;
 }
 
-/* COMMENTS */
-
-.comments{
-  margin-top:12px;
-  border-top:1px solid #eee;
-  padding-top:10px;
-}
-
-.comment{
-  background:#fafafa;
-  border-radius:9px;
-  padding:8px;
-  margin-bottom:6px;
-  font-size:12px;
-}
-
-.comment b{
-  color:#df3b91;
-}
-
-.comment-form{
-  display:flex;
-  gap:6px;
-  margin-top:8px;
-}
-
-.comment-form input{
-  min-width:0;
-  flex:1;
-  border:1px solid #ddd;
-  border-radius:9px;
-  padding:9px;
-}
-
-.comment-form button{
-  border:0;
-  background:#df3b91;
-  color:white;
-  border-radius:9px;
-  padding:9px 11px;
-}
-
-/* UPLOAD */
+/* =========================
+   UPLOAD
+========================= */
 
 .upload-box{
   max-width:650px;
@@ -379,77 +344,123 @@ main{
 }
 
 .preview{
-  display:block;
   width:100%;
   max-height:350px;
   object-fit:contain;
-  border-radius:13px;
-  margin:10px 0 18px;
   background:#f5f5f5;
+  border-radius:15px;
+  margin-top:10px;
 }
 
-/* PROFILE */
+/* =========================
+   PROFILE
+========================= */
 
-.profile-box{
+.profile{
   background:white;
   border-radius:22px;
   padding:25px;
   text-align:center;
-  margin-bottom:22px;
+  margin-bottom:20px;
   box-shadow:0 5px 20px rgba(0,0,0,.06);
 }
 
 .profile-avatar{
-  width:82px;
-  height:82px;
-  margin:0 auto 12px;
+  width:85px;
+  height:85px;
+  margin:auto;
   border-radius:50%;
-  background:#df3b91;
+  background:#d63384;
   color:white;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:30px;
+  font-size:32px;
   font-weight:bold;
+  margin-bottom:12px;
 }
 
-.profile-box h2{
+.profile h2{
   margin-bottom:5px;
 }
 
-.profile-box p{
+.profile p{
   color:#777;
-  font-size:13px;
-  margin-top:3px;
+  font-size:14px;
 }
 
 .stats{
   display:flex;
   justify-content:center;
-  gap:45px;
+  gap:40px;
   margin-top:18px;
 }
 
 .stat strong{
   display:block;
-  color:#df3b91;
   font-size:20px;
+  color:#d63384;
 }
 
 .stat span{
-  color:#777;
   font-size:12px;
+  color:#777;
 }
 
-/* EMPTY */
+/* =========================
+   COMMENTS
+========================= */
+
+.comment-box{
+  padding:15px;
+  background:#fff;
+  margin-top:10px;
+  border-top:1px solid #eee;
+}
+
+.comment{
+  padding:9px;
+  background:#fafafa;
+  border-radius:10px;
+  margin-bottom:7px;
+  font-size:13px;
+}
+
+.comment strong{
+  color:#d63384;
+}
+
+.comment-input{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.comment-input input{
+  flex:1;
+  border:1px solid #ddd;
+  padding:9px;
+  border-radius:9px;
+}
+
+.comment-input button{
+  background:#d63384;
+  color:white;
+  border-radius:9px;
+  padding:9px 12px;
+  border:0;
+}
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
-  grid-column:1/-1;
+  text-align:center;
+  padding:50px 20px;
+  color:#888;
   background:white;
   border-radius:18px;
-  padding:55px 20px;
-  text-align:center;
-  color:#888;
 }
 
 .empty-icon{
@@ -457,34 +468,38 @@ main{
   margin-bottom:10px;
 }
 
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
 
-#toast{
+.toast{
   position:fixed;
-  left:50%;
   bottom:25px;
+  left:50%;
   transform:translateX(-50%);
-  background:#292329;
+  background:#333;
   color:white;
   padding:12px 18px;
   border-radius:12px;
   font-size:13px;
-  z-index:999;
+  z-index:100;
   opacity:0;
   pointer-events:none;
-  transition:.25s;
+  transition:.3s;
 }
 
-#toast.show{
+.toast.show{
   opacity:1;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
-  .header{
-    padding:11px 13px;
+  .header-inner{
+    padding:12px;
   }
 
   .brand{
@@ -495,16 +510,12 @@ main{
     padding:13px;
   }
 
-  .grid{
+  .feed{
     grid-template-columns:1fr;
   }
 
-  .title{
-    font-size:22px;
-  }
-
   .stats{
-    gap:30px;
+    gap:25px;
   }
 }
 </style>
@@ -512,13 +523,13 @@ main{
 
 <body>
 
-<!-- ==================================================
-     LOGIN / REGISTER
-================================================== -->
+<!-- =========================
+     AUTH PAGE
+========================= -->
 
-<section id="loginPage">
+<section id="authPage" class="auth">
 
-  <div class="login-box">
+  <div class="auth-box">
 
     <div class="logo">SMKarya</div>
 
@@ -530,19 +541,19 @@ main{
 
     <div id="loginForm">
 
-      <h2>Masuk ke SMKarya</h2>
+      <h2>Masuk</h2>
 
-      <div class="form-group">
+      <div class="field">
         <label>Email</label>
-        <input id="emailLogin" type="email" placeholder="Email">
+        <input id="loginEmail" type="email" placeholder="Masukkan email">
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <label>Password</label>
-        <input id="passwordLogin" type="password" placeholder="Password">
+        <input id="loginPassword" type="password" placeholder="Masukkan password">
       </div>
 
-      <button class="primary" onclick="login()">
+      <button class="btn btn-primary" onclick="login()">
         Masuk
       </button>
 
@@ -553,34 +564,33 @@ main{
 
     </div>
 
-
     <!-- REGISTER -->
 
     <div id="registerForm" class="hidden">
 
       <h2>Buat Akun</h2>
 
-      <div class="form-group">
+      <div class="field">
         <label>Nama</label>
-        <input id="nameRegister" type="text" placeholder="Nama lengkap">
+        <input id="regName" type="text" placeholder="Nama lengkap">
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <label>Email</label>
-        <input id="emailRegister" type="email" placeholder="Email">
+        <input id="regEmail" type="email" placeholder="Email">
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <label>Password</label>
-        <input id="passwordRegister" type="password" placeholder="Minimal 6 karakter">
+        <input id="regPassword" type="password" placeholder="Minimal 6 karakter">
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <label>Jurusan</label>
-        <input id="majorRegister" type="text" placeholder="Contoh: Tata Busana">
+        <input id="regMajor" type="text" placeholder="Contoh: Tata Busana">
       </div>
 
-      <button class="primary" onclick="register()">
+      <button class="btn btn-primary" onclick="register()">
         Daftar
       </button>
 
@@ -596,21 +606,21 @@ main{
 </section>
 
 
-<!-- ==================================================
-     APLIKASI
-================================================== -->
+<!-- =========================
+     APP
+========================= -->
 
 <section id="app" class="hidden">
 
 <header>
 
-  <div class="header">
+  <div class="header-inner">
 
     <div class="brand">
       SMKarya
     </div>
 
-    <div class="header-right">
+    <div class="header-user">
 
       <div id="headerAvatar" class="avatar">
         ?
@@ -629,33 +639,26 @@ main{
 
 <main>
 
-  <!-- NAV -->
-
   <div class="nav">
 
-    <button id="homeNav"
+    <button id="navHome"
             class="active"
-            onclick="openPage('home')">
+            onclick="showPage('home')">
       🏠 Beranda
     </button>
 
-    <button id="exploreNav"
-            onclick="openPage('explore')">
+    <button id="navExplore"
+            onclick="showPage('explore')">
       🔎 Explore
     </button>
 
-    <button id="uploadNav"
-            onclick="openPage('upload')">
+    <button id="navUpload"
+            onclick="showPage('upload')">
       ➕ Upload
     </button>
 
-    <button id="portfolioNav"
-            onclick="openPage('portfolio')">
-      📁 Portofolio
-    </button>
-
-    <button id="profileNav"
-            onclick="openPage('profile')">
+    <button id="navProfile"
+            onclick="showPage('profile')">
       👤 Profil
     </button>
 
@@ -666,15 +669,15 @@ main{
 
   <section id="homePage">
 
-    <h1 class="title">
-      Karya Terbaru
+    <h1 class="section-title">
+      Karya Siswa SMK
     </h1>
 
-    <p class="subtitle">
-      Karya siswa SMK dari berbagai jurusan.
+    <p class="section-desc">
+      Temukan dan apresiasi karya siswa dari berbagai jurusan.
     </p>
 
-    <div id="homeWorks" class="grid"></div>
+    <div id="homeFeed" class="feed"></div>
 
   </section>
 
@@ -683,23 +686,23 @@ main{
 
   <section id="explorePage" class="hidden">
 
-    <h1 class="title">
+    <h1 class="section-title">
       Explore
     </h1>
 
-    <p class="subtitle">
-      Temukan karya berdasarkan judul, jurusan, atau kategori.
+    <p class="section-desc">
+      Cari karya berdasarkan judul, nama, jurusan, atau kategori.
     </p>
 
     <input
-      id="search"
+      id="searchInput"
       class="search"
       type="text"
       placeholder="Cari karya..."
-      oninput="renderExplore()"
+      oninput="searchWorks()"
     >
 
-    <div id="exploreWorks" class="grid"></div>
+    <div id="exploreFeed" class="feed"></div>
 
   </section>
 
@@ -708,94 +711,97 @@ main{
 
   <section id="uploadPage" class="hidden">
 
-    <h1 class="title">
+    <h1 class="section-title">
       Upload Karya
     </h1>
 
-    <p class="subtitle">
-      Bagikan karya terbaikmu di SMKarya.
+    <p class="section-desc">
+      Bagikan hasil karya terbaikmu kepada siswa SMK lainnya.
     </p>
 
     <div class="upload-box">
 
-      <div class="form-group">
+      <div class="field">
         <label>Foto Karya</label>
         <input
-          id="imageUpload"
+          id="workImage"
           type="file"
           accept="image/*"
-          onchange="previewImage()"
+          onchange="previewImage(event)"
         >
       </div>
 
       <img
-        id="preview"
+        id="imagePreview"
         class="preview hidden"
-        alt="Preview"
       >
 
-      <div class="form-group">
+      <div class="field">
         <label>Judul Karya</label>
         <input
-          id="titleUpload"
+          id="workTitle"
           type="text"
-          placeholder="Nama karya"
+          placeholder="Contoh: Busana Batik Modern"
         >
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <label>Deskripsi</label>
         <textarea
-          id="descriptionUpload"
-          placeholder="Ceritakan tentang karya kamu..."
+          id="workDescription"
+          placeholder="Ceritakan tentang karyamu..."
         ></textarea>
       </div>
 
-      <div class="form-group">
+      <div class="field">
         <label>Jurusan</label>
 
-        <select id="majorUpload">
+        <select id="workMajor">
 
-          <option value="">Pilih jurusan</option>
+          <option value="">
+            Pilih jurusan
+          </option>
 
           <option>Tata Busana</option>
           <option>Desain Komunikasi Visual</option>
-          <option>Rekayasa Perangkat Lunak</option>
-          <option>Teknik Komputer dan Jaringan</option>
           <option>Teknik Mesin</option>
           <option>Teknik Kendaraan Ringan</option>
           <option>Teknik Sepeda Motor</option>
+          <option>Teknik Komputer dan Jaringan</option>
+          <option>Rekayasa Perangkat Lunak</option>
           <option>Akuntansi</option>
           <option>Manajemen Perkantoran</option>
           <option>Pemasaran</option>
           <option>Perhotelan</option>
           <option>Usaha Layanan Pariwisata</option>
           <option>Kuliner</option>
-          <option>Teknik Elektronika</option>
           <option>Teknik Ketenagalistrikan</option>
+          <option>Teknik Elektronika</option>
           <option>Teknik Konstruksi</option>
+          <option>Farmasi</option>
+          <option>Kimia Industri</option>
           <option>Animasi</option>
           <option>Broadcasting</option>
-          <option>Farmasi</option>
-          <option>Lainnya</option>
 
         </select>
 
       </div>
 
-      <div class="form-group">
-
+      <div class="field">
         <label>Kategori</label>
 
-        <select id="categoryUpload">
+        <select id="workCategory">
 
-          <option value="">Pilih kategori</option>
+          <option value="">
+            Pilih kategori
+          </option>
+
           <option>Fashion</option>
           <option>Desain</option>
           <option>Produk</option>
-          <option>Kerajinan</option>
           <option>Kuliner</option>
           <option>Teknologi</option>
+          <option>Kerajinan</option>
           <option>Fotografi</option>
           <option>Video</option>
           <option>Lainnya</option>
@@ -805,8 +811,8 @@ main{
       </div>
 
       <button
-        class="primary"
-        onclick="publishWork()"
+        class="btn btn-primary"
+        onclick="uploadWork()"
       >
         Publikasikan Karya
       </button>
@@ -816,30 +822,16 @@ main{
   </section>
 
 
-  <!-- PORTFOLIO -->
-
-  <section id="portfolioPage" class="hidden">
-
-    <h1 class="title">
-      Portofolio Saya
-    </h1>
-
-    <p class="subtitle">
-      Semua karya yang kamu publikasikan.
-    </p>
-
-    <div id="portfolioWorks" class="grid"></div>
-
-  </section>
-
-
   <!-- PROFILE -->
 
   <section id="profilePage" class="hidden">
 
-    <div class="profile-box">
+    <div class="profile">
 
-      <div id="profileAvatar" class="profile-avatar">
+      <div
+        id="profileAvatar"
+        class="profile-avatar"
+      >
         ?
       </div>
 
@@ -858,18 +850,28 @@ main{
       <div class="stats">
 
         <div class="stat">
-          <strong id="totalWorks">0</strong>
+          <strong id="profileWorks">0</strong>
           <span>Karya</span>
         </div>
 
         <div class="stat">
-          <strong id="totalLikes">0</strong>
+          <strong id="profileLikes">0</strong>
           <span>Like</span>
         </div>
 
       </div>
 
     </div>
+
+    <h2 class="section-title">
+      Portofolio Saya
+    </h2>
+
+    <p class="section-desc">
+      Semua karya yang kamu publikasikan akan otomatis menjadi portofolio.
+    </p>
+
+    <div id="profileFeed" class="feed"></div>
 
   </section>
 
@@ -878,37 +880,40 @@ main{
 </section>
 
 
-<div id="toast"></div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
 /* ==================================================
-   DATA
+   SMKARYA
+   VERSI STANDALONE
+   DATA DISIMPAN DI LOCALSTORAGE
 ================================================== */
 
-var users = JSON.parse(
-  localStorage.getItem("smkarya_users") || "[]"
-);
 
-var works = JSON.parse(
-  localStorage.getItem("smkarya_works") || "[]"
-);
+/* =========================
+   DATABASE LOCAL
+========================= */
 
-var comments = JSON.parse(
-  localStorage.getItem("smkarya_comments") || "[]"
-);
+let users =
+  JSON.parse(localStorage.getItem("smkarya_users") || "[]");
 
-var currentUser = JSON.parse(
-  localStorage.getItem("smkarya_current") || "null"
-);
+let works =
+  JSON.parse(localStorage.getItem("smkarya_works") || "[]");
+
+let comments =
+  JSON.parse(localStorage.getItem("smkarya_comments") || "[]");
+
+let currentUser =
+  JSON.parse(localStorage.getItem("smkarya_current") || "null");
 
 
-/* ==================================================
-   UTILITAS
-================================================== */
+/* =========================
+   SAVE DATABASE
+========================= */
 
-function saveAll(){
+function saveData(){
 
   localStorage.setItem(
     "smkarya_users",
@@ -924,52 +929,45 @@ function saveAll(){
     "smkarya_comments",
     JSON.stringify(comments)
   );
-}
-
-
-function makeId(){
-
-  return Date.now() + "_" +
-         Math.random()
-         .toString(36)
-         .substring(2,8);
 
 }
 
 
-function showToast(text){
+/* =========================
+   ID
+========================= */
 
-  var toast =
+function uid(){
+
+  return Date.now().toString(36) +
+         Math.random().toString(36).substring(2);
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function toast(message){
+
+  const el =
     document.getElementById("toast");
 
-  toast.textContent = text;
+  el.textContent = message;
 
-  toast.classList.add("show");
+  el.classList.add("show");
 
-  setTimeout(function(){
-
-    toast.classList.remove("show");
-
+  setTimeout(() => {
+    el.classList.remove("show");
   },2500);
 
 }
 
 
-function safe(text){
-
-  return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* ==================================================
-   LOGIN / REGISTER
-================================================== */
+/* =========================
+   AUTH PAGE
+========================= */
 
 function showRegister(){
 
@@ -997,55 +995,57 @@ function showLogin(){
 }
 
 
+/* =========================
+   REGISTER
+========================= */
+
 function register(){
 
-  var name =
-    document.getElementById("nameRegister").value.trim();
+  const name =
+    document.getElementById("regName")
+    .value.trim();
 
-  var email =
-    document.getElementById("emailRegister").value.trim().toLowerCase();
+  const email =
+    document.getElementById("regEmail")
+    .value.trim()
+    .toLowerCase();
 
-  var password =
-    document.getElementById("passwordRegister").value;
+  const password =
+    document.getElementById("regPassword")
+    .value;
 
-  var major =
-    document.getElementById("majorRegister").value.trim();
+  const major =
+    document.getElementById("regMajor")
+    .value.trim();
 
 
   if(!name || !email || !password || !major){
 
-    showToast("Lengkapi semua data.");
+    toast("Lengkapi semua data.");
 
     return;
-
   }
 
 
   if(password.length < 6){
 
-    showToast("Password minimal 6 karakter.");
+    toast("Password minimal 6 karakter.");
 
     return;
-
   }
 
 
-  for(var i=0;i<users.length;i++){
+  if(users.some(u => u.email === email)){
 
-    if(users[i].email === email){
+    toast("Email sudah terdaftar.");
 
-      showToast("Email sudah terdaftar.");
-
-      return;
-
-    }
-
+    return;
   }
 
 
-  var user = {
+  const user = {
 
-    id:makeId(),
+    id:uid(),
 
     name:name,
 
@@ -1053,17 +1053,19 @@ function register(){
 
     password:password,
 
-    major:major
+    major:major,
+
+    createdAt:Date.now()
 
   };
 
 
   users.push(user);
 
+  saveData();
+
+
   currentUser = user;
-
-  saveAll();
-
 
   localStorage.setItem(
     "smkarya_current",
@@ -1071,52 +1073,46 @@ function register(){
   );
 
 
-  startApp();
+  openApp();
 
-  showToast("Akun berhasil dibuat.");
+  toast("Akun berhasil dibuat!");
 
 }
 
+
+/* =========================
+   LOGIN
+========================= */
 
 function login(){
 
-  var email =
-    document.getElementById("emailLogin").value.trim().toLowerCase();
+  const email =
+    document.getElementById("loginEmail")
+    .value.trim()
+    .toLowerCase();
 
-  var password =
-    document.getElementById("passwordLogin").value;
-
-
-  var found = null;
-
-
-  for(var i=0;i<users.length;i++){
-
-    if(
-      users[i].email === email &&
-      users[i].password === password
-    ){
-
-      found = users[i];
-
-      break;
-
-    }
-
-  }
+  const password =
+    document.getElementById("loginPassword")
+    .value;
 
 
-  if(!found){
+  const user =
+    users.find(
+      u =>
+        u.email === email &&
+        u.password === password
+    );
 
-    showToast("Email atau password salah.");
+
+  if(!user){
+
+    toast("Email atau password salah.");
 
     return;
-
   }
 
 
-  currentUser = found;
-
+  currentUser = user;
 
   localStorage.setItem(
     "smkarya_current",
@@ -1124,10 +1120,14 @@ function login(){
   );
 
 
-  startApp();
+  openApp();
 
 }
 
+
+/* =========================
+   LOGOUT
+========================= */
 
 function logout(){
 
@@ -1137,13 +1137,12 @@ function logout(){
     "smkarya_current"
   );
 
-
   document
     .getElementById("app")
     .classList.add("hidden");
 
   document
-    .getElementById("loginPage")
+    .getElementById("authPage")
     .classList.remove("hidden");
 
   showLogin();
@@ -1151,14 +1150,14 @@ function logout(){
 }
 
 
-/* ==================================================
-   START
-================================================== */
+/* =========================
+   OPEN APP
+========================= */
 
-function startApp(){
+function openApp(){
 
   document
-    .getElementById("loginPage")
+    .getElementById("authPage")
     .classList.add("hidden");
 
   document
@@ -1168,33 +1167,34 @@ function startApp(){
 
   updateProfile();
 
-  openPage("home");
+  renderHome();
 
 }
 
 
-/* ==================================================
-   NAVIGASI
-================================================== */
+/* =========================
+   PAGE
+========================= */
 
-function openPage(page){
+function showPage(page){
 
-  var pages = [
+  const pages = [
+
     "homePage",
     "explorePage",
     "uploadPage",
-    "portfolioPage",
     "profilePage"
+
   ];
 
 
-  for(var i=0;i<pages.length;i++){
+  pages.forEach(id => {
 
     document
-      .getElementById(pages[i])
+      .getElementById(id)
       .classList.add("hidden");
 
-  }
+  });
 
 
   document
@@ -1202,146 +1202,161 @@ function openPage(page){
     .classList.remove("hidden");
 
 
-  var navs = [
-    "homeNav",
-    "exploreNav",
-    "uploadNav",
-    "portfolioNav",
-    "profileNav"
-  ];
-
-
-  for(var j=0;j<navs.length;j++){
-
-    document
-      .getElementById(navs[j])
-      .classList.remove("active");
-
-  }
-
-
   document
-    .getElementById(page + "Nav")
-    .classList.add("active");
+    .querySelectorAll(".nav button")
+    .forEach(btn => {
+
+      btn.classList.remove("active");
+
+    });
 
 
   if(page === "home"){
+
+    document
+      .getElementById("navHome")
+      .classList.add("active");
+
     renderHome();
+
   }
+
 
   if(page === "explore"){
-    renderExplore();
+
+    document
+      .getElementById("navExplore")
+      .classList.add("active");
+
+    searchWorks();
+
   }
 
-  if(page === "portfolio"){
-    renderPortfolio();
+
+  if(page === "upload"){
+
+    document
+      .getElementById("navUpload")
+      .classList.add("active");
+
   }
+
 
   if(page === "profile"){
-    updateProfile();
+
+    document
+      .getElementById("navProfile")
+      .classList.add("active");
+
+    renderProfile();
+
   }
 
 }
 
 
-/* ==================================================
-   PREVIEW GAMBAR
-================================================== */
+/* =========================
+   IMAGE PREVIEW
+========================= */
 
-function previewImage(){
+function previewImage(event){
 
-  var input =
-    document.getElementById("imageUpload");
+  const file =
+    event.target.files[0];
 
-  var preview =
-    document.getElementById("preview");
-
-
-  if(!input.files || !input.files[0]){
-
-    preview.classList.add("hidden");
-
-    return;
-
-  }
+  if(!file) return;
 
 
-  var reader =
+  const reader =
     new FileReader();
 
 
-  reader.onload = function(event){
+  reader.onload = function(e){
 
-    preview.src = event.target.result;
+    const preview =
+      document.getElementById("imagePreview");
+
+    preview.src = e.target.result;
 
     preview.classList.remove("hidden");
 
   };
 
 
-  reader.readAsDataURL(input.files[0]);
+  reader.readAsDataURL(file);
 
 }
 
 
-/* ==================================================
-   UPLOAD KARYA
-================================================== */
+/* =========================
+   UPLOAD WORK
+========================= */
 
-function publishWork(){
+function uploadWork(){
 
   if(!currentUser){
 
-    showToast("Silakan login.");
+    toast("Silakan login.");
 
     return;
-
   }
 
 
-  var file =
-    document.getElementById("imageUpload").files[0];
-
-  var title =
-    document.getElementById("titleUpload").value.trim();
-
-  var description =
-    document.getElementById("descriptionUpload").value.trim();
-
-  var major =
-    document.getElementById("majorUpload").value;
-
-  var category =
-    document.getElementById("categoryUpload").value;
+  const file =
+    document
+      .getElementById("workImage")
+      .files[0];
 
 
-  if(!file){
+  const title =
+    document
+      .getElementById("workTitle")
+      .value.trim();
 
-    showToast("Pilih foto karya terlebih dahulu.");
+
+  const description =
+    document
+      .getElementById("workDescription")
+      .value.trim();
+
+
+  const major =
+    document
+      .getElementById("workMajor")
+      .value;
+
+
+  const category =
+    document
+      .getElementById("workCategory")
+      .value;
+
+
+  if(!file || !title || !description || !major || !category){
+
+    toast("Lengkapi semua data karya.");
 
     return;
-
   }
 
 
-  if(!title || !description || !major || !category){
+  if(!file.type.startsWith("image/")){
 
-    showToast("Lengkapi semua data karya.");
+    toast("File harus berupa gambar.");
 
     return;
-
   }
 
 
-  var reader =
+  const reader =
     new FileReader();
 
 
-  reader.onload = function(event){
+  reader.onload = function(e){
 
-    var work = {
+    const work = {
 
-      id:makeId(),
+      id:uid(),
 
       userId:currentUser.id,
 
@@ -1355,32 +1370,49 @@ function publishWork(){
 
       category:category,
 
-      image:event.target.result,
+      image:e.target.result,
 
-      likes:[]
+      likes:[],
+
+      createdAt:Date.now()
 
     };
 
 
     works.unshift(work);
 
-    saveAll();
+    saveData();
 
-
-    document.getElementById("imageUpload").value = "";
-    document.getElementById("titleUpload").value = "";
-    document.getElementById("descriptionUpload").value = "";
-    document.getElementById("majorUpload").value = "";
-    document.getElementById("categoryUpload").value = "";
 
     document
-      .getElementById("preview")
+      .getElementById("workImage")
+      .value = "";
+
+    document
+      .getElementById("workTitle")
+      .value = "";
+
+    document
+      .getElementById("workDescription")
+      .value = "";
+
+    document
+      .getElementById("workMajor")
+      .value = "";
+
+    document
+      .getElementById("workCategory")
+      .value = "";
+
+
+    document
+      .getElementById("imagePreview")
       .classList.add("hidden");
 
 
-    showToast("Karya berhasil dipublikasikan!");
+    toast("Karya berhasil dipublikasikan!");
 
-    openPage("home");
+    showPage("home");
 
   };
 
@@ -1390,357 +1422,233 @@ function publishWork(){
 }
 
 
-/* ==================================================
-   BUAT CARD
-================================================== */
-
-function createWorkCard(work){
-
-  var liked = false;
-
-  if(
-    currentUser &&
-    work.likes &&
-    work.likes.indexOf(currentUser.id) !== -1
-  ){
-
-    liked = true;
-
-  }
-
-
-  var workComments = [];
-
-
-  for(var i=0;i<comments.length;i++){
-
-    if(comments[i].workId === work.id){
-
-      workComments.push(comments[i]);
-
-    }
-
-  }
-
-
-  var commentHTML = "";
-
-
-  for(var c=0;c<workComments.length;c++){
-
-    commentHTML +=
-      "<div class='comment'>" +
-      "<b>" +
-      safe(workComments[c].userName) +
-      "</b><br>" +
-      safe(workComments[c].text) +
-      "</div>";
-
-  }
-
-
-  var deleteHTML = "";
-
-
-  if(
-    currentUser &&
-    currentUser.id === work.userId
-  ){
-
-    deleteHTML =
-      "<button class='action delete' " +
-      "onclick=\"deleteWork('" + work.id + "')\">" +
-      "🗑️" +
-      "</button>";
-
-  }
-
-
-  var likeClass =
-    liked ? "action liked" : "action";
-
-
-  return (
-
-    "<article class='card'>" +
-
-      "<img class='card-image' " +
-      "src='" + work.image + "' " +
-      "alt='" + safe(work.title) + "'>" +
-
-      "<div class='card-content'>" +
-
-        "<div class='author'>" +
-          "👤 " + safe(work.userName) +
-        "</div>" +
-
-        "<h3>" +
-          safe(work.title) +
-        "</h3>" +
-
-        "<div class='description'>" +
-          safe(work.description) +
-        "</div>" +
-
-        "<span class='tag'>" +
-          safe(work.major) +
-        "</span>" +
-
-        "<span class='tag'>" +
-          safe(work.category) +
-        "</span>" +
-
-        "<div class='actions'>" +
-
-          "<button class='" + likeClass + "' " +
-          "onclick=\"toggleLike('" + work.id + "')\">" +
-          "❤️ " +
-          (work.likes ? work.likes.length : 0) +
-          "</button>" +
-
-          "<button class='action' " +
-          "onclick=\"focusComment('" + work.id + "')\">" +
-          "💬 " +
-          workComments.length +
-          "</button>" +
-
-          deleteHTML +
-
-        "</div>" +
-
-        "<div class='comments'>" +
-
-          commentHTML +
-
-          "<div class='comment-form'>" +
-
-            "<input " +
-            "id='commentInput_" + work.id + "' " +
-            "type='text' " +
-            "placeholder='Tulis komentar...'>" +
-
-            "<button " +
-            "onclick=\"addComment('" + work.id + "')\">" +
-            "Kirim" +
-            "</button>" +
-
-          "</div>" +
-
-        "</div>" +
-
-      "</div>" +
-
-    "</article>"
-
-  );
-
-}
-
-
-/* ==================================================
-   HOME
-================================================== */
+/* =========================
+   RENDER HOME
+========================= */
 
 function renderHome(){
 
-  var container =
-    document.getElementById("homeWorks");
+  const container =
+    document.getElementById("homeFeed");
 
 
-  if(works.length === 0){
+  if(!works.length){
 
-    container.innerHTML =
-      "<div class='empty'>" +
-        "<div class='empty-icon'>🎨</div>" +
-        "<h3>Belum ada karya</h3>" +
-        "<p style='margin-top:7px'>" +
-        "Jadilah yang pertama mengunggah karya." +
-        "</p>" +
-      "</div>";
+    container.innerHTML = emptyHTML(
+      "🎨",
+      "Belum ada karya",
+      "Jadilah siswa pertama yang membagikan karya!"
+    );
 
     return;
-
   }
 
 
-  var html = "";
-
-
-  for(var i=0;i<works.length;i++){
-
-    html += createWorkCard(works[i]);
-
-  }
-
-
-  container.innerHTML = html;
+  container.innerHTML =
+    works.map(workCard).join("");
 
 }
 
 
-/* ==================================================
+/* =========================
    EXPLORE
-================================================== */
+========================= */
 
-function renderExplore(){
+function searchWorks(){
 
-  var query =
+  const query =
     document
-      .getElementById("search")
+      .getElementById("searchInput")
       .value
       .toLowerCase()
       .trim();
 
 
-  var result = [];
+  const filtered =
+    works.filter(work =>
+
+      work.title.toLowerCase().includes(query) ||
+
+      work.description.toLowerCase().includes(query) ||
+
+      work.major.toLowerCase().includes(query) ||
+
+      work.category.toLowerCase().includes(query) ||
+
+      work.userName.toLowerCase().includes(query)
+
+    );
 
 
-  for(var i=0;i<works.length;i++){
-
-    var w = works[i];
-
-
-    var text =
-      (
-        w.title + " " +
-        w.description + " " +
-        w.major + " " +
-        w.category + " " +
-        w.userName
-      ).toLowerCase();
+  const container =
+    document.getElementById("exploreFeed");
 
 
-    if(text.indexOf(query) !== -1){
+  if(!filtered.length){
 
-      result.push(w);
-
-    }
-
-  }
-
-
-  var container =
-    document.getElementById("exploreWorks");
-
-
-  if(result.length === 0){
-
-    container.innerHTML =
-      "<div class='empty'>" +
-        "<div class='empty-icon'>🔎</div>" +
-        "<h3>Karya tidak ditemukan</h3>" +
-        "<p style='margin-top:7px'>" +
-        "Coba kata pencarian lain." +
-        "</p>" +
-      "</div>";
+    container.innerHTML = emptyHTML(
+      "🔎",
+      "Karya tidak ditemukan",
+      "Coba gunakan kata pencarian lain."
+    );
 
     return;
-
   }
 
 
-  var html = "";
-
-
-  for(var j=0;j<result.length;j++){
-
-    html += createWorkCard(result[j]);
-
-  }
-
-
-  container.innerHTML = html;
+  container.innerHTML =
+    filtered.map(workCard).join("");
 
 }
 
 
-/* ==================================================
-   PORTFOLIO
-================================================== */
+/* =========================
+   WORK CARD
+========================= */
 
-function renderPortfolio(){
+function workCard(work){
 
-  var container =
-    document.getElementById("portfolioWorks");
-
-
-  var mine = [];
-
-
-  for(var i=0;i<works.length;i++){
-
-    if(
-      currentUser &&
-      works[i].userId === currentUser.id
-    ){
-
-      mine.push(works[i]);
-
-    }
-
-  }
+  const liked =
+    currentUser &&
+    work.likes &&
+    work.likes.includes(currentUser.id);
 
 
-  if(mine.length === 0){
-
-    container.innerHTML =
-      "<div class='empty'>" +
-        "<div class='empty-icon'>📁</div>" +
-        "<h3>Portofolio masih kosong</h3>" +
-        "<p style='margin-top:7px'>" +
-        "Upload karya pertamamu." +
-        "</p>" +
-      "</div>";
-
-    return;
-
-  }
+  const commentList =
+    comments.filter(
+      c => c.workId === work.id
+    );
 
 
-  var html = "";
+  return `
 
+  <article class="card">
 
-  for(var j=0;j<mine.length;j++){
+    <img
+      class="card-img"
+      src="${work.image}"
+      alt="${escapeHTML(work.title)}"
+    >
 
-    html += createWorkCard(mine[j]);
+    <div class="card-body">
 
-  }
+      <div class="card-user">
+        👤 ${escapeHTML(work.userName)}
+      </div>
 
+      <h3>
+        ${escapeHTML(work.title)}
+      </h3>
 
-  container.innerHTML = html;
+      <p>
+        ${escapeHTML(work.description)}
+      </p>
+
+      <span class="badge">
+        ${escapeHTML(work.major)}
+      </span>
+
+      <span class="badge">
+        ${escapeHTML(work.category)}
+      </span>
+
+      <div class="actions">
+
+        <button
+          class="action ${liked ? "liked" : ""}"
+          onclick="toggleLike('${work.id}')"
+        >
+          ❤️ ${work.likes ? work.likes.length : 0}
+        </button>
+
+        <button
+          class="action"
+          onclick="focusComment('${work.id}')"
+        >
+          💬 ${commentList.length}
+        </button>
+
+        ${
+          currentUser &&
+          currentUser.id === work.userId
+          ?
+          `
+          <button
+            class="action delete"
+            onclick="deleteWork('${work.id}')"
+          >
+            🗑️
+          </button>
+          `
+          :
+          ""
+        }
+
+      </div>
+
+      <div class="comment-box">
+
+        ${
+          commentList
+            .map(c => `
+              <div class="comment">
+                <strong>
+                  ${escapeHTML(c.userName)}
+                </strong>
+                <br>
+                ${escapeHTML(c.text)}
+              </div>
+            `)
+            .join("")
+        }
+
+        <div
+          class="comment-input"
+          id="comment-${work.id}"
+        >
+
+          <input
+            id="input-${work.id}"
+            type="text"
+            placeholder="Tulis komentar..."
+            onkeydown="commentKey(event,'${work.id}')"
+          >
+
+          <button
+            onclick="addComment('${work.id}')"
+          >
+            Kirim
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </article>
+
+  `;
 
 }
 
 
-/* ==================================================
+/* =========================
    LIKE
-================================================== */
+========================= */
 
-function toggleLike(id){
+function toggleLike(workId){
 
   if(!currentUser){
 
-    showToast("Silakan login.");
+    toast("Silakan login.");
 
     return;
-
   }
 
 
-  var work = null;
-
-
-  for(var i=0;i<works.length;i++){
-
-    if(works[i].id === id){
-
-      work = works[i];
-
-      break;
-
-    }
-
-  }
+  const work =
+    works.find(w => w.id === workId);
 
 
   if(!work) return;
@@ -1753,66 +1661,61 @@ function toggleLike(id){
   }
 
 
-  var position =
+  const index =
     work.likes.indexOf(currentUser.id);
 
 
-  if(position === -1){
+  if(index >= 0){
 
-    work.likes.push(currentUser.id);
+    work.likes.splice(index,1);
 
   }else{
 
-    work.likes.splice(position,1);
+    work.likes.push(currentUser.id);
 
   }
 
 
-  saveAll();
+  saveData();
 
-  refreshPage();
+  refreshCurrentPage();
 
 }
 
 
-/* ==================================================
-   KOMENTAR
-================================================== */
+/* =========================
+   COMMENT
+========================= */
 
 function addComment(workId){
 
   if(!currentUser){
 
-    showToast("Silakan login.");
+    toast("Silakan login.");
 
     return;
-
   }
 
 
-  var input =
+  const input =
     document.getElementById(
-      "commentInput_" + workId
+      "input-" + workId
     );
 
 
-  if(!input) return;
-
-
-  var text =
+  const text =
     input.value.trim();
 
 
   if(!text){
 
     return;
-
   }
 
 
   comments.push({
 
-    id:makeId(),
+    id:uid(),
 
     workId:workId,
 
@@ -1820,23 +1723,38 @@ function addComment(workId){
 
     userName:currentUser.name,
 
-    text:text
+    text:text,
+
+    createdAt:Date.now()
 
   });
 
 
-  saveAll();
+  saveData();
 
-  refreshPage();
+  input.value = "";
+
+  refreshCurrentPage();
+
+}
+
+
+function commentKey(event,workId){
+
+  if(event.key === "Enter"){
+
+    addComment(workId);
+
+  }
 
 }
 
 
 function focusComment(workId){
 
-  var input =
+  const input =
     document.getElementById(
-      "commentInput_" + workId
+      "input-" + workId
     );
 
 
@@ -1844,78 +1762,63 @@ function focusComment(workId){
 
     input.focus();
 
+    input.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
   }
 
 }
 
 
-/* ==================================================
-   HAPUS KARYA
-================================================== */
+/* =========================
+   DELETE
+========================= */
 
-function deleteWork(id){
+function deleteWork(workId){
 
-  if(!confirm("Yakin ingin menghapus karya ini?")){
+  if(!confirm("Hapus karya ini?")){
 
     return;
 
   }
 
 
-  var newWorks = [];
+  works =
+    works.filter(
+      w => w.id !== workId
+    );
 
 
-  for(var i=0;i<works.length;i++){
-
-    if(works[i].id !== id){
-
-      newWorks.push(works[i]);
-
-    }
-
-  }
+  comments =
+    comments.filter(
+      c => c.workId !== workId
+    );
 
 
-  works = newWorks;
+  saveData();
 
+  toast("Karya berhasil dihapus.");
 
-  var newComments = [];
-
-
-  for(var j=0;j<comments.length;j++){
-
-    if(comments[j].workId !== id){
-
-      newComments.push(comments[j]);
-
-    }
-
-  }
-
-
-  comments = newComments;
-
-
-  saveAll();
-
-  showToast("Karya dihapus.");
-
-  refreshPage();
+  refreshCurrentPage();
 
 }
 
 
-/* ==================================================
-   PROFIL
-================================================== */
+/* =========================
+   PROFILE
+========================= */
 
 function updateProfile(){
 
   if(!currentUser) return;
 
 
-  var initial =
-    currentUser.name.charAt(0).toUpperCase();
+  const initial =
+    currentUser.name
+      .charAt(0)
+      .toUpperCase();
 
 
   document
@@ -1930,108 +1833,204 @@ function updateProfile(){
 
   document
     .getElementById("profileName")
-    .textContent = currentUser.name;
+    .textContent =
+      currentUser.name;
 
 
   document
     .getElementById("profileEmail")
-    .textContent = currentUser.email;
+    .textContent =
+      currentUser.email;
 
 
   document
     .getElementById("profileMajor")
-    .textContent = currentUser.major;
+    .textContent =
+      currentUser.major;
 
 
-  var countWorks = 0;
-  var countLikes = 0;
+  const myWorks =
+    works.filter(
+      w => w.userId === currentUser.id
+    );
 
 
-  for(var i=0;i<works.length;i++){
-
-    if(works[i].userId === currentUser.id){
-
-      countWorks++;
-
-      if(works[i].likes){
-
-        countLikes += works[i].likes.length;
-
-      }
-
-    }
-
-  }
+  const likes =
+    myWorks.reduce(
+      (total,w) =>
+        total +
+        (w.likes ? w.likes.length : 0),
+      0
+    );
 
 
   document
-    .getElementById("totalWorks")
-    .textContent = countWorks;
+    .getElementById("profileWorks")
+    .textContent =
+      myWorks.length;
 
 
   document
-    .getElementById("totalLikes")
-    .textContent = countLikes;
+    .getElementById("profileLikes")
+    .textContent =
+      likes;
 
 }
 
 
-/* ==================================================
-   REFRESH
-================================================== */
+function renderProfile(){
 
-function refreshPage(){
-
-  var home =
-    !document
-      .getElementById("homePage")
-      .classList.contains("hidden");
+  updateProfile();
 
 
-  var explore =
-    !document
-      .getElementById("explorePage")
-      .classList.contains("hidden");
+  const myWorks =
+    works.filter(
+      w => w.userId === currentUser.id
+    );
 
 
-  var portfolio =
-    !document
-      .getElementById("portfolioPage")
-      .classList.contains("hidden");
+  const container =
+    document.getElementById("profileFeed");
 
 
-  var profile =
-    !document
-      .getElementById("profilePage")
-      .classList.contains("hidden");
+  if(!myWorks.length){
 
+    container.innerHTML =
+      emptyHTML(
+        "📁",
+        "Portofolio masih kosong",
+        "Upload karya pertamamu sekarang."
+      );
 
-  if(home){
-    renderHome();
+    return;
   }
+
+
+  container.innerHTML =
+    myWorks.map(workCard).join("");
+
+}
+
+
+/* =========================
+   REFRESH PAGE
+========================= */
+
+function refreshCurrentPage(){
+
+  const visible =
+    document.querySelector(
+      "#homePage:not(.hidden)"
+    );
+
+  if(visible){
+
+    renderHome();
+
+    return;
+  }
+
+
+  const explore =
+    document.querySelector(
+      "#explorePage:not(.hidden)"
+    );
 
   if(explore){
-    renderExplore();
+
+    searchWorks();
+
+    return;
   }
 
-  if(portfolio){
-    renderPortfolio();
-  }
+
+  const profile =
+    document.querySelector(
+      "#profilePage:not(.hidden)"
+    );
 
   if(profile){
-    updateProfile();
+
+    renderProfile();
+
   }
 
 }
 
 
-/* ==================================================
-   MULAI
-================================================== */
+/* =========================
+   EMPTY
+========================= */
+
+function emptyHTML(icon,title,text){
+
+  return `
+
+    <div class="empty">
+
+      <div class="empty-icon">
+        ${icon}
+      </div>
+
+      <h3>
+        ${title}
+      </h3>
+
+      <p style="margin-top:7px">
+        ${text}
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================
+   SECURITY DISPLAY
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   START APP
+========================= */
 
 if(currentUser){
 
-  startApp();
+  openApp();
+
+}else{
+
+  document
+    .getElementById("authPage")
+    .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   DEMO DATA
+========================= */
+
+if(works.length === 0){
+
+  /*
+    Tidak dibuat karya contoh otomatis
+    supaya halaman benar-benar kosong
+    sampai pengguna upload karya.
+  */
 
 }
 
